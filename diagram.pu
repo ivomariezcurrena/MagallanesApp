@@ -1,0 +1,74 @@
+@startuml
+class TipoDesignacion <<Entity>> {
+  String Nombre
+  enum Tipo ['cargo','espacioCurricular']
+}
+
+class Division <<Entity>> {
+  int anio
+  int numDivision
+  String Orientacion
+  enum Turno ['Mañana','Tarde','Vespertino','Noche']
+  DATETIME FechaInicio
+  DATETIME FechaFin
+}
+
+class InstanciaDesignacion <<Entity>> {
+  int CargaHoraria
+  DATETIME FechaInicio
+  DATETIME FechaFin
+}
+
+InstanciaDesignacion "*" --> "1" TipoDesignacion
+InstanciaDesignacion "*" ..> "1" Division
+
+class Persona <<Entity>> {
+  int NumDocente
+  BIGINT Dni
+  String Cuil[30]
+  String Nombre[90]
+  String Apellido[90]
+  String Titulo[90]
+  DATETIME FechaInicioActividad
+  CHARACTER Sexo
+  String Domicilio[90]
+  String Telefono[30]
+  DATETIME FechaNacimiento
+  String LugarNacimiento[90]
+}
+
+class Designacion <<Entity>> {
+  String SituacionRevista[45]
+  DATETIME FechaInicio
+  DATETIME FechaFin
+}
+
+Designacion "*" <--> "1" Persona
+Designacion "*" --> "1" InstanciaDesignacion
+
+class Horario <<Entity>> {
+  String Dia[10]
+  int Hora
+}
+
+note bottom of Horario: EL horario podría vincuarse \n con InstanciaDesignacion
+
+Designacion "1" --> "*" Horario
+
+class ArticuloLicencia <<Entity>> {
+  String Articulo[10]
+  String Descripcion[90]
+}
+
+class Licencia <<Entity>> {
+  DATETIME PedidoDesde
+  DATETIME PedidoHasta
+  String Domicilio[90]
+  bool CertificadoMedico
+}
+
+Licencia "*" --> "1" Persona
+Licencia "*" --> "1" ArticuloLicencia
+Licencia "*" --> "*" Designacion
+
+@enduml
