@@ -1,7 +1,7 @@
 @startuml
-class TipoDesignacion <<Entity>> {
-  String Nombre
-  enum Tipo ['cargo','espacioCurricular']
+enum TipoDesignacion {
+   CARGO
+   ESPACIO CURRICULAR
 }
 
 class Division <<Entity>> {
@@ -13,14 +13,14 @@ class Division <<Entity>> {
   DATETIME FechaFin
 }
 
-class InstanciaDesignacion <<Entity>> {
+class Cargo <<Entity>> {
   int CargaHoraria
   DATETIME FechaInicio
   DATETIME FechaFin
 }
 
-InstanciaDesignacion "*" --> "1" TipoDesignacion
-InstanciaDesignacion "*" ..> "1" Division
+Cargo "*" --> "1" TipoDesignacion
+Cargo "*" ..> "1" Division
 
 class Persona <<Entity>> {
   int NumDocente
@@ -44,16 +44,14 @@ class Designacion <<Entity>> {
 }
 
 Designacion "*" <--> "1" Persona
-Designacion "*" --> "1" InstanciaDesignacion
+Designacion "*" --> "1" Cargo
 
 class Horario <<Entity>> {
   String Dia[10]
   int Hora
 }
 
-note bottom of Horario: EL horario podría vincuarse \n con InstanciaDesignacion
-
-Designacion "1" --> "*" Horario
+Cargo "1" --> "*" Horario
 
 class ArticuloLicencia <<Entity>> {
   String Articulo[10]
