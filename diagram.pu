@@ -23,18 +23,14 @@ Cargo "*" --> "1" TipoDesignacion
 Cargo "*" ..> "1" Division
 
 class Persona <<Entity>> {
-  int NumDocente
   BIGINT Dni
   String Cuil[30]
   String Nombre[90]
   String Apellido[90]
   String Titulo[90]
-  DATETIME FechaInicioActividad
   CHARACTER Sexo
   String Domicilio[90]
   String Telefono[30]
-  DATETIME FechaNacimiento
-  String LugarNacimiento[90]
 }
 
 class Designacion <<Entity>> {
