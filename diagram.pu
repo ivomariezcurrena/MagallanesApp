@@ -9,8 +9,6 @@ class Division <<Entity>> {
   int numDivision
   String Orientacion
   enum Turno ['Mañana','Tarde','Vespertino','Noche']
-  DATETIME FechaInicio
-  DATETIME FechaFin
 }
 
 class Cargo <<Entity>> {
