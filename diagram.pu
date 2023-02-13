@@ -12,6 +12,7 @@ class Division <<Entity>> {
 }
 
 class Cargo <<Entity>> {
+  String nombre
   int CargaHoraria
   DATETIME FechaInicio
   DATETIME FechaFin
