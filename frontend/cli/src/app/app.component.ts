@@ -1,34 +1,33 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, HostListener, OnInit, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { SidenavComponent } from './sidenav/sidenav.component';
+import { MainComponent } from './main/main.component';
+
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  template: `
-    <nav class="navbar navbar-expand-md navbar-light bg-light shadow-sm px-4">
-      <a class="navbar-brand fw-bold" href="#">Print the bill</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" href="/plays">Obras</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="/customers">Clientes</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-
-    <div class="container mt-4">
-      <router-outlet></router-outlet>
-    </div>
-  `,
-  styles: [],
+  imports: [SidenavComponent, CommonModule, MainComponent],
+  templateUrl: `app.component.html`,
+  styles: [``],
 })
-export class AppComponent {
-  title = 'Ivo';
+export class AppComponent implements OnInit {
+  isLeftSidebarCollapsed = signal<boolean>(false);
+  screenWidth = signal<number>(window.innerWidth);
+
+  @HostListener('window:resize')
+  onResize() {
+    this.screenWidth.set(window.innerWidth);
+    if (this.screenWidth() < 768) {
+      this.isLeftSidebarCollapsed.set(true);
+    }
+  }
+
+  ngOnInit(): void {
+    this.isLeftSidebarCollapsed.set(this.screenWidth() < 768);
+  }
+
+  changeIsLeftSidebarCollapsed(isLeftSidebarCollapsed: boolean): void {
+    this.isLeftSidebarCollapsed.set(isLeftSidebarCollapsed);
+  }
 }
+

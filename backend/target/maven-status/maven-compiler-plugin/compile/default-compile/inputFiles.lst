@@ -1,2 +1,11 @@
+/app/src/main/java/unpsjb/labprog/backend/model/Horario.java
+/app/src/main/java/unpsjb/labprog/backend/model/Persona.java
+/app/src/main/java/unpsjb/labprog/backend/model/Licencia.java
+/app/src/main/java/unpsjb/labprog/backend/model/Turno.java
+/app/src/main/java/unpsjb/labprog/backend/model/Cargo.java
 /app/src/main/java/unpsjb/labprog/backend/BackendApplication.java
+/app/src/main/java/unpsjb/labprog/backend/model/TipoDesignacion.java
 /app/src/main/java/unpsjb/labprog/backend/Response.java
+/app/src/main/java/unpsjb/labprog/backend/model/Designacion.java
+/app/src/main/java/unpsjb/labprog/backend/model/ArticuloLicencia.java
+/app/src/main/java/unpsjb/labprog/backend/model/Division.java
