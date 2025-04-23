@@ -38,4 +38,7 @@ public class Response {
 		return response(HttpStatus.CONFLICT, string, null);
 	}
 
+	public static ResponseEntity<Object> dbError(String msj) {
+		return response(HttpStatus.CONFLICT, msj, null);
+	}
 }

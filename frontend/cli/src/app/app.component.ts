@@ -2,17 +2,35 @@ import { Component, HostListener, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { MainComponent } from './main/main.component';
+import { MenuItem } from './sidenav/menuItem';
 
 
 @Component({
   selector: 'app-root',
   imports: [SidenavComponent, CommonModule, MainComponent],
   templateUrl: `app.component.html`,
-  styles: [``],
+  styles: [`
+  body {
+  background-color: var(--penguin-bg);
+  color: var(--penguin-grey);
+  font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+.container-main {
+  padding: 1.5rem;
+}
+
+
+    `],
 })
 export class AppComponent implements OnInit {
   isLeftSidebarCollapsed = signal<boolean>(false);
   screenWidth = signal<number>(window.innerWidth);
+
+  menuItems: MenuItem[] = [
+    { route: '', icon: 'fal fa-home', label: 'Inicio' },
+    { route: 'personas', icon: 'fal fa-user', label: 'Personas' },
+  ];
 
   @HostListener('window:resize')
   onResize() {

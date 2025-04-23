@@ -1,0 +1,48 @@
+<div class="text-center mb-5">
+    <h1><strong>Lista de Personas</strong></h1>
+</div>
+
+<div class="d-flex justify-content-center mb-4">
+    <a routerLink="/personas/new" class=" btn btn-primary me-2">Agregar persona</a>
+    <input type="text" class="form-control w-50 me-2" placeholder="Buscar por DNI, nombre o apellido..."
+        [(ngModel)]="searchTerm" (keyup.enter)="buscar()" />
+    <button class="btn btn-penguin me-2" (click)="buscar()">Buscar</button>
+    <button class="btn btn-outline-secondary" (click)="limpiar()">Limpiar</button>
+
+</div>
+
+<div class="table-responsive">
+    <table class="penguin-table table table-hover">
+        <thead>
+            <tr>
+                <th>N°</th>
+                <th>Dni</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Título</th>
+                <th class="text-center" style="width:120px;">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let persona of filteredPersonas; index as i">
+                <td>{{ i + 1 }}</td>
+                <td>{{ persona.dni }}</td>
+                <td>{{ persona.nombre }}</td>
+                <td>{{ persona.apellido }}</td>
+                <td>{{ persona.titulo }}</td>
+                <td class="text-center">
+                    <button class="btn btn-sm btn-penguin me-1" title="Editar">
+                        <i class="fa fa-pencil"></i>
+                    </button>
+                    <button class="btn btn-sm btn-danger" title="Eliminar">
+                        <i class="fa fa-trash"></i>
+                    </button>
+
+                </td>
+            </tr>
+            <tr *ngIf="filteredPersonas.length === 0">
+                <td colspan="6" class="text-center py-3">No hay coincidencias</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

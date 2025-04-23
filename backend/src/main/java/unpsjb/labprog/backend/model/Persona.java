@@ -15,7 +15,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Persona {
     @Id
-    private Long dni;
+    private int dni;
 
     private String cuil;
     private String nombre;

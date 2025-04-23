@@ -1,13 +1,19 @@
 package unpsjb.labprog.backend.model;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -27,17 +33,16 @@ public class Cargo {
     private LocalDateTime fechaInicio;
     private LocalDateTime fechaFin;
 
-    @ManyToOne
-    @JoinColumn(name = "tipo_designacion_id")
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tipo_designacion")
     private TipoDesignacion tipoDesignacion;
 
-    // Esta es opcional
     @ManyToOne
     @JoinColumn(name = "division_id", nullable = true)
     private Division division;
 
-    @ManyToOne
-    @JoinColumn(name = "horario_id")
-    private Horario horario;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "cargo_id")
+    private Collection<Horario> horarios;
 
 }

@@ -17,4 +17,5 @@ export class MainComponent {
     }
     return this.screenWidth() > 768 ? 'body-trimmed' : 'body-md-screen';
   });
+
 }

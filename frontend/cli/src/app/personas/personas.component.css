@@ -1,0 +1,62 @@
+/* Encabezado */
+
+
+.penguin-table th {
+    background-color: #36393b;
+    color: #f3f3f3;
+}
+
+/* Bordes y alineación */
+.penguin-table th,
+.penguin-table td {
+    border-color: var(--penguin-bg);
+    vertical-align: middle;
+}
+
+.penguin-table tbody td {
+    color: #36393b;
+}
+
+/* Opción A: sobreescribes el outline-success global */
+.btn-outline-secondary {
+    border-color: #36393b;
+    color: #36393b;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #36393b;
+    color: #f3f3f3;
+}
+
+/* Opción B: defines un estilo “pingüino” */
+.btn-penguin {
+    background-color: #36393b;
+    border-color: #36393b;
+    color: #f3f3f3;
+}
+
+.btn-penguin:hover {
+    background-color: #f3f3f3;
+    color: #36393b;
+}
+
+.btn-primary {
+    border-color: #2c6891;
+    background-color: #2c6891;
+    color: #f3f3f3;
+}
+
+.btn-primary:hover {
+    border-color: #2c6891;
+    background-color: #f3f3f3;
+    color: #2c6891;
+}
+
+.btn-danger {
+    background-color: #df4e4e;
+}
+
+.btn-danger:hover {
+    background-color: #8b2f2f;
+    border-color: #8b2f2f;
+}

@@ -1,3 +1,24 @@
+<nav class="navbar navbar-expand-md navbar-light bg-light shadow-sm header">
+    <div class="container-fluid position-relative">
+
+        <!-- 1) Logo+texto ABSOLUTELY centrados -->
+        <div class="position-absolute top-50 start-50 translate-middle d-flex align-items-center">
+            <img src="pengue.png" alt="Logo pengüino" class="me-2" style="width: 32px; height: auto;">
+            <span class="navbar-brand mb-0 h4">Magallanes App</span>
+        </div>
+
+        <!-- 2) Links a la derecha -->
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item px-2">
+                <a class="nav-link active" href="#">Login</a>
+            </li>
+            <li class="nav-item px-2">
+                <a class="nav-link active" href="#">Logout</a>
+            </li>
+        </ul>
+
+    </div>
+</nav>
 <div class="body" [ngClass]="sizeClass()">
     <router-outlet />
 </div>

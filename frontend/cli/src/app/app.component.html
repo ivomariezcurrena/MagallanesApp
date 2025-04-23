@@ -1,4 +1,4 @@
 <app-sidenav [isLeftSidebarCollapsed]="isLeftSidebarCollapsed()"
-    (changeIsLeftSidebarCollapsed)="changeIsLeftSidebarCollapsed($event)" />
+    (changeIsLeftSidebarCollapsed)="changeIsLeftSidebarCollapsed($event)" [items]="menuItems"></app-sidenav>
 
-<app-main [isLeftSidebarCollapsed]="isLeftSidebarCollapsed()" [screenWidth]="screenWidth()" />
+<app-main [isLeftSidebarCollapsed]="isLeftSidebarCollapsed()" [screenWidth]="screenWidth()"></app-main>

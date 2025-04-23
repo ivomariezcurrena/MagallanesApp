@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, input, output } from '@angular/core';
+import { Component, EventEmitter, Input, input, Output, output } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { MenuItem } from './menuItem';
 
 @Component({
   selector: 'app-sidenav',
@@ -9,33 +10,12 @@ import { RouterModule } from '@angular/router';
   styleUrl: `sidenav.component.css`,
 })
 export class SidenavComponent {
-  isLeftSidebarCollapsed = input.required<boolean>();
-  changeIsLeftSidebarCollapsed = output<boolean>();
-  items = [
-    {
-      routeLink: 'dashboard',
-      icon: 'fal fa-home',
-      label: 'Dashboard',
-    },
-    {
-      routeLink: 'products',
-      icon: 'fal fa-box-open',
-      label: 'Products',
-    },
-    {
-      routeLink: 'pages',
-      icon: 'fal fa-file',
-      label: 'Pages',
-    },
-    {
-      routeLink: 'settings',
-      icon: 'fal fa-cog',
-      label: 'Settings',
-    },
-  ];
+  @Input() isLeftSidebarCollapsed = false;
+  @Input() items: MenuItem[] = [];
+  @Output() changeIsLeftSidebarCollapsed = new EventEmitter<boolean>();
 
   toggleCollapse(): void {
-    this.changeIsLeftSidebarCollapsed.emit(!this.isLeftSidebarCollapsed());
+    this.changeIsLeftSidebarCollapsed.emit(!this.isLeftSidebarCollapsed);
   }
 
   closeSidenav(): void {

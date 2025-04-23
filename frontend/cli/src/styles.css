@@ -1,3 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
 @import "bootstrap/dist/css/bootstrap.min.css";
 @import "font-awesome/css/font-awesome.css";
+
+:root {
+    --penguin-grey: #5A5A5A;
+    --penguin-beige: #EDE3CD;
+    --penguin-beige-alt: #F5E9D7;
+    --penguin-bg: #F8F8F8;
+}
+
+h1 {
+    color: #36393b;
+}
+
+h2 {
+    color: #36393b;
+}
+
+h3 {
+    color: #36393b;
+}
+
+h4 {
+    color: #36393b;
+}

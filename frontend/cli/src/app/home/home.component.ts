@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   imports: [],
   template: `
     <div class="px-3 py-3 pt-md-5 mx-auto text-center">
-      <h1 class="display-4">Bienvenido a Print the bill</h1>
+      <h1 class="display-4">Bienvenido</h1>
       <p class="lead">este es el front de nuestra app</p>
     </div>
   `,
