@@ -1,1 +1,80 @@
-<p>worksss</p>
+<div class="container mt-4">
+
+    <div class="row justify-content-center g-4">
+        <div class="d-flex justify-content-center mb-4">
+            <i class="bi bi-person-plus-fill me-2 fs-4 "></i>
+            <h2 class="mb-0">{{ isNew ? 'Agregar Persona' : 'Editar Persona' }}</h2>
+        </div>
+        <form #form="ngForm" (ngSubmit)="save()" class="row g-3">
+            <!-- Columna izquierda -->
+            <div class="col-md-6">
+                <!-- Nombre -->
+                <div class="form-group">
+                    <label class="form-label fw-semibold">Nombre</label>
+                    <input type="text" class="form-control" [(ngModel)]="persona.nombre" name="nombre"
+                        placeholder="Ej: Alberto" required>
+                </div>
+
+                <!-- DNI -->
+                <div class="form-group mt-3">
+                    <label class="form-label fw-semibold">DNI</label>
+                    <input type="number" class="form-control" [(ngModel)]="persona.dni" name="dni">
+                </div>
+
+                <!-- Sexo -->
+                <div class="form-group mt-3">
+                    <label class="form-label fw-semibold">Sexo</label>
+                    <select class="form-select" [(ngModel)]="persona.sexo" name="sexo">
+                        <option value="" disabled selected>Seleccionar</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Femenino">Femenino</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+
+                <!-- Domicilio -->
+                <div class="form-group mt-3">
+                    <label class="form-label fw-semibold">Domicilio</label>
+                    <input type="text" class="form-control" [(ngModel)]="persona.domicilio" name="domicilio">
+                </div>
+            </div>
+
+            <!-- Columna derecha -->
+            <div class="col-md-6">
+                <!-- Apellido -->
+                <div class="form-group">
+                    <label class="form-label fw-semibold">Apellido</label>
+                    <input type="text" class="form-control" [(ngModel)]="persona.apellido" name="apellido">
+                </div>
+
+                <!-- CUIT -->
+                <div class="form-group mt-3">
+                    <label class="form-label fw-semibold">CUIT</label>
+                    <input type="text" class="form-control" [(ngModel)]="persona.cuil" name="cuil">
+                </div>
+
+                <!-- Título -->
+                <div class="form-group mt-3">
+                    <label class="form-label fw-semibold">Título</label>
+                    <input type="text" class="form-control" [(ngModel)]="persona.titulo" name="titulo">
+                </div>
+
+                <!-- Teléfono -->
+                <div class="form-group mt-3">
+                    <label class="form-label fw-semibold">Teléfono</label>
+                    <input type="text" class="form-control" [(ngModel)]="persona.telefono" name="telefono">
+                </div>
+            </div>
+
+            <!-- Botones -->
+            <div class="col-12 d-flex justify-content-between mt-4">
+                <button type="button" class="btn btn-outline-danger" (click)="goBack()">
+                    <i class="bi bi-x-circle"></i> Cancelar
+                </button>
+                <button type="submit" class="btn btn-success" [disabled]="form.invalid">
+                    <i class="bi bi-check-circle"></i> Guardar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

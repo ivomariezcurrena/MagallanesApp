@@ -5,7 +5,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import jakarta.transaction.Transactional;
 import unpsjb.labprog.backend.model.Persona;
 
@@ -24,8 +25,21 @@ public class PersonaService {
         return repository.findById(dni).orElse(null);
     }
 
+    public Page<Persona> findByPage(int page, int size) {
+        return repository.findAll(PageRequest.of(page, size));
+    }
+
+    public List<Persona> search(String term) {
+        return repository.search("%" + term.toUpperCase() + "%");
+    }
+
     @Transactional
     public Persona save(Persona e) {
         return repository.save(e);
+    }
+
+    @Transactional
+    public void delete(int dni) {
+        repository.deleteById(dni);
     }
 }
