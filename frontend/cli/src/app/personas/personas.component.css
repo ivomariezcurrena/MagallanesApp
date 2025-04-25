@@ -41,15 +41,15 @@
 }
 
 .btn-primary {
-    border-color: #2c6891;
-    background-color: #2c6891;
+    border-color: #198754;
+    background-color: #198754;
     color: #f3f3f3;
 }
 
 .btn-primary:hover {
-    border-color: #2c6891;
+    border-color: #198754;
     background-color: #f3f3f3;
-    color: #2c6891;
+    color: #198754;
 }
 
 .btn-danger {
@@ -59,4 +59,9 @@
 .btn-danger:hover {
     background-color: #8b2f2f;
     border-color: #8b2f2f;
+}
+
+.form-control:focus {
+    border-color: #36393b;
+    box-shadow: 0 0 0 0.2rem #b3b9bd;
 }

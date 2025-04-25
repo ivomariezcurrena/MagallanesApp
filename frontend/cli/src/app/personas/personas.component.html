@@ -3,7 +3,7 @@
 </div>
 
 <div class="d-flex justify-content-center mb-4">
-    <a routerLink="/personas/new" class=" btn btn-primary me-2">Agregar persona</a>
+    <a routerLink="/personas/dni/new" class=" btn btn-primary me-2">Agregar persona</a>
     <input type="text" class="form-control w-50 me-2" placeholder="Buscar por DNI, nombre o apellido..."
         [(ngModel)]="searchTerm" (keyup.enter)="buscar()" />
     <button class="btn btn-penguin me-2" (click)="buscar()">Buscar</button>
@@ -31,7 +31,7 @@
                 <td>{{ persona.apellido }}</td>
                 <td>{{ persona.titulo }}</td>
                 <td class="text-center">
-                    <a [routerLink]="['/personas', persona.dni]">
+                    <a [routerLink]="['/personas/dni', persona.dni]">
                         <button class="btn btn-sm btn-penguin me-1" title="Editar">
                             <i class="fa fa-pencil"></i>
                         </button>

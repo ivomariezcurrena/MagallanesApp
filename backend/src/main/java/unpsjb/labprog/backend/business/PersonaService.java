@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import jakarta.transaction.Transactional;
 import unpsjb.labprog.backend.model.Persona;
+import org.springframework.data.domain.Pageable;
 
 @Service
 public class PersonaService {
@@ -29,10 +30,6 @@ public class PersonaService {
         return repository.findAll(PageRequest.of(page, size));
     }
 
-    public List<Persona> search(String term) {
-        return repository.search("%" + term.toUpperCase() + "%");
-    }
-
     @Transactional
     public Persona save(Persona e) {
         return repository.save(e);
@@ -42,4 +39,11 @@ public class PersonaService {
     public void delete(int dni) {
         repository.deleteById(dni);
     }
+
+    public Page<Persona> search(String term, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        String likeTerm = "%" + term.toUpperCase() + "%";
+        return repository.search(likeTerm, pageable);
+    }
+
 }

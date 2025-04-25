@@ -29,7 +29,8 @@ export class AppComponent implements OnInit {
 
   menuItems: MenuItem[] = [
     { route: '', icon: 'fal fa-home', label: 'Inicio' },
-    { route: 'personas', icon: 'fal fa-user', label: 'Personas' },
+    { route: 'personas', icon: 'fal fa-users', label: 'Personas' },
+    { route: 'divisiones', icon: 'fal fa-layer-group', label: 'Divisiones' },
   ];
 
   @HostListener('window:resize')

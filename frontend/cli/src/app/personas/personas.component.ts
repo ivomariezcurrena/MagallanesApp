@@ -47,37 +47,18 @@ export class PersonasComponent {
   //
 
   buscar() {
-    // 1. Preparamos el término: minúsculas + sin tildes
-    const raw = this.searchTerm.trim().toLowerCase();
-    const term = raw.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-
+    const term = this.searchTerm.trim();
     if (!term) {
-      this.filteredPersonas = [...this.personas];
+      this.getPersonas();
       return;
     }
 
-    this.filteredPersonas = this.personas.filter(p => {
-      // 2. Minúsculas + sin tildes para nombre y apellido
-      const nombre = p.nombre
-        .toLowerCase()
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '');
-
-      const apellido = p.apellido
-        .toLowerCase()
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '');
-
-      // 3. DNI como cadena normal (no tiene tildes)
-      const dni = p.dni.toString();
-
-      // 4. Chequeamos coincidencias
-      return (
-        nombre.includes(term) ||
-        apellido.includes(term) ||
-        dni.includes(term)
-      );
-    });
+    this.currentPage = 1;
+    this.personaService.searchTerm(term, 0, this.pageSize)
+      .subscribe((dataPackage) => {
+        this.resultsPage = <ResultsPage>dataPackage.data;
+        this.filteredPersonas = this.resultsPage.content;
+      });
   }
   limpiar() {
     this.searchTerm = '';

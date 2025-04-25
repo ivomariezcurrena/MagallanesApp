@@ -34,4 +34,14 @@ export class PersonaService {
   search(searchTerm: string): Observable<DataPackage> {
     return this.http.get<DataPackage>(`${this.peronasUrl}/search/${searchTerm}`);
   }
+  searchTerm(searchTerm: string, page: number, size: number): Observable<DataPackage> {
+    return this.http.get<DataPackage>(`${this.peronasUrl}/search`, {
+      params: {
+        term: searchTerm,
+        page: page.toString(),
+        size: size.toString()
+      }
+    });
+  }
+
 }

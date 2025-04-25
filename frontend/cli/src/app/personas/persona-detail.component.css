@@ -46,9 +46,3 @@
     font-size: 0.95rem;
     color: #444;
 }
-
-.form-group input,
-.form-group select {
-    border-radius: 0.5rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-}

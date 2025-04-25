@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import unpsjb.labprog.backend.Response;
 import unpsjb.labprog.backend.business.PersonaService;
@@ -58,11 +57,6 @@ public class PersonaPresenter {
         }
     }
 
-    @RequestMapping(value = "/search/{term}", method = RequestMethod.GET)
-    public ResponseEntity<Object> search(@PathVariable("term") String term) {
-        return Response.ok(service.search(term));
-    }
-
     @RequestMapping(method = RequestMethod.PUT)
     public ResponseEntity<Object> update(@RequestBody Persona aPersona) {
         try {
@@ -88,4 +82,14 @@ public class PersonaPresenter {
         service.delete(dni);
         return Response.ok("Persona dni " + dni + " eliminada");
     }
+
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public ResponseEntity<Object> search(
+            @RequestParam("term") String term,
+            @RequestParam(name = "page", defaultValue = "0") int page,
+            @RequestParam(name = "size", defaultValue = "10") int size) {
+
+        return Response.ok(service.search(term, page, size));
+    }
+
 }
