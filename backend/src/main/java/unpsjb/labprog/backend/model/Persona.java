@@ -27,4 +27,5 @@ public class Persona {
 
     @OneToMany(mappedBy = "persona")
     private Collection<Designacion> desiganciones;
+
 }

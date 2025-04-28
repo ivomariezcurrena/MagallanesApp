@@ -1,0 +1,61 @@
+<div class="container mt-4">
+
+    <div class="row justify-content-center g-4">
+        <div class="d-flex justify-content-center mb-4">
+            <h2 class="mb-0"><strong>{{ isNew ? 'Agregar Division' : 'Editar Division' }}</strong></h2>
+        </div>
+        <form #form="ngForm" class="row g-3">
+            <!-- Columna izquierda -->
+            <div class="col-md-6">
+
+                <!-- DNI -->
+                <div class="form-group mt-3">
+                    <label class="form-label fw-semibold">Año</label>
+                    <input type="number" class="form-control" [(ngModel)]="division.anio" name="anio" required>
+                </div>
+
+                <!-- Sexo -->
+                <div class="form-group mt-3">
+                    <label class="form-label fw-semibold">Turno</label>
+                    <select class="form-select" [(ngModel)]="division.turno" name="turno" required>
+                        <option value="" disabled selected>Seleccionar</option>
+                        <option value="Mañana">Mañana</option>
+                        <option value="Tarde">Tarde</option>
+                        <option value="Vespertino">Vespertino</option>
+                        <option value="Noche">Noche</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <!-- Columna derecha -->
+            <div class="col-md-6">
+
+
+                <!-- CUIT -->
+                <div class="form-group mt-3">
+                    <label class="form-label fw-semibold">N° division</label>
+                    <input type="number" class="form-control" [(ngModel)]="division.numDivision" name="numDivision"
+                        required>
+                </div>
+
+                <!-- Título -->
+                <div class="form-group mt-3">
+                    <label class="form-label fw-semibold">Orientacion</label>
+                    <input type="text" class="form-control" [(ngModel)]="division.orientacion" name="orientacion"
+                        placeholder="Biologia" required>
+                </div>
+            </div>
+
+            <!-- Botones -->
+            <div class="col-12 d-flex justify-content-between mt-4">
+                <button type="button" class="btn btn-outline-danger" (click)="goBack()">
+                    <i class="bi bi-x-circle"></i> Cancelar
+                </button>
+                <button type="submit" class="btn btn-success" [disabled]="form.invalid" (click)="save()">
+                    <i class="bi bi-check-circle"></i> Guardar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

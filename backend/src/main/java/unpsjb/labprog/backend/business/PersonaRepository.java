@@ -16,7 +16,14 @@ import unpsjb.labprog.backend.model.Persona;
 public interface PersonaRepository
         extends CrudRepository<Persona, Integer>, PagingAndSortingRepository<Persona, Integer> {
 
-    @Query("SELECT e FROM Persona e WHERE UPPER(e.nombre) LIKE :term OR UPPER(e.apellido) LIKE :term OR CAST(e.dni AS string) LIKE :term")
+    @Query("""
+                SELECT e
+                FROM Persona e
+                WHERE
+                  FUNCTION('unaccent', UPPER(e.nombre)) LIKE :term
+                  OR FUNCTION('unaccent', UPPER(e.apellido)) LIKE :term
+                  OR CAST(e.dni AS string) LIKE :term
+            """)
     Page<Persona> search(@Param("term") String term, Pageable pageable);
 
 }

@@ -9,6 +9,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import jakarta.transaction.Transactional;
 import unpsjb.labprog.backend.model.Persona;
+import unpsjb.labprog.backend.utils.StringNormalizer;
+
 import org.springframework.data.domain.Pageable;
 
 @Service
@@ -42,7 +44,7 @@ public class PersonaService {
 
     public Page<Persona> search(String term, int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
-        String likeTerm = "%" + term.toUpperCase() + "%";
+        String likeTerm = "%" + StringNormalizer.normalize(term) + "%";
         return repository.search(likeTerm, pageable);
     }
 

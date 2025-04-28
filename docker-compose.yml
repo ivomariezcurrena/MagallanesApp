@@ -65,9 +65,11 @@ services:
       - test
     working_dir: /home/node
     volumes:
-      - ./testing:/home/node
-      - ../common/testing/node_modules:/home/node/node_modules
-    command: npm test
+      - ./testing/personas:/home/node/personas
+      - ./testing/divisiones:/home/node/divisiones
+      - ./testing/personas/node_modules:/home/node/personas/node_modules
+      - ./testing/divisiones/node_modules:/home/node/divisiones/node_modules
+    command: sh -c " echo '▶️  Ejecutando test de PERSONAS'; \ cd personas && npm test; \ echo '▶️  Ejecutando test de DIVISIONES'; \ cd ../divisiones && npm test "
     depends_on:
       - backend
 
