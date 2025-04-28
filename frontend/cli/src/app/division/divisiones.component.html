@@ -1,0 +1,61 @@
+<div class="text-center mb-5">
+    <h1><strong>Lista de Divisiones</strong></h1>
+</div>
+<div class="d-flex mb-4">
+    <div class="d-flex align-items-center justify-content-start flex-grow-1">
+        <a routerLink="/divisiones/new" class=" btn btn-primary">Agregar division</a>
+    </div>
+    <div class="d-flex justify-content-end filtro-orientacion">
+        <label class="me-2 align-self-center fw-semibold">Filtrar por orientación:</label>
+        <select class="form-select w-auto me-2" [(ngModel)]="searchOrientacion" (ngModelChange)="filtrarDivisiones()"
+            name="searchOrientacion">
+            <option value="">Todas</option>
+            <option *ngFor="let ori of orientaciones" [value]="ori">{{ ori }}</option>
+        </select>
+    </div>
+
+</div>
+
+
+<div class="table-responsive">
+    <table class="penguin-table table table-hover">
+        <thead>
+            <tr>
+                <th>N°</th>
+                <th>Año</th>
+                <th>N° division</th>
+                <th>Orientacion</th>
+                <th>Turno</th>
+                <th class="text-center" style="width:120px;">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let division of filteredDivisiones; index as i">
+                <td>{{ i + 1 }}</td>
+                <td>{{ division.anio }}</td>
+                <td>{{ division.numDivision }}</td>
+                <td>{{ division.orientacion }}</td>
+                <td>{{ division.turno }}</td>
+                <td class="text-center">
+                    <a [routerLink]="['/divisiones', division.id]">
+                        <button class="btn btn-sm btn-penguin me-1" title="Editar">
+                            <i class="fa fa-pencil"></i>
+                        </button>
+                    </a>
+                    <button class="btn btn-sm btn-danger" (click)="remove(division.id)" title="Eliminar">
+                        <i class="fa fa-trash"></i>
+                    </button>
+
+                </td>
+            </tr>
+            <tr *ngIf="filteredDivisiones.length === 0">
+                <td colspan="6" class="text-center py-3">No hay coincidencias</td>
+        </tbody>
+    </table>
+</div>
+<div class="d-flex justify-content-center mt-3" *ngIf="resultsPage.numberOfElements > 0">
+    <app-pagination [totalPages]="resultsPage.totalPages" [currentPage]="currentPage"
+        (pageChangesRequested)="onPageChangeRequested($event)" [number]="resultsPage.number"
+        [hidden]="resultsPage.numberOfElements<1">
+    </app-pagination>
+</div>

@@ -1,0 +1,106 @@
+/* Encabezado */
+
+
+.penguin-table th {
+    background-color: #36393b;
+    color: #f3f3f3;
+}
+
+/* Bordes y alineación */
+.penguin-table th,
+.penguin-table td {
+    border-color: var(--penguin-bg);
+    vertical-align: middle;
+}
+
+.penguin-table tbody td {
+    color: #36393b;
+}
+
+/* Opción A: sobreescribes el outline-success global */
+.btn-outline-secondary {
+    border-color: #36393b;
+    color: #36393b;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #36393b;
+    color: #f3f3f3;
+}
+
+/* Opción B: defines un estilo “pingüino” */
+.btn-penguin {
+    background-color: #36393b;
+    border-color: #36393b;
+    color: #f3f3f3;
+}
+
+.btn-penguin:hover {
+    background-color: #f3f3f3;
+    color: #36393b;
+}
+
+.btn-primary {
+    border-color: #198754;
+    background-color: #198754;
+    color: #f3f3f3;
+}
+
+.btn-primary:hover {
+    border-color: #198754;
+    background-color: #f3f3f3;
+    color: #198754;
+}
+
+.btn-danger {
+    background-color: #df4e4e;
+}
+
+.btn-danger:hover {
+    background-color: #8b2f2f;
+    border-color: #8b2f2f;
+}
+
+.form-control:focus {
+    border-color: #36393b;
+    box-shadow: 0 0 0 0.2rem #b3b9bd;
+}
+
+
+
+/* Label del filtro */
+.filtro-orientacion label {
+    margin-bottom: 0;
+
+    color: #36393b;
+    /* gris oscuro, elegante */
+}
+
+/* Select del filtro */
+.filtro-orientacion select {
+    border-radius: 0.5rem;
+    border: 1px solid #ced4da;
+    background-color: #fff;
+    color: #36393b;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto hover y focus */
+.filtro-orientacion select:hover,
+.filtro-orientacion select:focus {
+    border-color: #198754;
+    box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.25);
+    outline: none;
+}
+
+/* Opcional: estilo de las opciones */
+.filtro-orientacion select option {
+    color: #36393b;
+}
+
+
+.filtro-orientacion select:hover {
+    background-color: #f8f9fa;
+    /* un gris muy claro */
+}

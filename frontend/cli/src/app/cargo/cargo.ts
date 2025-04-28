@@ -9,5 +9,5 @@ export interface Cargo {
     fechaFin: string;
     tipoDesignacion?: TipoDesignacion;
     division?: Division;
-    horario?: Horario;
+    horario?: Horario[];
 }

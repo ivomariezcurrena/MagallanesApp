@@ -38,11 +38,10 @@ public class Cargo {
     private TipoDesignacion tipoDesignacion;
 
     @ManyToOne
-    @JoinColumn(name = "division_id", nullable = true)
+    @Column(nullable = true)
     private Division division;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "cargo_id")
     private Collection<Horario> horarios;
 
 }

@@ -1,10 +1,21 @@
 /app/src/main/java/unpsjb/labprog/backend/model/Persona.java
 /app/src/main/java/unpsjb/labprog/backend/presenter/PersonaPresenter.java
 /app/src/main/java/unpsjb/labprog/backend/model/Turno.java
+/app/src/main/java/unpsjb/labprog/backend/business/CargoRepository.java
 /app/src/main/java/unpsjb/labprog/backend/model/Cargo.java
+/app/src/main/java/unpsjb/labprog/backend/business/DivisionRepository.java
 /app/src/main/java/unpsjb/labprog/backend/model/Designacion.java
+/app/src/main/java/unpsjb/labprog/backend/business/DivisionService.java
+/app/src/main/java/unpsjb/labprog/backend/presenter/DivisionPresenter.java
 /app/src/main/java/unpsjb/labprog/backend/model/Horario.java
 /app/src/main/java/unpsjb/labprog/backend/model/Licencia.java
+<<<<<<< HEAD
+=======
+/app/src/main/java/unpsjb/labprog/backend/presenter/CargoPresenter.java
+/app/src/main/java/unpsjb/labprog/backend/business/CargoService.java
+/app/src/main/java/unpsjb/labprog/backend/BackendApplication.java
+/app/src/main/java/unpsjb/labprog/backend/utils/StringNormalizer.java
+>>>>>>> refs/remotes/origin/main
 /app/src/main/java/unpsjb/labprog/backend/business/PersonaRepository.java
 /app/src/main/java/unpsjb/labprog/backend/BackendApplication.java
 /app/src/main/java/unpsjb/labprog/backend/model/TipoDesignacion.java

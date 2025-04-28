@@ -62,7 +62,7 @@ export class PersonasComponent {
   }
   limpiar() {
     this.searchTerm = '';
-    this.filteredPersonas = [...this.personas];
+    this.getPersonas();
   }
 
   remove(dni: number): void {
