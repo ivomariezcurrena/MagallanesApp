@@ -1,0 +1,9 @@
+Para crearlo:
+docker compose run -d --name testing --entrypoint "sh -c 'tail -f /dev/null'" testing
+
+
+Para correrlo:
+docker exec -it testing sh
+
+para borrarlo: 
+docker rm -f testing
