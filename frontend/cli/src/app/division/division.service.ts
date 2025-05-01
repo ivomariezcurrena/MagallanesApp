@@ -38,4 +38,7 @@ export class DivisionService {
   getOrientaciones(): Observable<DataPackage> {
     return this.http.get<DataPackage>(`${this.divisionUrl}/orientaciones`);
   }
+  search(searchTerm: string): Observable<DataPackage> {
+    return this.http.get<DataPackage>(`${this.divisionUrl}/search/${searchTerm}`);
+  }
 }

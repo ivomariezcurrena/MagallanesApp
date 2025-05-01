@@ -41,4 +41,8 @@ public class Response {
 	public static ResponseEntity<Object> dbError(String msj) {
 		return response(HttpStatus.CONFLICT, msj, null);
 	}
+
+	public static ResponseEntity<Object> notImplemented(String msj, Object object) {
+		return response(HttpStatus.NOT_IMPLEMENTED, msj, object);
+	}
 }

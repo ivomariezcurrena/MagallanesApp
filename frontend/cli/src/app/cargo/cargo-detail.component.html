@@ -1,0 +1,129 @@
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="d-flex justify-content-center mb-4">
+            <h2 class="mb-0"><strong>{{ isNew ? 'Nuevo Cargo institucional' : 'Editar Cargo institucional' }}</strong>
+            </h2>
+        </div>
+
+        <form #form="ngForm" class="row g-3">
+            <!-- Columna izquierda -->
+            <div class="col-md-6">
+                <!-- Nombre -->
+                <div class="form-group">
+                    <label class="form-label fw-semibold">Nombre</label>
+                    <input type="text" class="form-control" [(ngModel)]="cargo.nombre" name="nombre" required>
+                </div>
+
+                <!-- Carga Horaria -->
+                <div class="form-group mt-3">
+                    <label class="form-label fw-semibold">Carga Horaria</label>
+                    <input type="number" class="form-control" [(ngModel)]="cargo.cargaHoraria" name="cargaHoraria"
+                        required>
+                </div>
+                <!-- Vigencia Desde -->
+                <div class="form-group mt-3">
+                    <div class="d-flex justify-content-between align-items-end">
+                        <label class="form-label fw-semibold">Vigencia Desde</label>
+                        <button class="btn btn-outline-secondary mt-1 m-2" (click)="d1.toggle()"
+                            type="button">📅</button>
+                    </div>
+                    <input class="form-control" placeholder="aaaa/mm/dd" name="fechaInicio" ngbDatepicker
+                        #d1="ngbDatepicker" [(ngModel)]="fechaInicioModel" required>
+                </div>
+
+                <!-- Vigencia Hasta -->
+                <div class="form-group mt-3">
+                    <div class="d-flex justify-content-between align-items-end">
+                        <label class="form-label fw-semibold">Vigencia Hasta<small
+                                class="text-muted">(opcional)</small></label>
+                        <button class="btn btn-outline-secondary mt-1 m-2" (click)="d2.toggle()"
+                            type="button">📅</button>
+                    </div>
+                    <input class="form-control" placeholder="aaaa/mm/dd" name="fechaFin" ngbDatepicker
+                        #d2="ngbDatepicker" [(ngModel)]="fechaFinModel">
+                </div>
+            </div>
+
+            <!-- Columna derecha -->
+            <div class="col-md-6">
+                <!-- Tipo -->
+                <div class="form-group">
+                    <label class="form-label fw-semibold">Tipo</label>
+                    <select class="form-select" [(ngModel)]="cargo.tipoDesignacion" name="tipo" required>
+                        <option value="" disabled selected>Tipo</option>
+                        <option value="CARGO">CARGO</option>
+                        <option value="ESPACIO_CURRICULAR">ESPACIO CURRICULAR</option>
+                    </select>
+                </div>
+
+
+                <!-- División -->
+                <div class="form-group mt-3">
+                    <label class="form-label fw-semibold">División</label>
+                    <input class="form-control" [(ngModel)]="cargo.division" name="division"
+                        placeholder="Buscar división" [ngbTypeahead]="buscarDivisiones" [editable]="false"
+                        [resultFormatter]="resultFormat" [inputFormatter]="inputFormat"
+                        (selectItem)="onDivisionSelect($event)"
+                        [disabled]="cargo.tipoDesignacion === 'CARGO' || !cargo.tipoDesignacion">
+                </div>
+
+                <!-- Mostrar detalles de la división -->
+                <div class="mt-3 text-secondary" *ngIf="cargo.division?.id">
+                    <p><strong>Año:</strong> {{ cargo.division?.anio }}º</p>
+                    <p><strong>Número:</strong> {{ cargo.division?.numDivision }}º</p>
+                    <p><strong>Turno:</strong> {{ cargo.division?.turno }}</p>
+                </div>
+            </div>
+            <div class="mb-4 mt-4">
+                <h5>Horarios</h5>
+                <div class="table-responsive">
+                    <table class="penguin-table table table-hover">
+                        <thead class="table-light">
+                            <tr>
+                                <th style="width: 50px">#</th>
+                                <th style="width: 45%">Día</th>
+                                <th style="width: 45%">Hora</th>
+                                <th style="width: 60px">
+                                    <button type="button" (click)="addHorario()" class="btn btn-success btn-sm">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let horario of cargo.horarios; index as i">
+                                <td>{{ i + 1 }}</td>
+                                <td>
+                                    <select class="form-select" [(ngModel)]="horario.dia" name="horarioDia{{i}}"
+                                        required>
+                                        <option value="" disabled selected>Seleccionar día</option>
+                                        <option *ngFor="let dia of diasSemana" [value]="dia">{{ dia }}</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input class="form-control" type="number" [(ngModel)]="horario.hora"
+                                        name="horarioHora{{i}}" min="0" max="23" placeholder="Hora (0-23)" required>
+                                </td>
+                                <td class="text-center">
+                                    <button type="button" (click)="removeHorario(horario)"
+                                        class="btn btn-outline-danger btn-sm">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Botones -->
+            <div class="col-12 d-flex justify-content-between mt-4">
+                <button type="button" class="btn btn-outline-danger" (click)="goBack()">
+                    <i class="bi bi-x-circle"></i> Cancelar
+                </button>
+                <button type="submit" class="btn btn-success" [disabled]="form.invalid" (click)="save()">
+                    <i class="bi bi-check-circle"></i> Guardar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

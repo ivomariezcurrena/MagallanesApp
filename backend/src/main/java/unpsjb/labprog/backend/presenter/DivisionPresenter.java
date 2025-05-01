@@ -1,10 +1,8 @@
 package unpsjb.labprog.backend.presenter;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import unpsjb.labprog.backend.Response;
 import unpsjb.labprog.backend.business.DivisionService;
 import unpsjb.labprog.backend.model.Division;
+import unpsjb.labprog.backend.model.Turno;
 
 @RestController
 @RequestMapping("divisiones")
@@ -52,7 +51,7 @@ public class DivisionPresenter {
                     savedDivision.getNumDivision(),
                     savedDivision.getTurno());
             return Response.ok(mensaje);
-        } catch (Exception e) {
+        } catch (DataIntegrityViolationException e) {
             return Response.dbError("Error al guardar la división");
         }
     }
@@ -94,5 +93,25 @@ public class DivisionPresenter {
     @RequestMapping(value = "/orientaciones", method = RequestMethod.GET)
     public ResponseEntity<Object> getOrientaciones() {
         return Response.ok(service.findAllOrientaciones());
+    }
+
+    @RequestMapping(value = "/buscar-por-anio-numero-turno", method = RequestMethod.GET)
+    public ResponseEntity<Object> buscarPorAnioNumeroTurno(
+            @RequestParam int anio,
+            @RequestParam int numero,
+            @RequestParam Turno turno) {
+
+        Division d = service.findByAnioNumeroTurno(anio, numero, turno);
+        if (d != null) {
+            return Response.ok(d);
+        } else {
+            return Response.notFound(
+                    String.format("No se encontró división %dº %dº turno %s", anio, numero, turno));
+        }
+    }
+
+    @RequestMapping(value = "/search/{term}", method = RequestMethod.GET)
+    public ResponseEntity<Object> search(@PathVariable("term") String term) {
+        return Response.ok(service.search(term));
     }
 }

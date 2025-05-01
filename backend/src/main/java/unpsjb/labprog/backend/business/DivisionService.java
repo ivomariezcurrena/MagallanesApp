@@ -2,15 +2,23 @@ package unpsjb.labprog.backend.business;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.server.ResponseStatusException;
 
+import unpsjb.labprog.backend.Response;
 import unpsjb.labprog.backend.model.Division;
+import unpsjb.labprog.backend.model.Turno;
 import unpsjb.labprog.backend.utils.StringNormalizer;
 
 @Service
@@ -51,4 +59,15 @@ public class DivisionService {
     public List<String> findAllOrientaciones() {
         return repository.findAllOrientaciones();
     }
+
+    public Division findByAnioNumeroTurno(int anio, int numDivision, Turno turno) {
+        return repository
+                .findByAnioNumDivisionAndTurno(anio, numDivision, turno)
+                .orElse(null);
+    }
+
+    public List<Division> search(String term) {
+        return repository.search("%" + term + "%");
+    }
+
 }

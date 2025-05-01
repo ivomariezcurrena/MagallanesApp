@@ -5,6 +5,7 @@ import { PersonaDetailComponent } from './personas/persona-detail.component';
 import { DivisionesComponent } from './division/divisiones.component';
 import { DivisionDetailComponent } from './division/division-detail.component';
 import { CargoComponent } from './cargo/cargo.component';
+import { CargoDetailComponent } from './cargo/cargo-detail.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -12,5 +13,6 @@ export const routes: Routes = [
     { path: 'personas/dni/:dni', component: PersonaDetailComponent },
     { path: 'divisiones', component: DivisionesComponent },
     { path: 'divisiones/:id', component: DivisionDetailComponent },
-    { path: 'cargos', component: CargoComponent } // Redirigir a la página de inicio si la ruta no coincide
+    { path: 'cargos', component: CargoComponent },
+    { path: 'cargos/:id', component: CargoDetailComponent },
 ];

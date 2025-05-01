@@ -67,9 +67,11 @@ services:
     volumes:
       - ./testing/personas:/home/node/personas
       - ./testing/divisiones:/home/node/divisiones
+      - ./testing/cargo:/home/node/cargo
       - ./testing/personas/node_modules:/home/node/personas/node_modules
       - ./testing/divisiones/node_modules:/home/node/divisiones/node_modules
-    command: sh -c " echo '▶️  Ejecutando test de PERSONAS'; \ cd personas && npm test; \ echo '▶️  Ejecutando test de DIVISIONES'; \ cd ../divisiones && npm test "
+      - ./testing/cargo/node_modules:/home/node/cargo/node_modules
+    command: sh -c " echo '▶️  Ejecutando test de PERSONAS'; \ cd personas && npm test; \ echo '▶️  Ejecutando test de DIVISIONES'; \ cd ../divisiones && npm test; \ echo '▶️  Ejecutando test de CARGO'; \ cd ../cargo && npm test;"
     depends_on:
       - backend
 

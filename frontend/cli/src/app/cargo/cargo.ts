@@ -3,11 +3,12 @@ import { Division } from "../division/division";
 import { Horario } from "../horario/horario";
 
 export interface Cargo {
+    id: number;
     nombre: string;
     cargaHoraria: number;
-    fechaInicio: string;
-    fechaFin: string;
+    fechaInicio: Date;
+    fechaFin?: Date;
     tipoDesignacion?: TipoDesignacion;
     division?: Division;
-    horario?: Horario[];
+    horarios: Horario[];
 }
