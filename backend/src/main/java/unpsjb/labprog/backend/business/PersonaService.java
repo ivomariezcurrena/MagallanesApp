@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import jakarta.transaction.Transactional;
+import unpsjb.labprog.backend.model.Division;
 import unpsjb.labprog.backend.model.Persona;
 import unpsjb.labprog.backend.utils.StringNormalizer;
 
@@ -48,4 +49,7 @@ public class PersonaService {
         return repository.search(likeTerm, pageable);
     }
 
+    public List<Persona> search(String term) {
+        return repository.search("%" + term + "%");
+    }
 }

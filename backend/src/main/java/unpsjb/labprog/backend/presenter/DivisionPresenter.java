@@ -45,13 +45,17 @@ public class DivisionPresenter {
     @PostMapping
     public ResponseEntity<Object> create(@RequestBody Division aDivision) {
         try {
+
             Division savedDivision = service.save(aDivision);
             String mensaje = String.format("División %d %d turno %s ingresada correctamente",
                     savedDivision.getAnio(),
                     savedDivision.getNumDivision(),
                     savedDivision.getTurno());
             return Response.ok(mensaje);
-        } catch (DataIntegrityViolationException e) {
+        } catch (IllegalArgumentException e) {
+            // Si tu service lanza este tipo de excepción para otros errores
+            return ResponseEntity.status(501).body(e.getMessage());
+        } catch (Exception e) {
             return Response.dbError("Error al guardar la división");
         }
     }

@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import unpsjb.labprog.backend.model.Cargo;
 import unpsjb.labprog.backend.model.Division;
-import unpsjb.labprog.backend.model.Persona;
 import unpsjb.labprog.backend.model.TipoDesignacion;
 import unpsjb.labprog.backend.utils.StringNormalizer;
 
@@ -55,6 +54,10 @@ public class CargoService {
         return repository.search(likeTerm, pageable);
     }
 
+    public List<Cargo> search(String term) {
+        return repository.search("%" + term + "%");
+    }
+
     private void validarCargo(Cargo cargo) {
         if (cargo.getTipoDesignacion() == TipoDesignacion.CARGO && cargo.getDivision() != null) {
             throw new IllegalArgumentException("Un cargo de tipo CARGO no debe tener una división asignada.");
@@ -70,5 +73,9 @@ public class CargoService {
         } else {
             cargo.setDivision(null);
         }
+    }
+
+    public Cargo buscarPorNombreYTipo(String nombre, TipoDesignacion tipo) {
+        return repository.findByNombreIgnoreCaseAndTipoDesignacion(nombre, tipo);
     }
 }

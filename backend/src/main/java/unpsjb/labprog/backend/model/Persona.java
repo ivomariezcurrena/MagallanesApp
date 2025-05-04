@@ -2,6 +2,7 @@ package unpsjb.labprog.backend.model;
 
 import java.util.Collection;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
@@ -26,6 +27,7 @@ public class Persona {
     private String telefono;
 
     @OneToMany(mappedBy = "persona")
+    @JsonIgnore
     private Collection<Designacion> desiganciones;
 
 }

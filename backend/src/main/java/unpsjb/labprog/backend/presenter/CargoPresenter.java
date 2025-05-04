@@ -2,6 +2,7 @@ package unpsjb.labprog.backend.presenter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,10 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import unpsjb.labprog.backend.Response;
 import unpsjb.labprog.backend.business.CargoService;
-import unpsjb.labprog.backend.business.DivisionService;
 import unpsjb.labprog.backend.model.Cargo;
 import unpsjb.labprog.backend.model.Division;
 import unpsjb.labprog.backend.model.TipoDesignacion;
+import unpsjb.labprog.backend.model.Turno;
 
 @RestController
 @RequestMapping("cargos")
@@ -118,5 +119,23 @@ public class CargoPresenter {
             @RequestParam(name = "size", defaultValue = "10") int size) {
 
         return Response.ok(service.search(term, page, size));
+    }
+
+    @GetMapping("/buscar-por-nombre-y-tipo")
+    public ResponseEntity<Object> buscarPorNombreYTipo(
+            @RequestParam String nombre,
+            @RequestParam TipoDesignacion tipo) {
+
+        Cargo cargo = service.buscarPorNombreYTipo(nombre, tipo);
+        if (cargo != null) {
+            return Response.ok(cargo);
+        } else {
+            return Response.notFound("No se encontró un cargo con ese nombre y tipo");
+        }
+    }
+
+    @RequestMapping(value = "/search/{term}", method = RequestMethod.GET)
+    public ResponseEntity<Object> search(@PathVariable("term") String term) {
+        return Response.ok(service.search(term));
     }
 }

@@ -34,4 +34,7 @@ export class CargoService {
       }
     });
   }
+  search(searchTerm: string): Observable<DataPackage> {
+    return this.http.get<DataPackage>(`${this.cargosUrl}/search/${searchTerm}`);
+  }
 }

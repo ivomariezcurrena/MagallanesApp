@@ -92,4 +92,9 @@ public class PersonaPresenter {
         return Response.ok(service.search(term, page, size));
     }
 
+    @RequestMapping(value = "/search/{term}", method = RequestMethod.GET)
+    public ResponseEntity<Object> search(@PathVariable("term") String term) {
+        return Response.ok(service.search(term));
+    }
+
 }

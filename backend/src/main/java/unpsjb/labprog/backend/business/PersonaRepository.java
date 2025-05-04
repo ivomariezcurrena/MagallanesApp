@@ -1,5 +1,7 @@
 package unpsjb.labprog.backend.business;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
@@ -24,4 +26,6 @@ public interface PersonaRepository
       """)
   Page<Persona> search(@Param("term") String term, Pageable pageable);
 
+  @Query("select e from Persona e where e.nombre like ?1")
+  List<Persona> search(String term);
 }

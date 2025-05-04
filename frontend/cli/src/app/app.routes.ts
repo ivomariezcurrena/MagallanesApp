@@ -6,6 +6,8 @@ import { DivisionesComponent } from './division/divisiones.component';
 import { DivisionDetailComponent } from './division/division-detail.component';
 import { CargoComponent } from './cargo/cargo.component';
 import { CargoDetailComponent } from './cargo/cargo-detail.component';
+import { DesingancionComponent } from './designacion/desingancion.component';
+import { DesignacionDetailComponent } from './designacion/designacion-detail.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -15,4 +17,6 @@ export const routes: Routes = [
     { path: 'divisiones/:id', component: DivisionDetailComponent },
     { path: 'cargos', component: CargoComponent },
     { path: 'cargos/:id', component: CargoDetailComponent },
+    { path: 'designaciones', component: DesingancionComponent },
+    { path: 'designaciones/:id', component: DesignacionDetailComponent },
 ];

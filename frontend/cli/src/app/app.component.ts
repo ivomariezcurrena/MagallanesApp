@@ -32,6 +32,7 @@ export class AppComponent implements OnInit {
     { route: 'personas', icon: 'fal fa-users', label: 'Personas' },
     { route: 'divisiones', icon: 'fal fa-layer-group', label: 'Divisiones' },
     { route: 'cargos', icon: 'fal fa-briefcase', label: 'Cargos' },
+    { route: 'designaciones', icon: 'fal fa-user-tie', label: 'Designaciones' },
   ];
 
   @HostListener('window:resize')

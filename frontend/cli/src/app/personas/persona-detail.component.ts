@@ -6,7 +6,6 @@ import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 import { Persona } from './persona';
 import { PersonaService } from './persona.service';
 import { Location } from '@angular/common';
-import { Cargo } from '../cargo/cargo';
 
 @Component({
   selector: 'app-persona-detail',

@@ -1,0 +1,166 @@
+import { CommonModule, Location } from '@angular/common';
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { NgbCalendar, NgbDatepickerModule, NgbDateStruct, NgbModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
+import { Observable, of } from 'rxjs';
+import { catchError, debounceTime, distinctUntilChanged, map, switchMap, tap } from 'rxjs/operators';
+import { Persona } from '../personas/persona';
+import { Designacion } from './designacion';
+import { DesignacionService } from './designacion.service';
+import { Cargo } from '../cargo/cargo';
+import { CargoService } from '../cargo/cargo.service';
+import { PersonaService } from '../personas/persona.service';
+import { ModalService } from '../modal/modal.service';
+
+@Component({
+  selector: 'app-designacion-detail',
+  imports: [FormsModule, CommonModule, RouterModule, NgbTypeaheadModule, NgbModule, NgbDatepickerModule],
+  templateUrl: `designacion-detail.component.html`,
+  styleUrl: `designacion-detail.component.css`
+})
+export class DesignacionDetailComponent {
+  personas: Persona[] = [];
+  cargos: Cargo[] = [];
+  designacion!: Designacion;
+  searching: boolean = false;
+  searchFailed: boolean = false;
+  fechaInicioModel!: NgbDateStruct;
+  fechaFinModel!: NgbDateStruct;
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private designacionService: DesignacionService,
+    private cargoService: CargoService,
+    private personaService: PersonaService,
+    private location: Location,
+    private calendar: NgbCalendar,
+    private modalService: ModalService,
+  ) { }
+
+  ngOnInit() {
+    this.get();
+  }
+
+
+  get() {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id === 'new') {
+      this.designacion = <Designacion><unknown>{
+        cargo: <Cargo>{},
+        persona: <Persona>{}
+      }
+      const hoy = this.calendar.getToday();
+      this.fechaInicioModel = hoy;
+    } else {
+      this.designacionService.get(parseInt(id!)).subscribe((dataPackage) => {
+        this.designacion = <Designacion>dataPackage.data;
+
+        // Transformar strings a NgbDateStruct
+        const dInicio = new Date(this.designacion.fechaInicio);
+        this.fechaInicioModel = {
+          year: dInicio.getFullYear(),
+          month: dInicio.getMonth() + 1,
+          day: dInicio.getDate()
+        };
+
+        if (this.designacion.fechaFin) {
+          const dFin = new Date(this.designacion.fechaFin);
+          this.fechaFinModel = {
+            year: dFin.getFullYear(),
+            month: dFin.getMonth() + 1,
+            day: dFin.getDate()
+          };
+        }
+      });
+    }
+    this.cargoService.all().subscribe((dataPackage) => {
+      this.cargos = <Cargo[]>dataPackage.data;
+    });
+    this.personaService.all().subscribe((dataPackage) => {
+      this.personas = <Persona[]>dataPackage.data;
+    });
+  }
+
+  buscarCargos = (text$: Observable<string>): Observable<Cargo[]> =>
+    text$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      tap(() => (this.searching = true)),
+      switchMap((term) =>
+        this.cargoService.search(term).pipe(
+          map((response) => <Cargo[]>response.data),
+          tap(() => (this.searchFailed = false)),
+          catchError(() => {
+            this.searchFailed = true;
+            return of([]);
+          })
+        )
+      ),
+      tap(() => (this.searching = false))
+    );
+
+  buscarPersonas = (text$: Observable<string>): Observable<Persona[]> =>
+    text$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      tap(() => (this.searching = true)),
+      switchMap((term) =>
+        this.personaService.search(term).pipe(
+          map((response) => <Persona[]>response.data),
+          tap(() => (this.searchFailed = false)),
+          catchError(() => {
+            this.searchFailed = true;
+            return of([]);
+          })
+        )
+      ),
+      tap(() => (this.searching = false))
+    );
+
+  resultFormatCargos = (cargos: Cargo) => `${cargos.nombre} ${cargos.tipoDesignacion}`;
+  inputFormatCargos = (cargos: Cargo) => cargos.id ? `${cargos.nombre} ` : '';
+
+
+  resultFormatPersonas = (personas: Persona) => `${personas.nombre} ${personas.apellido}, DNI: ${personas.dni}`;
+  inputFormatPersonas = (personas: Persona) => personas.dni ? `${personas.nombre} ${personas.apellido}` : '';
+
+
+  onCargoSelect(event: any) {
+    this.designacion.cargo = event.item;
+  }
+  onPersonaSelect(event: any) {
+    this.designacion.persona = event.item;
+  }
+
+
+  save() {
+    this.designacion.fechaInicio = new Date(
+      this.fechaInicioModel.year,
+      this.fechaInicioModel.month - 1,
+      this.fechaInicioModel.day
+    );
+
+    if (this.fechaFinModel) {
+      this.designacion.fechaFin = new Date(
+        this.fechaFinModel.year,
+        this.fechaFinModel.month - 1,
+        this.fechaFinModel.day
+      );
+    } else {
+      this.designacion.fechaFin = undefined;
+    }
+    this.designacionService.save(this.designacion).subscribe(dataPackage => { this.designacion = <Designacion>dataPackage.data; this.goBack(); })
+  }
+
+  goBack() {
+    this.location.back();
+  }
+
+  get isNew(): boolean {
+    return this.designacion.id == undefined;
+  }
+
+
+}

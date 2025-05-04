@@ -62,7 +62,7 @@ export class CargoComponent {
 
   remove(id: number): void {
     let that = this;
-    this.modalService.confirm("Eliminar persona", "¿Esta seguro que desea eliminar la persona?", "La operacion no tiene vuelta atras").then(
+    this.modalService.confirm("Eliminar Cargo", "¿Esta seguro que desea eliminar el cargo?", "La operacion no tiene vuelta atras").then(
       function () {
         that.cargoService.remove(id).subscribe(dataPackage => that.getCargos());
       }
