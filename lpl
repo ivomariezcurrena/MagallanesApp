@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# Crea el directorio para las in
-stalaciones
+# Crea el directorio para las instalaciones
 LABPROG_DIR="../common/m2"
  
 if [ ! -d "$LABPROG_DIR" ]; then

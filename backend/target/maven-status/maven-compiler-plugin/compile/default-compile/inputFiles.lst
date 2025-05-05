@@ -1,5 +1,5 @@
-/app/src/main/java/unpsjb/labprog/backend/presenter/PersonaPresenter.java
 /app/src/main/java/unpsjb/labprog/backend/model/Persona.java
+/app/src/main/java/unpsjb/labprog/backend/presenter/PersonaPresenter.java
 /app/src/main/java/unpsjb/labprog/backend/model/Turno.java
 /app/src/main/java/unpsjb/labprog/backend/business/CargoRepository.java
 /app/src/main/java/unpsjb/labprog/backend/model/Cargo.java
@@ -13,12 +13,12 @@
 /app/src/main/java/unpsjb/labprog/backend/model/Licencia.java
 /app/src/main/java/unpsjb/labprog/backend/presenter/CargoPresenter.java
 /app/src/main/java/unpsjb/labprog/backend/business/CargoService.java
+/app/src/main/java/unpsjb/labprog/backend/business/PersonaRepository.java
 /app/src/main/java/unpsjb/labprog/backend/BackendApplication.java
 /app/src/main/java/unpsjb/labprog/backend/utils/StringNormalizer.java
-/app/src/main/java/unpsjb/labprog/backend/business/PersonaRepository.java
 /app/src/main/java/unpsjb/labprog/backend/business/DesignacionRepository.java
 /app/src/main/java/unpsjb/labprog/backend/model/TipoDesignacion.java
-/app/src/main/java/unpsjb/labprog/backend/Response.java
 /app/src/main/java/unpsjb/labprog/backend/model/ArticuloLicencia.java
+/app/src/main/java/unpsjb/labprog/backend/Response.java
 /app/src/main/java/unpsjb/labprog/backend/model/Division.java
 /app/src/main/java/unpsjb/labprog/backend/business/PersonaService.java
