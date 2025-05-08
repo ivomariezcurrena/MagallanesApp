@@ -45,15 +45,9 @@ public class DivisionPresenter {
     @PostMapping
     public ResponseEntity<Object> create(@RequestBody Division aDivision) {
         try {
-
-            Division savedDivision = service.save(aDivision);
-            String mensaje = String.format("División %d %d turno %s ingresada correctamente",
-                    savedDivision.getAnio(),
-                    savedDivision.getNumDivision(),
-                    savedDivision.getTurno());
-            return Response.ok(mensaje);
+            Division saved = service.save(aDivision);
+            return Response.ok(service.getMensajeAgregar(saved));
         } catch (IllegalArgumentException e) {
-            // Si tu service lanza este tipo de excepción para otros errores
             return ResponseEntity.status(501).body(e.getMessage());
         } catch (Exception e) {
             return Response.dbError("Error al guardar la división");
@@ -63,12 +57,8 @@ public class DivisionPresenter {
     @RequestMapping(method = RequestMethod.PUT)
     public ResponseEntity<Object> update(@RequestBody Division aDivision) {
         try {
-            Division updatedDivision = service.save(aDivision);
-            String mensaje = String.format("División %d %d turno %s actualizada correctamente",
-                    updatedDivision.getAnio(),
-                    updatedDivision.getNumDivision(),
-                    updatedDivision.getTurno());
-            return Response.ok(mensaje);
+            Division updated = service.save(aDivision);
+            return Response.ok(service.getMensajeActualizar(updated));
         } catch (Exception e) {
             return Response.dbError("Error al actualizar la división");
         }
@@ -76,22 +66,22 @@ public class DivisionPresenter {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Object> delete(@PathVariable("id") int id) {
-        Division aDivisionOrNull = service.findById(id);
-        if (aDivisionOrNull != null) {
+        Division d = service.findById(id);
+        if (d != null) {
             service.delete(id);
-            return Response.ok("División " + id + " eliminada correctamente");
+            return Response.ok(service.getMensajeEliminacion(id));
         } else {
-            return Response.notFound("División id " + id + " no encontrada");
+            return Response.notFound(service.getMensajeNoEncontrada(id));
         }
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public ResponseEntity<Object> search(
+    public ResponseEntity<Object> searchPage(
             @RequestParam("term") String term,
             @RequestParam(name = "page", defaultValue = "0") int page,
             @RequestParam(name = "size", defaultValue = "10") int size) {
 
-        return Response.ok(service.search(term, page, size));
+        return Response.ok(service.searchPage(term, page, size));
     }
 
     @RequestMapping(value = "/orientaciones", method = RequestMethod.GET)

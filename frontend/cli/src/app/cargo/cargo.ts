@@ -1,6 +1,6 @@
 import { TipoDesignacion } from "../designacion/tipoDesignacion";
 import { Division } from "../division/division";
-import { Horario } from "../horario/horario";
+import { Horario } from "./horario";
 
 export interface Cargo {
     id: number;

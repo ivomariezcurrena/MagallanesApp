@@ -10,6 +10,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import unpsjb.labprog.backend.business.utils.MensajeFormateador;
+import unpsjb.labprog.backend.business.utils.Validador;
 import unpsjb.labprog.backend.model.Cargo;
 import unpsjb.labprog.backend.model.Division;
 import unpsjb.labprog.backend.model.TipoDesignacion;
@@ -21,7 +23,13 @@ public class CargoService {
     CargoRepository repository;
 
     @Autowired
-    private DivisionService divisionService;
+    DivisionService divisionService;
+
+    @Autowired
+    Validador validador;
+
+    @Autowired
+    MensajeFormateador mensaje;
 
     public List<Cargo> findAll() {
         List<Cargo> result = new ArrayList<>();
@@ -39,7 +47,7 @@ public class CargoService {
 
     @Transactional
     public Cargo save(Cargo e) {
-        validarCargo(e);
+        validador.validar(e);
         return repository.save(e);
     }
 
@@ -58,24 +66,24 @@ public class CargoService {
         return repository.search("%" + term + "%");
     }
 
-    private void validarCargo(Cargo cargo) {
-        if (cargo.getTipoDesignacion() == TipoDesignacion.CARGO && cargo.getDivision() != null) {
-            throw new IllegalArgumentException("Un cargo de tipo CARGO no debe tener una división asignada.");
-        }
-        if (cargo.getTipoDesignacion() == TipoDesignacion.ESPACIO_CURRICULAR
-                && cargo.getDivision() != null
-                && cargo.getDivision().getId() > 0) {
-            Division fullDiv = divisionService.findById(cargo.getDivision().getId());
-            if (fullDiv == null) {
-                throw new IllegalArgumentException("División id " + cargo.getDivision().getId() + " no encontrada");
-            }
-            cargo.setDivision(fullDiv);
-        } else {
-            cargo.setDivision(null);
-        }
-    }
-
     public Cargo buscarPorNombreYTipo(String nombre, TipoDesignacion tipo) {
         return repository.findByNombreIgnoreCaseAndTipoDesignacion(nombre, tipo);
+    }
+
+    // MENSAJES
+    public String getMensajeAgregar(Cargo c) {
+        return mensaje.getMensajeAgregarCargo(c);
+    }
+
+    public String getMensajeActualizar(Cargo c) {
+        return mensaje.getMensajeActualizarCargo(c);
+    }
+
+    public String getMensajeEliminacion(int id) {
+        return mensaje.getMensajeEliminacionDeCargo(id);
+    }
+
+    public String getMensajeNoEncontrado(int id) {
+        return mensaje.getMensajeCargoNoEncontrado(id);
     }
 }

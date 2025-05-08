@@ -9,6 +9,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import unpsjb.labprog.backend.business.utils.MensajeFormateador;
+import unpsjb.labprog.backend.business.utils.Validador;
 import unpsjb.labprog.backend.model.Designacion;
 import unpsjb.labprog.backend.model.Division;
 
@@ -17,8 +19,15 @@ public class DesignacionService {
 
     @Autowired
     DesignacionRepository repository;
+
     @Autowired
     DivisionService divisionService;
+
+    @Autowired
+    Validador validador;
+
+    @Autowired
+    MensajeFormateador mensaje;
 
     public List<Designacion> findAll() {
         List<Designacion> result = new ArrayList<>();
@@ -36,7 +45,7 @@ public class DesignacionService {
 
     @Transactional
     public Designacion save(Designacion e) {
-        validarCargo(e);
+        validador.validar(e);
         return repository.save(e);
     }
 
@@ -45,11 +54,19 @@ public class DesignacionService {
         repository.deleteById(id);
     }
 
-    public void validarCargo(Designacion e) {
-        if (e.getCargo() != null && e.getCargo().getDivision() != null) {
-            int idDivision = e.getCargo().getDivision().getId();
-            Division divisionCompleta = divisionService.findById(idDivision);
-            e.getCargo().setDivision(divisionCompleta);
-        }
+    public String getMensajeAgregar(Designacion d) {
+        return mensaje.getMensajeAgregarDesignacion(d);
+    }
+
+    public String getMensajeActualizar(Designacion d) {
+        return mensaje.getMensajeActualizarDesignacion(d);
+    }
+
+    public String getMensajeEliminacion(int id) {
+        return mensaje.getMensajeEliminacionDeDesignacion(id);
+    }
+
+    public String getMensajeNoEncontrada(int id) {
+        return mensaje.getMensajeDesignacionNoEncontrada(id);
     }
 }

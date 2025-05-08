@@ -36,38 +36,19 @@ public class DesignacionPresenter {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<Object> findById(@PathVariable("id") int id) {
-        Designacion aDesignacionOrNull = service.findById(id);
-        return (aDesignacionOrNull != null) ? Response.ok(
-                aDesignacionOrNull)
-                : Response.notFound("Designacion id " + id + " no encontrada");
+        Designacion d = service.findById(id);
+        return (d != null)
+                ? Response.ok(d)
+                : Response.notFound(service.getMensajeNoEncontrada(id));
     }
 
     @PostMapping
     public ResponseEntity<Object> create(@RequestBody Designacion aDesignacion) {
         try {
-
-            if (aDesignacion.getCargo() == null) {
-                throw new IllegalArgumentException("El cargo no puede ser nulo");
-            }
-            Designacion savedDesignacion = service.save(aDesignacion);
-            String mensaje;
-            if (aDesignacion.getCargo().getTipoDesignacion() != TipoDesignacion.CARGO) {
-                mensaje = String.format(
-                        "%s %s ha sido designado/a a la asignatura %s a la división %dº %dº turno %s exitosamente",
-                        savedDesignacion.getPersona().getNombre(),
-                        savedDesignacion.getPersona().getApellido(),
-                        savedDesignacion.getCargo().getNombre(),
-                        savedDesignacion.getCargo().getDivision().getAnio(),
-                        savedDesignacion.getCargo().getDivision().getNumDivision(),
-                        savedDesignacion.getCargo().getDivision().getTurno());
-
-            } else {
-                mensaje = String.format("%s %s ha sido designado/a como %s exitosamente",
-                        savedDesignacion.getPersona().getNombre(),
-                        savedDesignacion.getPersona().getApellido(),
-                        savedDesignacion.getCargo().getNombre());
-            }
-            return Response.ok(mensaje);
+            Designacion saved = service.save(aDesignacion);
+            return Response.ok(service.getMensajeAgregar(saved));
+        } catch (IllegalArgumentException e) {
+            return Response.notImplemented(null, e.getMessage());
         } catch (DataIntegrityViolationException e) {
             Throwable root = e;
             while (root.getCause() != null && root.getCause() != root) {
@@ -75,7 +56,6 @@ public class DesignacionPresenter {
             }
             return Response.dbError("Error de integridad: " + root.getMessage());
         } catch (Exception e) {
-            e.printStackTrace(); // ESTO TE MUESTRA EL STACKTRACE REAL EN CONSOLA
             return Response.dbError("Error inesperado al guardar la designación: " + e.getMessage());
         }
     }
@@ -83,21 +63,27 @@ public class DesignacionPresenter {
     @RequestMapping(method = RequestMethod.PUT)
     public ResponseEntity<Object> update(@RequestBody Designacion aDesignacion) {
         try {
-            service.save(aDesignacion);
-            return Response.ok(aDesignacion);
+            Designacion updated = service.save(aDesignacion);
+            return Response.ok(service.getMensajeActualizar(updated));
+        } catch (IllegalArgumentException e) {
+            return Response.notImplemented(null, e.getMessage());
         } catch (Exception e) {
-            return Response.dbError("Error al actualizar la designacion");
+            return Response.dbError("Error al actualizar la designación");
         }
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Object> delete(@PathVariable("id") int id) {
-        Designacion aDesignacionOrNull = service.findById(id);
-        if (aDesignacionOrNull != null) {
-            service.delete(id);
-            return Response.ok("Designacion " + id + " eliminada correctamente");
+        Designacion d = service.findById(id);
+        if (d != null) {
+            try {
+                service.delete(id);
+                return Response.ok(service.getMensajeEliminacion(id));
+            } catch (Exception e) {
+                return Response.dbError("Error al eliminar la designación");
+            }
         } else {
-            return Response.notFound("Designacion id " + id + " no encontrada");
+            return Response.notFound(service.getMensajeNoEncontrada(id));
         }
     }
 }

@@ -29,9 +29,10 @@ public class PersonaPresenter {
 
     @RequestMapping(value = "/{dni}", method = RequestMethod.GET)
     public ResponseEntity<Object> findByDni(@PathVariable("dni") int dni) {
-        Persona aPersonaOrNull = service.findByDni(dni);
-        return (aPersonaOrNull != null) ? Response.ok(aPersonaOrNull)
-                : Response.notFound("Persona dni " + dni + " no encontrada");
+        Persona persona = service.findByDni(dni);
+        return (persona != null)
+                ? Response.ok(persona)
+                : Response.notFound(service.getMensajeNoEncontrada(dni));
     }
 
     @RequestMapping(value = "/page", method = RequestMethod.GET)
@@ -44,41 +45,37 @@ public class PersonaPresenter {
     @PostMapping
     public ResponseEntity<Object> create(@RequestBody Persona aPersona) {
         try {
-            Persona savedPersona = service.save(aPersona);
-            // Formatear el mensaje según lo requerido en Persona.feature
-
-            return Response.ok(aPersona, service.getMensajeExitoso(savedPersona));
+            Persona saved = service.save(aPersona);
+            return Response.ok(service.getMensajeAgregar(saved));
+        } catch (IllegalArgumentException e) {
+            return Response.notImplemented(null, service.getMensajeNoEncontrada(0));
         } catch (DataIntegrityViolationException e) {
-            return Response.dbError("No se puede utilizar ese dni porque ya existe otra persona con el mismo");
+            return Response.dbError(service.getMensajeDniDuplicado());
         }
     }
 
     @RequestMapping(method = RequestMethod.PUT)
     public ResponseEntity<Object> update(@RequestBody Persona aPersona) {
         try {
-            Persona updatedPersona = service.save(aPersona);
-            // Formatear el mensaje según lo requerido en Persona.feature
-            String mensaje = String.format("%s %s con DNI %d actualizado/a correctamente",
-                    updatedPersona.getNombre(),
-                    updatedPersona.getApellido(),
-                    updatedPersona.getDni());
-
-            return Response.ok(mensaje);
+            Persona updated = service.save(aPersona);
+            return Response.ok(service.getMensajeActualizar(updated));
         } catch (DataIntegrityViolationException e) {
-            return Response.dbError("El dni ingresado no existe");
+            return Response.dbError("Error al actualizar persona: " + e.getMessage());
         }
     }
 
     @RequestMapping(value = "/{dni}", method = RequestMethod.DELETE)
     public ResponseEntity<Object> delete(@PathVariable("dni") int dni) {
-        Persona aPersonaOrNull = service.findByDni(dni);
-        if (aPersonaOrNull == null) {
-            return Response.notFound("Persona dni " + dni + " no encontrada");
+        Persona persona = service.findByDni(dni);
+        if (persona == null) {
+            return Response.notFound(service.getMensajeNoEncontrada(dni));
         }
         service.delete(dni);
-        return Response.ok("Persona dni " + dni + " eliminada");
+        return Response.ok(service.getMensajeEliminar(dni));
     }
 
+    // este metodo es para buscar el termino puesto en la barra de busqueda,
+    // devuelve la pagina con los resultados
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public ResponseEntity<Object> searchPage(
             @RequestParam("term") String term,
@@ -88,9 +85,9 @@ public class PersonaPresenter {
         return Response.ok(service.searchPage(term, page, size));
     }
 
+    // busca por dni
     @RequestMapping(value = "/search/{term}", method = RequestMethod.GET)
     public ResponseEntity<Object> search(@PathVariable("term") String term) {
         return Response.ok(service.search(term));
     }
-
 }

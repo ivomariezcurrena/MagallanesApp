@@ -11,6 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import unpsjb.labprog.backend.business.utils.MensajeFormateador;
+import unpsjb.labprog.backend.business.utils.Validador;
 import unpsjb.labprog.backend.model.Division;
 import unpsjb.labprog.backend.model.Turno;
 
@@ -18,6 +20,12 @@ import unpsjb.labprog.backend.model.Turno;
 public class DivisionService {
     @Autowired
     DivisionRepository repository;
+
+    @Autowired
+    Validador validador;
+
+    @Autowired
+    MensajeFormateador mensaje;
 
     public List<Division> findAll() {
         List<Division> result = new ArrayList<>();
@@ -35,6 +43,7 @@ public class DivisionService {
 
     @Transactional
     public Division save(Division e) {
+        validador.validar(e);
         return repository.save(e);
     }
 
@@ -43,10 +52,10 @@ public class DivisionService {
         repository.deleteById(id);
     }
 
-    public Page<Division> search(String term, int page, int size) {
+    public Page<Division> searchPage(String term, int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
         String likeTerm = "%" + term.trim().toUpperCase() + "%";
-        return repository.search(likeTerm, pageable);
+        return repository.searchPage(likeTerm, pageable);
     }
 
     public List<String> findAllOrientaciones() {
@@ -61,6 +70,22 @@ public class DivisionService {
 
     public List<Division> search(String term) {
         return repository.search("%" + term + "%");
+    }
+
+    public String getMensajeAgregar(Division d) {
+        return mensaje.getMensajeAgregarDivision(d);
+    }
+
+    public String getMensajeActualizar(Division d) {
+        return mensaje.getMensajeActualizarDivision(d);
+    }
+
+    public String getMensajeEliminacion(int id) {
+        return mensaje.getMensajeEliminacionDeDivision(id);
+    }
+
+    public String getMensajeNoEncontrada(int id) {
+        return mensaje.getMensajeDivisionNoEncontrada(id);
     }
 
 }

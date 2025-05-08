@@ -9,7 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import jakarta.transaction.Transactional;
 import unpsjb.labprog.backend.business.utils.MensajeFormateador;
-import unpsjb.labprog.backend.model.Division;
+import unpsjb.labprog.backend.business.utils.Validador;
 import unpsjb.labprog.backend.model.Persona;
 import unpsjb.labprog.backend.utils.StringNormalizer;
 
@@ -22,6 +22,9 @@ public class PersonaService {
 
     @Autowired
     MensajeFormateador mensaje;
+
+    @Autowired
+    Validador validador;
 
     public List<Persona> findAll() {
         List<Persona> result = new ArrayList<>();
@@ -39,6 +42,7 @@ public class PersonaService {
 
     @Transactional
     public Persona save(Persona e) {
+        validador.validar(e);
         return repository.save(e);
     }
 
@@ -57,7 +61,23 @@ public class PersonaService {
         return repository.search("%" + term + "%");
     }
 
-    public String getMensajeExitoso(Persona persona) {
-        return mensaje.getMensajeExito(persona);
+    public String getMensajeAgregar(Persona persona) {
+        return mensaje.getMensajeAgregarPersona(persona);
+    }
+
+    public String getMensajeActualizar(Persona persona) {
+        return mensaje.getMensajeActualizarPersona(persona);
+    }
+
+    public String getMensajeEliminar(int dni) {
+        return mensaje.getMensajeEliminarPersona(dni);
+    }
+
+    public String getMensajeNoEncontrada(int dni) {
+        return mensaje.getMensajePersonaNoEncontrada(dni);
+    }
+
+    public String getMensajeDniDuplicado() {
+        return mensaje.getMensajeDniDuplicado();
     }
 }

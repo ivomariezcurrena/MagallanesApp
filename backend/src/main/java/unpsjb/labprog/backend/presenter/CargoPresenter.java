@@ -37,55 +37,19 @@ public class CargoPresenter {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<Object> findById(@PathVariable("id") int id) {
-        Cargo aCargoOrNull = service.findById(id);
-        return (aCargoOrNull != null) ? Response.ok(aCargoOrNull)
-                : Response.notFound("Cargo id " + id + " no encontrado");
+        Cargo c = service.findById(id);
+        return (c != null) ? Response.ok(c)
+                : Response.notFound(service.getMensajeNoEncontrado(id));
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Object> create(@RequestBody Cargo cargo) {
         try {
-            // 1) CARGO con división → 501
-            if (cargo.getTipoDesignacion() == TipoDesignacion.CARGO
-                    && cargo.getDivision() != null) {
-                String msg = String.format(
-                        "Cargo de %s es CARGO y no corresponde asignar división",
-                        cargo.getNombre());
-                return Response.notImplemented(null, msg);
-            }
-
-            // 2) ESPACIO_CURRICULAR sin división válida → 501
-            if (cargo.getTipoDesignacion() == TipoDesignacion.ESPACIO_CURRICULAR
-                    && (cargo.getDivision() == null
-                            || cargo.getDivision().getId() == 0)) {
-                String msg = String.format(
-                        "Espacio Curricular %s falta asignar división",
-                        cargo.getNombre());
-                return Response.notImplemented(null, msg);
-            }
-
-            // 4) Guardar normalmente
-            Cargo savedCargo = service.save(cargo);
-
-            // 5) Armar mensaje 200
-            String mensaje;
-            if (savedCargo.getTipoDesignacion() == TipoDesignacion.CARGO) {
-                mensaje = String.format("Cargo de %s ingresado correctamente",
-                        savedCargo.getNombre());
-            } else {
-                Division d = savedCargo.getDivision();
-                mensaje = String.format(
-                        "Espacio Curricular %s para la división %dº %dº Turno %s ingresado correctamente",
-                        savedCargo.getNombre(),
-                        d.getAnio(),
-                        d.getNumDivision(),
-                        d.getTurno());
-            }
-            return Response.ok(mensaje);
-
+            Cargo saved = service.save(cargo);
+            return Response.ok(service.getMensajeAgregar(saved));
         } catch (IllegalArgumentException e) {
-            // Si tu service lanza este tipo de excepción para otros errores
-            return ResponseEntity.status(501).body(e.getMessage());
+            // <- VALIDACIÓN personalizada
+            return Response.notImplemented(null, e.getMessage());
         } catch (Exception e) {
             return Response.dbError("Error al designar el cargo");
         }
@@ -94,9 +58,8 @@ public class CargoPresenter {
     @RequestMapping(method = RequestMethod.PUT)
     public ResponseEntity<Object> update(@RequestBody Cargo aCargo) {
         try {
-            Cargo updatedCargo = service.save(aCargo);
-            String mensaje = String.format("Cargo %s actualizado correctamente", updatedCargo.getNombre());
-            return Response.ok(mensaje);
+            Cargo updated = service.save(aCargo);
+            return Response.ok(service.getMensajeActualizar(updated));
         } catch (Exception e) {
             return Response.dbError("Error al actualizar el cargo");
         }
@@ -106,7 +69,7 @@ public class CargoPresenter {
     public ResponseEntity<Object> delete(@PathVariable("id") int id) {
         try {
             service.delete(id);
-            return Response.ok("Cargo eliminado correctamente");
+            return Response.ok(service.getMensajeEliminacion(id));
         } catch (Exception e) {
             return Response.dbError("Error al eliminar el cargo");
         }

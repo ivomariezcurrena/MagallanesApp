@@ -23,7 +23,7 @@ public interface DivisionRepository
           FROM Division e
           WHERE FUNCTION('unaccent', UPPER(e.orientacion)) LIKE FUNCTION('unaccent', :term)
       """)
-  Page<Division> search(@Param("term") String term, Pageable pageable);
+  Page<Division> searchPage(@Param("term") String term, Pageable pageable);
 
   @Query("SELECT DISTINCT e.orientacion FROM Division e ORDER BY e.orientacion")
   List<String> findAllOrientaciones();

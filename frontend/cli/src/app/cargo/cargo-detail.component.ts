@@ -12,7 +12,7 @@ import { ModalService } from '../modal/modal.service';
 import { Cargo } from './cargo';
 import { Location } from '@angular/common';
 import { DataPackage } from '../data-package';
-import { Horario } from '../horario/horario';
+import { Horario } from './horario';
 
 @Component({
   selector: 'app-cargo-detail',
