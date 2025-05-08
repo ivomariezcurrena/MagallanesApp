@@ -46,12 +46,8 @@ public class PersonaPresenter {
         try {
             Persona savedPersona = service.save(aPersona);
             // Formatear el mensaje según lo requerido en Persona.feature
-            String mensaje = String.format("%s %s con DNI %d ingresado/a correctamente",
-                    savedPersona.getNombre(),
-                    savedPersona.getApellido(),
-                    savedPersona.getDni());
 
-            return Response.ok(mensaje);
+            return Response.ok(aPersona, service.getMensajeExitoso(savedPersona));
         } catch (DataIntegrityViolationException e) {
             return Response.dbError("No se puede utilizar ese dni porque ya existe otra persona con el mismo");
         }
@@ -84,12 +80,12 @@ public class PersonaPresenter {
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public ResponseEntity<Object> search(
+    public ResponseEntity<Object> searchPage(
             @RequestParam("term") String term,
             @RequestParam(name = "page", defaultValue = "0") int page,
             @RequestParam(name = "size", defaultValue = "10") int size) {
 
-        return Response.ok(service.search(term, page, size));
+        return Response.ok(service.searchPage(term, page, size));
     }
 
     @RequestMapping(value = "/search/{term}", method = RequestMethod.GET)

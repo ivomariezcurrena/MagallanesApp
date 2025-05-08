@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import jakarta.transaction.Transactional;
+import unpsjb.labprog.backend.business.utils.MensajeFormateador;
 import unpsjb.labprog.backend.model.Division;
 import unpsjb.labprog.backend.model.Persona;
 import unpsjb.labprog.backend.utils.StringNormalizer;
@@ -18,6 +19,9 @@ import org.springframework.data.domain.Pageable;
 public class PersonaService {
     @Autowired
     PersonaRepository repository;
+
+    @Autowired
+    MensajeFormateador mensaje;
 
     public List<Persona> findAll() {
         List<Persona> result = new ArrayList<>();
@@ -43,7 +47,7 @@ public class PersonaService {
         repository.deleteById(dni);
     }
 
-    public Page<Persona> search(String term, int page, int size) {
+    public Page<Persona> searchPage(String term, int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
         String likeTerm = "%" + StringNormalizer.normalize(term) + "%";
         return repository.search(likeTerm, pageable);
@@ -51,5 +55,9 @@ public class PersonaService {
 
     public List<Persona> search(String term) {
         return repository.search("%" + term + "%");
+    }
+
+    public String getMensajeExitoso(Persona persona) {
+        return mensaje.getMensajeExito(persona);
     }
 }

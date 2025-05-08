@@ -48,7 +48,7 @@ Given('que se asigna al cargo  con tipo de designación {string} y {string}', fu
 Given('que si el tipo es {string}, opcionalmente se asigna a la división {string} {string} {string}',
     function (tipoOriginal, anio, numero, turno) {
 
-        if (designacion.tipo === 'ESPACIO_CURRICULAR' && anio && numero && turno) {
+        if (designacion.tipo === 'ESPACIO_CURRICULAR') {
             try {
                 const turnoParam = encodeURIComponent(turno);
                 const url = `http://backend:8080/divisiones/buscar-por-anio-numero-turno`

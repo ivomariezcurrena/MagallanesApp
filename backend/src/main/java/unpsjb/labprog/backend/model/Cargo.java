@@ -11,6 +11,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -46,7 +47,7 @@ public class Cargo {
     private Division division;
 
     @OneToMany(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="cargo_id", nullable=false)
+    @JoinColumn(name = "cargo_id", nullable = false)
     private Collection<Horario> horarios;
 
 }
