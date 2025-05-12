@@ -3,6 +3,7 @@ import { Persona } from "../personas/persona";
 import { ArticuloLicencia } from "./aticuloLicencia";
 
 export interface Licencia {
+    id: number;
     pedidoDesde: string;
     pedidoHasta: string;
     domicilio: string;

@@ -7,6 +7,7 @@ import unpsjb.labprog.backend.model.Designacion;
 import unpsjb.labprog.backend.model.Division;
 import unpsjb.labprog.backend.model.Persona;
 import unpsjb.labprog.backend.model.TipoDesignacion;
+import unpsjb.labprog.backend.model.Turno;
 
 @Component
 public class MensajeFormateador {
@@ -97,7 +98,7 @@ public class MensajeFormateador {
                 c.getNombre());
     }
 
-    // MENSAJES DE DESIGNACIÓN //
+    // MENSAJES DE DESIGNACION //
     public String getMensajeAgregarDesignacion(Designacion d) {
         if (d.getCargo().getTipoDesignacion() != TipoDesignacion.CARGO) {
             return String.format(
@@ -140,5 +141,32 @@ public class MensajeFormateador {
 
     public String getErrorDivisionFaltanteEnDesignacion() {
         return "El espacio curricular debe tener una división asignada";
+    }
+
+    // NUEVO: Mensaje de error para designación ya existente en el período
+    public String getErrorDesignacionYaExisteCargo(String nombrePersona, String apellidoPersona, String nombreCargo,
+            String nombreOcupante, String apellidoOcupante) {
+        return String.format(
+                "%s %s NO ha sido designado/a como %s. pues el cargo solicitado lo ocupa %s %s para el período",
+                nombrePersona,
+                apellidoPersona,
+                nombreCargo,
+                nombreOcupante,
+                apellidoOcupante);
+    }
+
+    public String getErrorDesignacionYaExisteEspacioCurricular(String nombrePersona, String apellidoPersona,
+            String nombreEspacio, int anio, int numDivision, Turno turno, String nombreOcupante,
+            String apellidoOcupante) {
+        return String.format(
+                "%s %s NO ha sido designado/a debido a que la asignatura %s de la división %dº %dº turno %s lo ocupa %s %s para el período",
+                nombrePersona,
+                apellidoPersona,
+                nombreEspacio,
+                anio,
+                numDivision,
+                turno,
+                nombreOcupante,
+                apellidoOcupante);
     }
 }
