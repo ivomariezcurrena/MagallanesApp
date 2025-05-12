@@ -48,13 +48,7 @@ public class DesignacionPresenter {
             Designacion saved = service.save(aDesignacion);
             return Response.ok(service.getMensajeAgregar(saved));
         } catch (IllegalArgumentException e) {
-            return Response.notImplemented(null, e.getMessage());
-        } catch (DataIntegrityViolationException e) {
-            Throwable root = e;
-            while (root.getCause() != null && root.getCause() != root) {
-                root = root.getCause();
-            }
-            return Response.dbError("Error de integridad: " + root.getMessage());
+            return Response.internalServerError(null, e.getMessage());
         } catch (Exception e) {
             return Response.dbError("Error inesperado al guardar la designación: " + e.getMessage());
         }

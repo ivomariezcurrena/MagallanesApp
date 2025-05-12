@@ -1,0 +1,95 @@
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="d-flex justify-content-center mb-4">
+            <h2 class="mb-0"><strong>{{isNew ? 'Nueva Designacion':'Editar Designacion'}}</strong></h2>
+        </div>
+
+        <form #form="ngForm" class="row g-3">
+            <div class="col-md-6">
+                <!-- Vigencia Desde -->
+                <div class="form-group mt-3 mb-3">
+                    <div class="d-flex justify-content-between align-items-end">
+                        <label class="form-label fw-semibold">Vigencia Desde</label>
+
+                    </div>
+                    <div class="d-flex">
+
+                        <input class="form-control" placeholder="aaaa/mm/dd" name="fechaInicio" ngbDatepicker
+                            #d1="ngbDatepicker" [(ngModel)]="fechaInicioModel" required>
+                        <button class="btn btn-outline-secondary" (click)="d1.toggle()" type="button">📅</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label fw-semibold">Situacion Revista</label>
+                    <input type="text" class="form-control" [(ngModel)]="designacion.situacionRevista"
+                        name="situacionRevista" required>
+                </div>
+
+
+                <!-- Personas -->
+                <div class="form-group mt-3 ">
+                    <label class="form-label fw-semibold">Persona</label>
+                    <input class="form-control" [(ngModel)]="designacion.persona" name="persona"
+                        placeholder="Buscar persona" [ngbTypeahead]="buscarPersonas" [editable]="false"
+                        [resultFormatter]="resultFormatPersonas" [inputFormatter]="inputFormatPersonas"
+                        (selectItem)="onPersonaSelect($event)" required>
+                </div>
+
+                <!-- Mostrar detalles de la división -->
+                <div class="mt-3 text-secondary" *ngIf="designacion.persona?.dni">
+                    <p><strong>Nombre:</strong> {{ designacion.persona?.nombre }}</p>
+                    <p><strong>Apellido:</strong> {{ designacion.persona?.apellido }}</p>
+                    <p><strong>Dni:</strong> {{ designacion.persona?.dni }}</p>
+                </div>
+
+            </div>
+            <!-- Columna derecha -->
+            <div class="col-md-6">
+                <!-- Vigencia Hasta -->
+                <div class="form-group mt-3 mb-3">
+                    <div class="d-flex justify-content-between align-items-end">
+                        <label class="form-label fw-semibold">Vigencia Hasta<small
+                                class="text-muted m-1">(opcional)</small></label>
+                    </div>
+                    <div class="d-flex">
+                        <input class="form-control" placeholder="aaaa/mm/dd" name="fechaFin" ngbDatepicker
+                            #d2="ngbDatepicker" [(ngModel)]="fechaFinModel">
+                        <button class="btn btn-outline-secondary" (click)=" d2.toggle()" type="button">📅</button>
+                    </div>
+                </div>
+
+                <!-- Personas -->
+                <div class="form-group mt-3 ">
+                    <label class="form-label fw-semibold">Cargo</label>
+                    <input class="form-control" [(ngModel)]="designacion.cargo" name="cargo" placeholder="Buscar cargos"
+                        [ngbTypeahead]="buscarCargos" [editable]="false" [resultFormatter]="resultFormatCargos"
+                        [inputFormatter]="inputFormatCargos" (selectItem)="onCargoSelect($event)" required>
+                </div>
+
+                <!-- Mostrar detalles de la división -->
+                <div class="mt-3 text-secondary" *ngIf="designacion.cargo?.id">
+
+                    <p><strong>Nombre:</strong> {{ designacion.cargo?.nombre }}</p>
+                    <p><strong>Carga Horaria:</strong> {{ designacion.cargo?.cargaHoraria }} hs</p>
+
+
+                    <p><strong>Tipo:</strong> {{ designacion.cargo?.tipoDesignacion}}</p>
+                    <div *ngIf="designacion.cargo?.division?.anio">
+                        <p><strong>Año:</strong> {{ designacion.cargo?.division?.anio }}</p>
+                        <p><strong>Numero:</strong> {{ designacion.cargo?.division?.numDivision }}</p>
+                        <p><strong>Turno:</strong> {{ designacion.cargo?.division?.turno }}</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Botones -->
+            <div class="col-12 d-flex justify-content-between mt-4">
+                <button type="button" class="btn btn-outline-danger" (click)="goBack()">
+                    <i class="bi bi-x-circle"></i> Cancelar
+                </button>
+                <button type="submit" class="btn btn-success" [disabled]="form.invalid" (click)="save()">
+                    <i class="bi bi-check-circle"></i> Guardar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

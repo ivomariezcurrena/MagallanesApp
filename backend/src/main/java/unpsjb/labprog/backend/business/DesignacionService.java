@@ -43,6 +43,10 @@ public class DesignacionService {
         return repository.findAll(PageRequest.of(page, size));
     }
 
+    public Designacion findByCargo(String cargo) {
+        return repository.findByNombreDeCargo(cargo);
+    }
+
     @Transactional
     public Designacion save(Designacion e) {
         validador.validar(e);

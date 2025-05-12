@@ -73,7 +73,9 @@ services:
       - ./testing/divisiones/node_modules:/home/node/divisiones/node_modules
       - ./testing/cargo/node_modules:/home/node/cargo/node_modules
       - ./testing/designacion/node_modules:/home/node/designacion/node_modules
-    command: sh -c " echo '▶️  Ejecutando test de PERSONAS'; \ cd personas && npm test; \ echo '▶️  Ejecutando test de DIVISIONES'; \ cd ../divisiones && npm test; \ echo '▶️  Ejecutando test de CARGOS'; \ cd ../cargo && npm test; \ echo '▶️  Ejecutando test de DESIGNACIONES'; \ cd ../designacion && npm test;"
+      - ./testing/control:/home/node/control
+      - ./testing/control/node_modules:/home/node/control/node_modules
+    command: sh -c " echo '▶️  Ejecutando test de PERSONAS'; \ cd personas && npm test; \ echo '▶️  Ejecutando test de DIVISIONES'; \ cd ../divisiones && npm test; \ echo '▶️  Ejecutando test de CARGOS'; \ cd ../cargo && npm test; \ echo '▶️  Ejecutando test de DESIGNACIONES'; \ cd ../designacion && npm test;  \ echo '▶️  Ejecutando test de CONTROL'; \ cd ../control && npm test;"
     depends_on:
       - backend
 

@@ -45,4 +45,8 @@ public class Response {
 	public static ResponseEntity<Object> notImplemented(String msj, Object object) {
 		return response(HttpStatus.NOT_IMPLEMENTED, msj, object);
 	}
+
+	public static ResponseEntity<Object> internalServerError(String msj, Object object) {
+		return response(HttpStatus.INTERNAL_SERVER_ERROR, msj, object);
+	}
 }
