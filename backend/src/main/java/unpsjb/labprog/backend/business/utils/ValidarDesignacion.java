@@ -1,10 +1,14 @@
 package unpsjb.labprog.backend.business.utils;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import unpsjb.labprog.backend.business.CargoService;
+import unpsjb.labprog.backend.business.DesignacionRepository;
 import unpsjb.labprog.backend.business.DesignacionService;
 import unpsjb.labprog.backend.business.DivisionService;
 import unpsjb.labprog.backend.model.Cargo;
@@ -20,7 +24,7 @@ public class ValidarDesignacion {
 
     @Autowired
     @Lazy
-    CargoService cargoService;
+    DesignacionRepository repository;
 
     @Autowired
     private MensajeFormateador mensaje;
@@ -38,31 +42,53 @@ public class ValidarDesignacion {
                 && d.getCargo().getDivision() == null) {
             throw new IllegalArgumentException("El espacio curricular debe tener una división asignada");
         }
-
-        Designacion designacionCargoExistente = service.findByCargo(d.getCargo().getNombre());
-        if (d.getCargo().getDivision() == null) {
-            if (designacionCargoExistente != null) {
-                throw new IllegalArgumentException(mensaje.getErrorDesignacionYaExisteCargo(d.getPersona().getNombre(),
-                        d.getPersona().getApellido(), d.getCargo().getNombre(),
-                        designacionCargoExistente.getPersona().getNombre(),
-                        designacionCargoExistente.getPersona().getApellido()));
-            }
-        } else if (designacionCargoExistente.getCargo().getDivision().getAnio() == d.getCargo().getDivision()
-                .getAnio()
-                && designacionCargoExistente.getCargo().getDivision().getNumDivision() == d.getCargo()
-                        .getDivision().getNumDivision()
-                && designacionCargoExistente.getCargo().getDivision().getTurno() == d.getCargo()
-                        .getDivision().getTurno()) {
-            throw new IllegalArgumentException(mensaje.getErrorDesignacionYaExisteEspacioCurricular(
-                    d.getPersona().getNombre(),
-                    d.getPersona().getApellido(), d.getCargo().getNombre(),
-                    d.getCargo().getDivision().getAnio(),
-                    d.getCargo().getDivision().getNumDivision(),
-                    d.getCargo().getDivision().getTurno(),
-                    designacionCargoExistente.getPersona().getNombre(),
-                    designacionCargoExistente.getPersona().getApellido()));
-        }
-
+        // validar el tema de designar un cargo
+        validarUnicidadYFechas(d);
     }
 
+    public void validarUnicidadYFechas(Designacion d) {
+        if (d.getCargo().getDivision() == null) {
+            validarDesignacionSinDivision(d);
+        } else {
+            validarDesignacionConDivision(d);
+        }
+    }
+
+    private void validarDesignacionSinDivision(Designacion d) {
+        var existente = repository.findDesignacionActivaOSolapada(
+                d.getCargo().getNombre(), d.getFechaInicio());
+
+        if (existente.isPresent()) {
+            var e = existente.get();
+            throw new IllegalArgumentException(mensaje.getErrorDesignacionYaExisteCargo(
+                    d.getPersona().getNombre(),
+                    d.getPersona().getApellido(),
+                    d.getCargo().getNombre(),
+                    e.getPersona().getNombre(),
+                    e.getPersona().getApellido()));
+        }
+    }
+
+    private void validarDesignacionConDivision(Designacion d) {
+        var div = d.getCargo().getDivision();
+        var existente = repository.findSolapamientoEnDivision(
+                d.getCargo().getNombre(),
+                div.getAnio(),
+                div.getNumDivision(),
+                div.getTurno(),
+                d.getFechaInicio());
+
+        if (existente.isPresent()) {
+            var e = existente.get();
+            throw new IllegalArgumentException(mensaje.getErrorDesignacionYaExisteEspacioCurricular(
+                    d.getPersona().getNombre(),
+                    d.getPersona().getApellido(),
+                    d.getCargo().getNombre(),
+                    div.getAnio(),
+                    div.getNumDivision(),
+                    div.getTurno(),
+                    e.getPersona().getNombre(),
+                    e.getPersona().getApellido()));
+        }
+    }
 }

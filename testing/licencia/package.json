@@ -1,0 +1,15 @@
+{
+  "name": "partesdocentes-testing",
+  "version": "1.0.0",
+  "description": "Pruebas para partesdocentes",
+  "main": "index.js",
+  "scripts": {
+    "test": "cucumber-js"
+  },
+  "dependencies": {
+    "sync-request": "^6.1.0"
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "^11.2.0"
+  }
+}

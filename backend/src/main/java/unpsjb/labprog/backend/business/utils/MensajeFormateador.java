@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import unpsjb.labprog.backend.model.Cargo;
 import unpsjb.labprog.backend.model.Designacion;
 import unpsjb.labprog.backend.model.Division;
+import unpsjb.labprog.backend.model.Licencia;
 import unpsjb.labprog.backend.model.Persona;
 import unpsjb.labprog.backend.model.TipoDesignacion;
 import unpsjb.labprog.backend.model.Turno;
@@ -168,5 +169,36 @@ public class MensajeFormateador {
                 turno,
                 nombreOcupante,
                 apellidoOcupante);
+    }
+
+    // MENSAJE LICENCIA
+
+    public String getMensajeAgregarLicencia(Licencia l) {
+        return "Todo ok";
+    }
+
+    public String getMensajeActualizarLicencia(Licencia l) {
+        return getMensajeAgregarLicencia(l)
+                .replace("ingresado/a correctamente", "actualizado/a correctamente");
+    }
+
+    public String getMensajeEliminacionDeLicencia(int id) {
+        return "Designación " + id + " eliminada correctamente";
+    }
+
+    public String getMensajeLicenciaNoEncontrada(int id) {
+        return "Designación id " + id + " no encontrada";
+    }
+
+    public String getErrorCargoNuloEnLicencia() {
+        return "El cargo no puede ser nulo";
+    }
+
+    public String getErrorPersonaNulaEnLicencia() {
+        return "La persona no puede ser nula";
+    }
+
+    public String getErrorDivisionFaltanteEnLicencia() {
+        return "El espacio curricular debe tener una división asignada";
     }
 }

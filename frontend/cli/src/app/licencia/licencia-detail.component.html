@@ -1,95 +1,106 @@
 <div class="container mt-4">
     <div class="row justify-content-center">
-        <div class="d-flex justify-content-center mb-4">
-            <h2 class="mb-0"><strong>{{isNew ? 'Nueva Designacion':'Editar Designacion'}}</strong></h2>
+        <div class="col-lg-10">
+            <div class="text-center mb-4">
+                <h2 class="fw-bold">{{ isNew ? 'Nueva Licencia' : 'Editar Licencia' }}</h2>
+            </div>
+
+            <form #form="ngForm" class="row g-4 px-2">
+                <!-- Columna izquierda -->
+                <div class="col-md-6">
+                    <!-- Fecha desde -->
+                    <div class="form-group">
+                        <label class="form-label fw-semibold">Desde</label>
+                        <div class="input-group">
+                            <input class="form-control rounded-start" placeholder="aaaa/mm/dd" name="pedidoDesde"
+                                ngbDatepicker #d1="ngbDatepicker" [(ngModel)]="fechaInicioModel" required>
+                            <button class="btn btn-outline-secondary rounded-end" (click)="d1.toggle()"
+                                type="button">📅</button>
+                        </div>
+                    </div>
+
+                    <!-- Domicilio -->
+                    <div class="form-group">
+                        <label class="form-label fw-semibold mt-3">Domicilio</label>
+                        <input type="text" class="form-control" [(ngModel)]="licencia.domicilio" name="domicilio"
+                            required>
+                    </div>
+
+                    <!-- Persona -->
+                    <div class="form-group">
+                        <label class="form-label fw-semibold mt-3">Persona</label>
+                        <input class="form-control" [(ngModel)]="licencia.persona" name="persona"
+                            [ngbTypeahead]="buscarPersonas" [editable]="false" [resultFormatter]="resultFormatPersonas"
+                            [inputFormatter]="inputFormatPersonas" (selectItem)="onPersonaSelect($event)"
+                            placeholder="Buscar persona" required>
+                    </div>
+
+                    <!-- Datos de persona -->
+                    <div class="card mt-3 shadow-sm border-0" *ngIf="licencia.persona?.dni">
+                        <div class="card-body p-3 text-secondary">
+                            <p class="mb-1"><strong>Nombre:</strong> {{ licencia.persona?.nombre }}</p>
+                            <p class="mb-1"><strong>Apellido:</strong> {{ licencia.persona?.apellido }}</p>
+                            <p class="mb-0"><strong>DNI:</strong> {{ licencia.persona?.dni }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna derecha -->
+                <div class="col-md-6">
+                    <!-- Fecha hasta -->
+                    <div class="form-group">
+                        <label class="form-label fw-semibold">Hasta</label>
+                        <div class="input-group">
+                            <input class="form-control rounded-start" placeholder="aaaa/mm/dd" name="pedidoHasta"
+                                ngbDatepicker #d2="ngbDatepicker" [(ngModel)]="fechaFinModel">
+                            <button class="btn btn-outline-secondary rounded-end" (click)="d2.toggle()"
+                                type="button">📅</button>
+                        </div>
+                    </div>
+
+                    <!-- Certificado médico -->
+                    <div class="form-group mt-4">
+                        <div class="card p-3 border shadow-sm">
+                            <div class="form-check form-switch d-flex align-items-center">
+                                <input class="form-check-input me-2" type="checkbox" role="switch" id="certificadoMedico"
+                                    [(ngModel)]="licencia.certificadoMedico" name="certificadoMedico" />
+                                <label class="form-check-label fw-semibold mb-0" for="certificadoMedico">
+                                    ¿Tiene certificado médico?
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                    <!-- Artículo -->
+                    <div class="form-group">
+                        <label class="form-label fw-semibold mt-3">Artículo</label>
+                        <input class="form-control" [(ngModel)]="licencia.articuloLicencia" name="articuloLicencia"
+                            [ngbTypeahead]="buscarArticulos" [editable]="false"
+                            [resultFormatter]="resultFormatArticulos" [inputFormatter]="inputFormatArticulos"
+                            (selectItem)="onArticuloSelect($event)" placeholder="Buscar artículo" required>
+                    </div>
+
+                    <!-- Detalles del artículo -->
+                    <div class="card mt-3 shadow-sm border-0" *ngIf="licencia.articuloLicencia?.descripcion">
+                        <div class="card-body p-3 text-secondary">
+                            <p class="mb-0"><strong>Descripción:</strong> {{ licencia.articuloLicencia?.descripcion }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botones -->
+                <div class="col-12 d-flex justify-content-between mt-4 px-3">
+                    <button type="button" class="btn btn-outline-danger px-4" (click)="goBack()">
+                        <i class="bi bi-x-circle"></i> Cancelar
+                    </button>
+                    <button type="submit" class="btn btn-success px-4" [disabled]="form.invalid" (click)="save()">
+                        <i class="bi bi-check-circle"></i> Guardar
+                    </button>
+                </div>
+            </form>
         </div>
-
-        <form #form="ngForm" class="row g-3">
-            <div class="col-md-6">
-                <!-- Vigencia Desde -->
-                <div class="form-group mt-3 mb-3">
-                    <div class="d-flex justify-content-between align-items-end">
-                        <label class="form-label fw-semibold">Vigencia Desde</label>
-
-                    </div>
-                    <div class="d-flex">
-
-                        <input class="form-control" placeholder="aaaa/mm/dd" name="fechaInicio" ngbDatepicker
-                            #d1="ngbDatepicker" [(ngModel)]="fechaInicioModel" required>
-                        <button class="btn btn-outline-secondary" (click)="d1.toggle()" type="button">📅</button>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label fw-semibold">Situacion Revista</label>
-                    <input type="text" class="form-control" [(ngModel)]="designacion.situacionRevista"
-                        name="situacionRevista" required>
-                </div>
-
-
-                <!-- Personas -->
-                <div class="form-group mt-3 ">
-                    <label class="form-label fw-semibold">Persona</label>
-                    <input class="form-control" [(ngModel)]="designacion.persona" name="persona"
-                        placeholder="Buscar persona" [ngbTypeahead]="buscarPersonas" [editable]="false"
-                        [resultFormatter]="resultFormatPersonas" [inputFormatter]="inputFormatPersonas"
-                        (selectItem)="onPersonaSelect($event)" required>
-                </div>
-
-                <!-- Mostrar detalles de la división -->
-                <div class="mt-3 text-secondary" *ngIf="designacion.persona?.dni">
-                    <p><strong>Nombre:</strong> {{ designacion.persona?.nombre }}</p>
-                    <p><strong>Apellido:</strong> {{ designacion.persona?.apellido }}</p>
-                    <p><strong>Dni:</strong> {{ designacion.persona?.dni }}</p>
-                </div>
-
-            </div>
-            <!-- Columna derecha -->
-            <div class="col-md-6">
-                <!-- Vigencia Hasta -->
-                <div class="form-group mt-3 mb-3">
-                    <div class="d-flex justify-content-between align-items-end">
-                        <label class="form-label fw-semibold">Vigencia Hasta<small
-                                class="text-muted m-1">(opcional)</small></label>
-                    </div>
-                    <div class="d-flex">
-                        <input class="form-control" placeholder="aaaa/mm/dd" name="fechaFin" ngbDatepicker
-                            #d2="ngbDatepicker" [(ngModel)]="fechaFinModel">
-                        <button class="btn btn-outline-secondary" (click)=" d2.toggle()" type="button">📅</button>
-                    </div>
-                </div>
-
-                <!-- Personas -->
-                <div class="form-group mt-3 ">
-                    <label class="form-label fw-semibold">Cargo</label>
-                    <input class="form-control" [(ngModel)]="designacion.cargo" name="cargo" placeholder="Buscar cargos"
-                        [ngbTypeahead]="buscarCargos" [editable]="false" [resultFormatter]="resultFormatCargos"
-                        [inputFormatter]="inputFormatCargos" (selectItem)="onCargoSelect($event)" required>
-                </div>
-
-                <!-- Mostrar detalles de la división -->
-                <div class="mt-3 text-secondary" *ngIf="designacion.cargo?.id">
-
-                    <p><strong>Nombre:</strong> {{ designacion.cargo?.nombre }}</p>
-                    <p><strong>Carga Horaria:</strong> {{ designacion.cargo?.cargaHoraria }} hs</p>
-
-
-                    <p><strong>Tipo:</strong> {{ designacion.cargo?.tipoDesignacion}}</p>
-                    <div *ngIf="designacion.cargo?.division?.anio">
-                        <p><strong>Año:</strong> {{ designacion.cargo?.division?.anio }}</p>
-                        <p><strong>Numero:</strong> {{ designacion.cargo?.division?.numDivision }}</p>
-                        <p><strong>Turno:</strong> {{ designacion.cargo?.division?.turno }}</p>
-                    </div>
-                </div>
-            </div>
-            <!-- Botones -->
-            <div class="col-12 d-flex justify-content-between mt-4">
-                <button type="button" class="btn btn-outline-danger" (click)="goBack()">
-                    <i class="bi bi-x-circle"></i> Cancelar
-                </button>
-                <button type="submit" class="btn btn-success" [disabled]="form.invalid" (click)="save()">
-                    <i class="bi bi-check-circle"></i> Guardar
-                </button>
-            </div>
-        </form>
     </div>
 </div>
+  
