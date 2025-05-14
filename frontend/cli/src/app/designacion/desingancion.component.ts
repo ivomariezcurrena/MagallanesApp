@@ -67,4 +67,5 @@ export class DesingancionComponent {
     this.currentPage = page;
     this.getDesignaciones();
   }
+  
 }
