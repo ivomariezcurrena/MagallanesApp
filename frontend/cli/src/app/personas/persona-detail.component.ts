@@ -14,10 +14,10 @@ import { Location } from '@angular/common';
   styleUrl: `./persona-detail.component.css`,
 })
 export class PersonaDetailComponent {
-
   persona!: Persona;
   searching = false;
   searchFailed = false;
+  errorMessage: string | null = null; // <-- Agrega esto
 
   constructor(
     private route: ActivatedRoute,
@@ -38,7 +38,17 @@ export class PersonaDetailComponent {
     return this.persona?.dni === 0 || this.persona?.dni === undefined;
   }
   save(): void {
-    this.personaService.save(this.persona).subscribe(dataPackage => { this.persona = <Persona>dataPackage.data; this.goBack(); });
+    this.personaService.save(this.persona).subscribe({
+      next: dataPackage => {
+        this.persona = <Persona>dataPackage.data;
+        this.errorMessage = null; // Limpia el error si todo sale bien
+        this.goBack();
+      },
+      error: err => {
+        // Intenta obtener el mensaje del backend
+        this.errorMessage = err.error?.message || 'Error al guardar la persona';
+      }
+    });
   }
   goBack(): void {
     this.location.back()

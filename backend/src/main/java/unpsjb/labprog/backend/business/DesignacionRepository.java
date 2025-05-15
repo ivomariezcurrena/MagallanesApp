@@ -22,15 +22,22 @@ public interface DesignacionRepository
 
     // Para cargos sim division
     @Query("""
-            SELECT d from Designacion d
+            SELECT d FROM Designacion d
             WHERE d.cargo.nombre = :nombreCargo
-            AND(
-            d.fechaFin IS NULL OR :nuevaFechaInicio <=d.fechaFin
+            AND (
+                (d.fechaFin IS NULL AND CAST(:nuevaFechaFin AS java.time.LocalDateTime) IS NULL)
+                OR
+                (
+                    COALESCE(d.fechaFin, :nuevaFechaFin) >= :nuevaFechaInicio
+                    AND
+                    COALESCE(:nuevaFechaFin, d.fechaFin) >= d.fechaInicio
+                )
             )
             """)
     Optional<Designacion> findDesignacionActivaOSolapada(
             @Param("nombreCargo") String nombreCargo,
-            @Param("nuevaFechaInicio") LocalDateTime nuevaFechaInicio);
+            @Param("nuevaFechaInicio") LocalDateTime nuevaFechaInicio,
+            @Param("nuevaFechaFin") LocalDateTime nuevaFechaFin);
 
     // Para cargos con division
     @Query("""

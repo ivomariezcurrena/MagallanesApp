@@ -56,7 +56,7 @@ public class ValidarDesignacion {
 
     private void validarDesignacionSinDivision(Designacion d) {
         var existente = repository.findDesignacionActivaOSolapada(
-                d.getCargo().getNombre(), d.getFechaInicio());
+                d.getCargo().getNombre(), d.getFechaInicio(), d.getFechaFin());
 
         if (existente.isPresent()) {
             var e = existente.get();

@@ -6,6 +6,7 @@
 /app/src/main/java/unpsjb/labprog/backend/presenter/DesignacionPresenter.java
 /app/src/main/java/unpsjb/labprog/backend/business/utils/MensajeFormateador.java
 /app/src/main/java/unpsjb/labprog/backend/business/DesignacionService.java
+/app/src/main/java/unpsjb/labprog/backend/presenter/ArticuloLicenciaPresenter.java
 /app/src/main/java/unpsjb/labprog/backend/business/utils/Validador.java
 /app/src/main/java/unpsjb/labprog/backend/presenter/DivisionPresenter.java
 /app/src/main/java/unpsjb/labprog/backend/model/Horario.java
@@ -14,13 +15,18 @@
 /app/src/main/java/unpsjb/labprog/backend/BackendApplication.java
 /app/src/main/java/unpsjb/labprog/backend/model/TipoDesignacion.java
 /app/src/main/java/unpsjb/labprog/backend/model/Division.java
+/app/src/main/java/unpsjb/labprog/backend/business/LicenciaRepository.java
 /app/src/main/java/unpsjb/labprog/backend/model/Persona.java
 /app/src/main/java/unpsjb/labprog/backend/model/Cargo.java
+/app/src/main/java/unpsjb/labprog/backend/business/ArticuloLicenciaRepository.java
 /app/src/main/java/unpsjb/labprog/backend/business/DivisionRepository.java
 /app/src/main/java/unpsjb/labprog/backend/business/utils/ValidarDivision.java
+/app/src/main/java/unpsjb/labprog/backend/business/LicenciaService.java
 /app/src/main/java/unpsjb/labprog/backend/model/Designacion.java
 /app/src/main/java/unpsjb/labprog/backend/business/DivisionService.java
+/app/src/main/java/unpsjb/labprog/backend/presenter/LicenciaPresenter.java
 /app/src/main/java/unpsjb/labprog/backend/model/Licencia.java
+/app/src/main/java/unpsjb/labprog/backend/business/ArticuloLicenciaService.java
 /app/src/main/java/unpsjb/labprog/backend/business/CargoService.java
 /app/src/main/java/unpsjb/labprog/backend/utils/StringNormalizer.java
 /app/src/main/java/unpsjb/labprog/backend/business/DesignacionRepository.java
