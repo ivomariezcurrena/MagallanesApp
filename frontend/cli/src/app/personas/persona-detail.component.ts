@@ -17,7 +17,9 @@ export class PersonaDetailComponent {
   persona!: Persona;
   searching = false;
   searchFailed = false;
-  errorMessage: string | null = null; // <-- Agrega esto
+  errorMessage: string | null = null;
+  successMessage: string | null = null;
+  loading = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -38,17 +40,20 @@ export class PersonaDetailComponent {
     return this.persona?.dni === 0 || this.persona?.dni === undefined;
   }
   save(): void {
+    this.errorMessage = null;
+    this.successMessage = null;
+    this.loading = true;
     this.personaService.save(this.persona).subscribe({
       next: dataPackage => {
         this.persona = <Persona>dataPackage.data;
-        this.errorMessage = null; // Limpia el error si todo sale bien
-        this.goBack();
+        this.successMessage = '¡Persona guardada exitosamente!';
+        this.loading = false;
       },
       error: err => {
-        // Intenta obtener el mensaje del backend
-        this.errorMessage = err.error?.message || 'Error al guardar la persona';
+        this.errorMessage = err.error?.data || err.error || 'Error al guardar la persona';
+        this.loading = false;
       }
-    });
+    })
   }
   goBack(): void {
     this.location.back()

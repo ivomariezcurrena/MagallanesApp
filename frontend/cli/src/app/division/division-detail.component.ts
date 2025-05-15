@@ -17,6 +17,7 @@ export class DivisionDetailComponent {
   division!: Division;
   searching = false;
   searchFailed = false;
+  errorMessage: string | null = null;
   constructor(
     private divisionServise: DivisionService,
     private route: ActivatedRoute,
@@ -38,8 +39,13 @@ export class DivisionDetailComponent {
     return this.division?.id === 0;
   }
   save(): void {
-    this.divisionServise.save(this.division).subscribe(dataPackage => { this.division = <Division>dataPackage.data; this.goBack(); });
-  }
+    this.divisionServise.save(this.division).subscribe({next: dataPackage => { this.division = <Division>dataPackage.data;this.errorMessage = null;
+    },
+    error: err => {
+      this.errorMessage = err.error?.data || err.error || 'Error al guardar la persona';
+    }
+  })
+}
   goBack(): void {
     this.location.back()
   }

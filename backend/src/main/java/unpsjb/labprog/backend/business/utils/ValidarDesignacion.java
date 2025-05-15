@@ -76,7 +76,8 @@ public class ValidarDesignacion {
                 div.getAnio(),
                 div.getNumDivision(),
                 div.getTurno(),
-                d.getFechaInicio());
+                d.getFechaInicio(),
+                d.getFechaFin());
 
         if (existente.isPresent()) {
             var e = existente.get();

@@ -4,35 +4,85 @@
         {{ errorMessage }}
     </div>
 
+    <!-- Mensaje de éxito -->
+    <div *ngIf="successMessage" class="alert alert-success">
+        {{ successMessage }}
+    </div>
+
+    <!-- Indicador de carga -->
+    <div *ngIf="loading" class="text-center my-3">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Guardando...</span>
+        </div>
+        <div>Guardando...</div>
+    </div>
+
     <div class="row justify-content-center g-4">
         <div class="d-flex justify-content-center mb-4">
             <h2 class="mb-0"><strong>{{ isNew ? 'Agregar Persona' : 'Editar Persona' }}</strong></h2>
         </div>
-        <form #form="ngForm" class="row g-3">
+        <form #form="ngForm" class="row g-3" (ngSubmit)="save()" novalidate>
             <!-- Columna izquierda -->
             <div class="col-md-6">
                 <!-- Nombre -->
-                <div class="form-group">
-                    <label class="form-label fw-semibold">Nombre</label>
-                    <input type="text" class="form-control" [(ngModel)]="persona.nombre" name="nombre"
-                        placeholder="Ej: Alberto" required>
+                <div class="form-group position-relative">
+                    <label for="nombre" class="form-label fw-semibold">Nombre</label>
+                    <input
+                        type="text"
+                        class="form-control ps-5"
+                        id="nombre"
+                        [(ngModel)]="persona.nombre"
+                        name="nombre"
+                        placeholder="Ej: Alberto"
+                        required
+                        autocomplete="given-name"
+                        [ngClass]="{'is-invalid': form.submitted && !persona.nombre}"
+                    >
+                    <i class="bi bi-person input-icon"></i>
+                    <i *ngIf="form.submitted && !persona.nombre"
+                       class="bi bi-exclamation-circle-fill text-danger input-icon-error"></i>
+                    <div *ngIf="form.submitted && !persona.nombre" class="invalid-feedback">
+                        El nombre es obligatorio.
+                    </div>
                 </div>
 
                 <!-- DNI -->
                 <div class="form-group mt-3">
-                    <label class="form-label fw-semibold">DNI</label>
-                    <input type="number" class="form-control" [(ngModel)]="persona.dni" name="dni" required>
+                    <label for="dni" class="form-label fw-semibold">DNI</label>
+                    <input
+                        type="number"
+                        class="form-control"
+                        id="dni"
+                        [(ngModel)]="persona.dni"
+                        name="dni"
+                        required
+                        autocomplete="off"
+                        [ngClass]="{'is-invalid': form.submitted && !persona.dni}"
+                    >
+                    <div *ngIf="form.submitted && !persona.dni" class="invalid-feedback">
+                        El DNI es obligatorio.
+                    </div>
                 </div>
 
                 <!-- Sexo -->
                 <div class="form-group mt-3">
-                    <label class="form-label fw-semibold">Sexo</label>
-                    <select class="form-select" [(ngModel)]="persona.sexo" name="sexo" required>
-                        <option value="" disabled selected>Seleccionar</option>
+                    <label for="sexo" class="form-label fw-semibold">Sexo</label>
+                    <select
+                        class="form-select"
+                        id="sexo"
+                        [(ngModel)]="persona.sexo"
+                        name="sexo"
+                        required
+                        [ngClass]="{'is-invalid': form.submitted && !persona.sexo}"
+                    >
+                        <option value="" disabled>Seleccionar</option>
                         <option value="M">Masculino</option>
                         <option value="F">Femenino</option>
                         <option value="X">Otro</option>
                     </select>
+                    <div *ngIf="form.submitted && !persona.sexo" class="invalid-feedback">
+                        Selecciona un sexo.
+                    </div>
                 </div>
 
                 <!-- Domicilio -->
@@ -45,16 +95,45 @@
             <!-- Columna derecha -->
             <div class="col-md-6">
                 <!-- Apellido -->
-                <div class="form-group">
-                    <label class="form-label fw-semibold">Apellido</label>
-                    <input type="text" class="form-control" [(ngModel)]="persona.apellido" name="apellido"
-                        placeholder="Ej: Gomez" required>
+                <div class="form-group position-relative">
+                    <label for="apellido" class="form-label fw-semibold">Apellido</label>
+                    <input
+                        type="text"
+                        class="form-control ps-5"
+                        id="apellido"
+                        [(ngModel)]="persona.apellido"
+                        name="apellido"
+                        placeholder="Ej: Gomez"
+                        required
+                        autocomplete="family-name"
+                        [ngClass]="{'is-invalid': form.submitted && !persona.apellido}"
+                    >
+                    <i class="bi bi-person input-icon"></i>
                 </div>
 
                 <!-- CUIT -->
-                <div class="form-group mt-3">
-                    <label class="form-label fw-semibold">CUIT</label>
-                    <input type="text" class="form-control" [(ngModel)]="persona.cuil" name="cuil" required>
+                <div class="form-group mt-3 position-relative">
+                    <label class="form-label fw-semibold" for="cuil">CUIT</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="cuil"
+                        [(ngModel)]="persona.cuil"
+                        name="cuil"
+                        required
+                        pattern="^\d{11}$"
+                        #cuil="ngModel"
+                        [ngClass]="{'is-invalid': (form.submitted || cuil.touched) && (cuil.invalid)}"
+                        placeholder="20123456789"
+                        autocomplete="off"
+                    >
+                    <i *ngIf="(form.submitted || cuil.touched) && cuil.invalid"
+                       class="bi bi-exclamation-circle-fill text-danger position-absolute"
+                       style="right: 10px; top: 38px;"></i>
+                    <div *ngIf="(form.submitted || cuil.touched) && cuil.errors" class="invalid-feedback">
+                        <span *ngIf="cuil.errors['required']">El CUIT es obligatorio.</span>
+                        <span *ngIf="cuil.errors['pattern']">El CUIT debe tener 11 dígitos numéricos.</span>
+                    </div>
                 </div>
 
                 <!-- Título -->
@@ -65,18 +144,36 @@
                 </div>
 
                 <!-- Teléfono -->
-                <div class="form-group mt-3">
-                    <label class="form-label fw-semibold">Teléfono</label>
-                    <input type="text" class="form-control" [(ngModel)]="persona.telefono" name="telefono" required>
+                <div class="form-group mt-3 position-relative">
+                    <label class="form-label fw-semibold" for="telefono">Teléfono</label>
+                    <input
+                        type="text"
+                        class="form-control ps-5"
+                        id="telefono"
+                        [(ngModel)]="persona.telefono"
+                        name="telefono"
+                        required
+                        #telefono="ngModel"
+                        [ngClass]="{'is-invalid': (form.submitted || telefono.touched) && (telefono.invalid)}"
+                        placeholder="Ej: 2991234567"
+                        autocomplete="tel"
+                    >
+                    <i class="bi bi-telephone input-icon"></i>
+                    <i *ngIf="(form.submitted || telefono.touched) && telefono.invalid"
+                       class="bi bi-exclamation-circle-fill text-danger input-icon-error"></i>
+                    <div *ngIf="(form.submitted || telefono.touched) && telefono.errors" class="invalid-feedback">
+                        <span *ngIf="telefono.errors['required']">El teléfono es obligatorio.</span>
+                        <span *ngIf="telefono.errors['pattern']">El teléfono debe tener al menos 8 dígitos numéricos.</span>
+                    </div>
                 </div>
             </div>
 
             <!-- Botones -->
             <div class="col-12 d-flex justify-content-between mt-4">
-                <button type="button" class="btn btn-outline-danger" (click)="goBack()">
+                <button type="button" class="btn btn-outline-danger" (click)="goBack()" [disabled]="loading">
                     <i class="bi bi-x-circle"></i> Cancelar
                 </button>
-                <button type="submit" class="btn btn-success" [disabled]="form.invalid" (click)="save()">
+                <button type="submit" class="btn btn-success" [disabled]="form.invalid || loading">
                     <i class="bi bi-check-circle"></i> Guardar
                 </button>
             </div>

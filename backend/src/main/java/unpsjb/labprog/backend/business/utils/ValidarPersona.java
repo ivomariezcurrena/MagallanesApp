@@ -1,16 +1,26 @@
 package unpsjb.labprog.backend.business.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
+import unpsjb.labprog.backend.business.PersonaService;
 import unpsjb.labprog.backend.model.Persona;
 
 @Component
 public class ValidarPersona {
 
+    @Autowired
+    @Lazy
+    PersonaService service;
+
     public void validar(Persona persona) {
         if (persona.getDni() <= 0) {
             throw new IllegalArgumentException("El DNI debe ser un número positivo");
+        }
+
+        if (service.findByDni(persona.getDni()) != null) {
+            throw new IllegalArgumentException("El DNI ya está registrado");
         }
 
         if (persona.getNombre() == null || persona.getNombre().isBlank()) {

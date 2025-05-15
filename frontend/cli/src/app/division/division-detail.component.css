@@ -1,48 +1,285 @@
 .form-control,
 .form-select {
-    border-radius: 0.75rem;
-    transition: all 0.2s ease;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 1rem;
+    transition: all 0.2s cubic-bezier(.4, 2, .6, 1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.04);
+    font-size: 1.08rem;
+    padding: 0.8rem 1.1rem;
+    background: #fcfcfd;
 }
 
 .form-control:focus,
 .form-select:focus {
-    border-color: #198754;
-    box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.25);
-    animation: input-pop 0.1s ease-out;
+    border-color: #43c59e;
+    box-shadow: 0 0 0 0.18rem rgba(67, 197, 158, 0.13);
+    animation: input-pop 0.18s cubic-bezier(.4, 2, .6, 1);
 }
 
 .btn {
-    transition: transform 0.15s ease-in-out;
+    padding: 0.85rem 2.5rem;
+    font-size: 1.13rem;
+    border-radius: 0.9rem;
+    box-shadow: 0 2px 12px rgba(67, 197, 158, 0.08);
+    transition: transform 0.13s, box-shadow 0.13s;
+}
+
+.btn-success {
+    background: linear-gradient(90deg, #198754 70%, #198754 100%);
+    border: none;
+    transition: box-shadow 0.18s, transform 0.18s;
+}
+
+.btn-outline-danger {
+    border-width: 2px;
+    transition: box-shadow 0.18s, transform 0.18s;
+}
+
+.btn i {
+    margin-right: 0.5rem;
 }
 
 .btn:hover {
-    transform: translateY(-2px);
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 6px 24px rgba(67, 197, 158, 0.15);
+}
+
+.btn-success:hover,
+.btn-outline-danger:hover {
+    box-shadow: 0 8px 32px rgba(67, 197, 158, 0.18);
+    transform: translateY(-3px) scale(1.045);
 }
 
 .is-invalid {
     border-color: #dc3545;
-    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+    box-shadow: 0 0 0 0.18rem rgba(220, 53, 69, 0.18);
 }
 
 .is-valid {
     border-color: #198754;
-    box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.25);
+    box-shadow: 0 0 0 0.18rem rgba(25, 135, 84, 0.18);
 }
 
 @keyframes input-pop {
-    from {
-        transform: scale(0.98);
-        opacity: 0.9;
+    0% {
+        box-shadow: 0 0 0 0 rgba(67, 197, 158, 0.13);
+        transform: scale(1);
     }
 
-    to {
+    60% {
+        box-shadow: 0 0 0 0.25rem rgba(67, 197, 158, 0.18);
+        transform: scale(1.035);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0.18rem rgba(67, 197, 158, 0.13);
         transform: scale(1);
-        opacity: 1;
     }
 }
 
 .form-label {
-    font-size: 0.95rem;
-    color: #444;
+    font-size: 1.01rem;
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+}
+
+/* Fondo y sombra del formulario */
+.container {
+    background: #fff;
+    border-radius: 2rem;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.10);
+    padding: 3rem 2.5rem;
+    margin-top: 2.5rem;
+    max-width: 950px;
+    animation: fadeInUp 0.7s cubic-bezier(.4, 2, .6, 1);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Separador entre columnas */
+@media (min-width: 992px) {
+    .row.justify-content-center.g-4 {
+        border-radius: 1.5rem;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+        background: #fafbfc;
+        padding: 2rem 1.5rem;
+        position: relative;
+    }
+
+    .col-md-6:first-child {
+        border-right: 1.5px solid #ececec;
+    }
+}
+
+/* Encabezado */
+h2 {
+    font-size: 2.4rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Espaciado entre grupos de campos */
+.form-group {
+    margin-bottom: 1.7rem;
+}
+
+/* Feedback de error */
+.invalid-feedback {
+    color: #dc3545;
+    font-size: 0.97rem;
+    margin-top: 0.2rem;
+}
+
+/* Íconos de error */
+.bi-exclamation-circle-fill {
+    font-size: 1.3rem;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 18px !important;
+}
+
+/* Mensajes de éxito y error */
+.alert-success,
+.alert-danger {
+    border-radius: 0.9rem;
+    font-size: 1.08rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 8px rgba(67, 197, 158, 0.07);
+}
+
+/* Spinner */
+.spinner-border {
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+    .container {
+        padding: 1.2rem 0.5rem;
+        max-width: 100%;
+    }
+
+    .row.justify-content-center.g-4 {
+        padding: 1rem 0.2rem;
+        box-shadow: none;
+        background: none;
+    }
+
+    .col-md-6:first-child {
+        border-right: none;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Nombre */
+.form-group.position-relative .form-label.fw-semibold {
+    font-weight: 600;
+}
+
+.form-group.position-relative .form-control.ps-5 {
+    padding-left: 3rem;
+}
+
+/* Ajusta el padding del input para dejar espacio al icono */
+.form-control.ps-5 {
+    padding-left: 2.5rem !important;
+}
+
+/* Icono a la izquierda, siempre alineado */
+.input-icon {
+    position: absolute;
+    left: 1.1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.25rem;
+    color: #6c757d;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Icono de error a la derecha */
+.input-icon-error {
+    position: absolute;
+    right: 1.1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.25rem;
+    color: #dc3545;
+    pointer-events: none;
+    z-index: 2;
+    animation: shake 0.35s cubic-bezier(.36, .07, .19, .97) both;
+}
+
+@keyframes shake {
+
+    10%,
+    90% {
+        transform: translateY(-50%) translateX(-1px);
+    }
+
+    20%,
+    80% {
+        transform: translateY(-50%) translateX(2px);
+    }
+
+    30%,
+    50%,
+    70% {
+        transform: translateY(-50%) translateX(-4px);
+    }
+
+    40%,
+    60% {
+        transform: translateY(-50%) translateX(4px);
+    }
+
+    100% {
+        transform: translateY(-50%) translateX(0);
+    }
+}
+
+.form-group.position-relative .input-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    color: #6c757d;
+}
+
+/* Icono alineado verticalmente al centro del input */
+.input-icon {
+    position: absolute;
+    left: 1.1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.25rem;
+    color: #6c757d;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.form-group.position-relative .input-icon-error {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    color: #dc3545;
 }

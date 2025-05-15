@@ -47,8 +47,13 @@ public interface DesignacionRepository
                 AND d.cargo.division.numDivision = :numDivision
                 AND d.cargo.division.turno = :turno
                 AND (
-                    d.fechaFin IS NULL OR
-                    :nuevaFechaInicio <= d.fechaFin
+                    (d.fechaFin IS NULL AND CAST(:nuevaFechaFin AS java.time.LocalDateTime) IS NULL)
+                    OR
+                    (
+                        COALESCE(d.fechaFin, :nuevaFechaFin) >= :nuevaFechaInicio
+                        AND
+                        COALESCE(:nuevaFechaFin, d.fechaFin) >= d.fechaInicio
+                    )
                 )
             """)
     Optional<Designacion> findSolapamientoEnDivision(
@@ -56,5 +61,6 @@ public interface DesignacionRepository
             @Param("anio") int anio,
             @Param("numDivision") int numDivision,
             @Param("turno") Turno turno,
-            @Param("nuevaFechaInicio") LocalDateTime nuevaFechaInicio);
+            @Param("nuevaFechaInicio") LocalDateTime nuevaFechaInicio,
+            @Param("nuevaFechaFin") LocalDateTime nuevaFechaFin);
 }

@@ -28,6 +28,9 @@ export class CargoDetailComponent {
   fechaInicioModel!: NgbDateStruct;
   fechaFinModel!: NgbDateStruct;
   diasSemana: string[] = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+  errorMessage: string | null = null;
+  loading = false;
+  successMessage: string | null = null;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -36,6 +39,8 @@ export class CargoDetailComponent {
     private location: Location,
     private calendar: NgbCalendar,
     private modalService: ModalService,
+    
+
   ) { }
 
   ngOnInit() {
@@ -125,10 +130,21 @@ export class CargoDetailComponent {
     } else {
       this.cargo.fechaFin = undefined;
     }
-
-    this.cargoService.save(this.cargo).subscribe(dataPackage => { this.cargo = <Cargo>dataPackage.data; this.goBack(); });
-
-  }
+    this.errorMessage = null;
+    this.successMessage = null;
+    this.loading = true;
+    this.cargoService.save(this.cargo).subscribe({
+      next: dataPackage => {
+        this.cargo = <Cargo>dataPackage.data;
+        this.successMessage = 'Cargo guardado exitosamente!';
+        this.loading = false;
+    },
+    error: err => {
+      this.errorMessage = err.error?.data || err.error || 'Error al guardar el cargo';
+      this.loading = false;
+    }
+  })
+}
   goBack() {
     this.location.back();
   }

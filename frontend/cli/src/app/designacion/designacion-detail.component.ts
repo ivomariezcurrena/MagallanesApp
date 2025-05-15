@@ -27,7 +27,9 @@ export class DesignacionDetailComponent {
   searchFailed: boolean = false;
   fechaInicioModel!: NgbDateStruct;
   fechaFinModel!: NgbDateStruct;
-
+  errorMessage: string | null = null;
+  loading = false;
+  successMessage: string | null = null;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -151,7 +153,20 @@ export class DesignacionDetailComponent {
     } else {
       this.designacion.fechaFin = undefined;
     }
-    this.designacionService.save(this.designacion).subscribe(dataPackage => { this.designacion = <Designacion>dataPackage.data; this.goBack(); })
+    this.errorMessage = null;
+    this.successMessage = null;
+    this.loading = true;
+    this.designacionService.save(this.designacion).subscribe({
+      next: dataPackage => {
+        this.designacion = <Designacion>dataPackage.data;
+        this.successMessage = 'Cargo guardado exitosamente!';
+        this.loading = false;
+      },
+      error: err => {
+        this.errorMessage = err.error?.data || err.error || 'Error al guardar la designacion';
+        this.loading = false;
+      }
+    })
   }
 
   goBack() {

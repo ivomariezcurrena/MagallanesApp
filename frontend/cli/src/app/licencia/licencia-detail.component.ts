@@ -24,13 +24,13 @@ export class LicenciaDetailComponent {
   licencia!: Licencia;
   personas: Persona[] = [];
   articulos: ArticuloLicencia[] = [];
-
+  successMessage: string | null = null;
   fechaInicioModel!: NgbDateStruct;
   fechaFinModel!: NgbDateStruct;
-
   searching: boolean = false;
   searchFailed: boolean = false;
-
+  errorMessage: string | null = null;
+  loading = false;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -144,11 +144,20 @@ export class LicenciaDetailComponent {
         this.fechaFinModel.day
       ).toISOString();
     }
-
-    this.licenciaService.save(this.licencia).subscribe(dataPackage => {
-      this.licencia = <Licencia>dataPackage.data;
-      this.goBack();
-    });
+    this.errorMessage = null;
+    this.successMessage = null;
+    this.loading = true;
+    this.licenciaService.save(this.licencia).subscribe({
+      next: dataPackage => {
+        this.licencia = <Licencia>dataPackage.data;
+        this.successMessage = '¡Persona guardada exitosamente!';
+        this.loading = false;
+      },
+      error: err => {
+        this.errorMessage = err.error?.data || err.error || 'Error al guardar la persona';
+        this.loading = false;
+      }
+    })
   }
 
   goBack() {
