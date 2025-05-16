@@ -15,7 +15,7 @@ public class Response {
 		map.put("message", message);
 		map.put("data", responseObj);
 
-		return new ResponseEntity<>(map, status);
+		return new ResponseEntity<>(map, HttpStatus.OK);
 	}
 
 	public static ResponseEntity<Object> ok(Object responseObj) {

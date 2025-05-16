@@ -59,7 +59,6 @@ When('se presiona el botón guardar', function () {
     try {
         const res = request('POST', 'http://backend:8080/designaciones', { json: body });
         apiResponse = JSON.parse(res.getBody('utf8'));
-        console.log("Respuesta del Backend: ", apiResponse);
 
 
     } catch (error) {

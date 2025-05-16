@@ -11,16 +11,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<?> handleIllegalArgument(IllegalArgumentException ex) {
-        return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
-                .body(Map.of("message", ex.getMessage()));
+    public ResponseEntity<Object> handleIllegalArgument(IllegalArgumentException ex) {
+        return Response.response(HttpStatus.BAD_REQUEST, ex.getMessage(), null);
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<?> handleGenericException(Exception ex) {
-        return ResponseEntity
-                .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(Map.of("message", ex.getMessage()));
+    public ResponseEntity<Object> handleGenericException(Exception ex) {
+        return Response.response(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage(), null);
     }
 }

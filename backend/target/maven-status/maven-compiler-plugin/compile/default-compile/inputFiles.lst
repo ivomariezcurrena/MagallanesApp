@@ -4,7 +4,6 @@
 /app/src/main/java/unpsjb/labprog/backend/model/Turno.java
 /app/src/main/java/unpsjb/labprog/backend/business/CargoRepository.java
 /app/src/main/java/unpsjb/labprog/backend/presenter/DesignacionPresenter.java
-/app/src/main/java/unpsjb/labprog/backend/GlobalExceptionHandler.java
 /app/src/main/java/unpsjb/labprog/backend/business/utils/MensajeFormateador.java
 /app/src/main/java/unpsjb/labprog/backend/business/DesignacionService.java
 /app/src/main/java/unpsjb/labprog/backend/presenter/ArticuloLicenciaPresenter.java

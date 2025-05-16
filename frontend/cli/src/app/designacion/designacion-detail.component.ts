@@ -158,15 +158,22 @@ export class DesignacionDetailComponent {
     this.loading = true;
     this.designacionService.save(this.designacion).subscribe({
       next: dataPackage => {
-        this.designacion = <Designacion>dataPackage.data;
-        this.successMessage = 'Cargo guardado exitosamente!';
         this.loading = false;
+        // Si el status no es 200, mostrar el mensaje de error
+        if (!dataPackage || dataPackage.status !== 200) {
+          this.errorMessage = typeof dataPackage?.data === 'string'
+            ? dataPackage.data
+            : JSON.stringify(dataPackage?.data) || 'Error desconocido al guardar la designación';
+        } else {
+          this.designacion = <Designacion>dataPackage.data;
+          this.successMessage = 'Cargo guardado exitosamente!';
+        }
       },
       error: err => {
-        this.errorMessage = err.error?.data || err.error || 'Error al guardar la designacion';
         this.loading = false;
+        this.errorMessage = err.error?.data || err.error || 'Error al guardar la designacion';
       }
-    })
+    });
   }
 
   goBack() {
