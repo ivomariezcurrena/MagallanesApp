@@ -1,6 +1,5 @@
 package unpsjb.labprog.backend.business;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -24,6 +23,7 @@ public interface DesignacionRepository
     @Query("""
             SELECT d FROM Designacion d
             WHERE d.cargo.nombre = :nombreCargo
+            AND (:designacionId IS NULL OR d.id != :designacionId)
             AND (
                 (d.fechaFin IS NULL AND CAST(:nuevaFechaFin AS java.time.LocalDateTime) IS NULL)
                 OR
@@ -37,12 +37,14 @@ public interface DesignacionRepository
     Optional<Designacion> findDesignacionActivaOSolapada(
             @Param("nombreCargo") String nombreCargo,
             @Param("nuevaFechaInicio") LocalDateTime nuevaFechaInicio,
-            @Param("nuevaFechaFin") LocalDateTime nuevaFechaFin);
+            @Param("nuevaFechaFin") LocalDateTime nuevaFechaFin,
+            @Param("designacionId") Integer designacionId);
 
     // Para cargos con division
     @Query("""
                 SELECT d FROM Designacion d
                 WHERE d.cargo.nombre = :nombreCargo
+                AND (:designacionId IS NULL OR d.id != :designacionId)
                 AND d.cargo.division.anio = :anio
                 AND d.cargo.division.numDivision = :numDivision
                 AND d.cargo.division.turno = :turno
@@ -62,5 +64,6 @@ public interface DesignacionRepository
             @Param("numDivision") int numDivision,
             @Param("turno") Turno turno,
             @Param("nuevaFechaInicio") LocalDateTime nuevaFechaInicio,
-            @Param("nuevaFechaFin") LocalDateTime nuevaFechaFin);
+            @Param("nuevaFechaFin") LocalDateTime nuevaFechaFin,
+            @Param("designacionId") Integer designacionId);
 }
