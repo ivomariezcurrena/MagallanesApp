@@ -46,7 +46,7 @@ public class Cargo {
     @ManyToOne(optional = true)
     private Division division;
 
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     @JoinColumn(name = "cargo_id", nullable = false)
     private Collection<Horario> horarios;
 

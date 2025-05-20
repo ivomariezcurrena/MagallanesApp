@@ -41,7 +41,7 @@
                     <td>
                         {{ cargo.tipoDesignacion === 'CARGO' ? 'Cargo' : 'Espacio curricular' }}
                     </td>
-                    <td>{{ cargo.division?.id || '-' }}</td>
+                    <td>{{ cargo.division?.orientacion || '-' }}</td>
                     <td class="text-center">
                         <a [routerLink]="['/cargos', cargo.id]">
                             <button class="btn btn-sm btn-penguin me-1" title="Editar">

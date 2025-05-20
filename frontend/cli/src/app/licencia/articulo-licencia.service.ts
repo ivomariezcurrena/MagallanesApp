@@ -8,7 +8,7 @@ import { ArticuloLicencia } from './aticuloLicencia';
   providedIn: 'root'
 })
 export class ArticuloLicenciaService {
-  private articuloLicenciaUrl = 'rest/articuloLicencias';
+  private articuloLicenciaUrl = 'rest/articulolicencias';
 
   constructor(private http: HttpClient) { }
 

@@ -1,17 +1,10 @@
 package unpsjb.labprog.backend.business.utils;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
-
-import unpsjb.labprog.backend.business.CargoService;
 import unpsjb.labprog.backend.business.DesignacionRepository;
 import unpsjb.labprog.backend.business.DesignacionService;
-import unpsjb.labprog.backend.business.DivisionService;
-import unpsjb.labprog.backend.model.Cargo;
 import unpsjb.labprog.backend.model.Designacion;
 import unpsjb.labprog.backend.model.TipoDesignacion;
 

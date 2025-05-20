@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import unpsjb.labprog.backend.business.utils.MensajeFormateador;
 import unpsjb.labprog.backend.business.utils.Validador;
-import unpsjb.labprog.backend.model.Designacion;
 import unpsjb.labprog.backend.model.Licencia;
 
 @Service
@@ -51,7 +50,7 @@ public class LicenciaService {
     }
 
     public String getMensajeAgregar(Licencia l) {
-        return mensaje.getMensajeAgregarLicencia(l);
+        return mensaje.getMensajeLicenciaOtorgada(l);
     }
 
     public String getMensajeActualizar(Licencia l) {

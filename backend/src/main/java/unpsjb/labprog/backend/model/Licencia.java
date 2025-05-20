@@ -35,7 +35,7 @@ public class Licencia {
     private Collection<Designacion> designaciones;
 
     @ManyToOne
-    @JoinColumn(name = "persona_id")
+    @JoinColumn(name = "persona_id", referencedColumnName = "dni")
     private Persona persona;
 
     @ManyToOne

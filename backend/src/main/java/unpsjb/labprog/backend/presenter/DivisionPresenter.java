@@ -18,7 +18,6 @@ import unpsjb.labprog.backend.model.Turno;
 
 @RestController
 @RequestMapping("divisiones")
-
 public class DivisionPresenter {
     @Autowired
     DivisionService service;

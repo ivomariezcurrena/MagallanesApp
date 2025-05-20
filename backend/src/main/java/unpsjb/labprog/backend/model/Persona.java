@@ -3,6 +3,8 @@ package unpsjb.labprog.backend.model;
 import java.util.Collection;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
@@ -28,6 +30,6 @@ public class Persona {
 
     @OneToMany(mappedBy = "persona")
     @JsonIgnore
-    private Collection<Designacion> desiganciones;
+    private Collection<Designacion> designaciones;
 
 }

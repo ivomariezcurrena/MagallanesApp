@@ -12,7 +12,8 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<Object> handleIllegalArgument(IllegalArgumentException ex) {
-        return Response.response(HttpStatus.BAD_REQUEST, ex.getMessage(), null);
+        String msg = ex.getMessage() != null ? ex.getMessage() : "Error de validación";
+        return ResponseEntity.badRequest().body(Map.of("data", msg));
     }
 
     @ExceptionHandler(Exception.class)

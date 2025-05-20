@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 import unpsjb.labprog.backend.business.utils.MensajeFormateador;
 import unpsjb.labprog.backend.business.utils.Validador;
 import unpsjb.labprog.backend.model.Designacion;
-import unpsjb.labprog.backend.model.Division;
 
 @Service
 public class DesignacionService {
@@ -45,6 +44,10 @@ public class DesignacionService {
 
     public Designacion findByCargo(String cargo) {
         return repository.findByNombreDeCargo(cargo);
+    }
+
+    public List<Designacion> findByPersonaDni(int dni) {
+        return repository.findByPersonaDni(dni);
     }
 
     @Transactional

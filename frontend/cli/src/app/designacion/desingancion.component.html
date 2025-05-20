@@ -20,7 +20,8 @@
             <thead>
                 <tr>
                     <th>N°</th>
-                    <th>Persona</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
                     <th>Cargo</th>
                     <th>Inicio</th>
                     <th>Final</th>
@@ -31,10 +32,11 @@
             <tbody>
                 <tr *ngFor="let designacion of fliteredDesignaciones; index as i">
                     <td>{{ i + 1 }}</td>
-                    <td>{{ designacion.persona?.nombre }}</td>
+                    <td>{{ designacion.persona?.nombre}}</td>
+                    <td>{{ designacion.persona?.apellido}}</td>
                     <td>{{ designacion.cargo?.nombre }}</td>
                     <td>{{ designacion.fechaInicio | date: 'dd/MM/yyyy' }}</td>
-                    <td>{{ designacion.fechaFin | date: 'dd/MM/yyyy' }}</td>
+                    <td>{{designacion.fechaFin ? (designacion.fechaFin | date: 'dd/MM/yyyy') : 'En curso'}}</td>
                     <td>{{ designacion.situacionRevista }}</td>
                     <td class="text-center">
                         <a [routerLink]="['/designaciones', designacion.id]">

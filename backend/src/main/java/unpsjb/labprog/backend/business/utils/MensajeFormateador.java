@@ -201,4 +201,69 @@ public class MensajeFormateador {
     public String getErrorDivisionFaltanteEnLicencia() {
         return "El espacio curricular debe tener una división asignada";
     }
+
+    public String getMensajeLicenciaOtorgada(Licencia l) {
+        return String.format("Se otorga Licencia artículo %s a %s %s",
+                l.getArticulo().getArticulo(),
+                l.getPersona().getNombre(),
+                l.getPersona().getApellido());
+    }
+
+    public String getErrorLicenciaSuperposicion(Licencia l) {
+        return String.format(
+                "NO se otorga Licencia artículo %s a %s %s debido a que ya posee una licencia en el mismo período",
+                l.getArticulo().getArticulo(),
+                l.getPersona().getNombre(),
+                l.getPersona().getApellido());
+    }
+
+    public String getErrorLicenciaTopeDias(Licencia l, int tope) {
+        return String.format(
+                "NO se otorga Licencia artículo %s a %s %s debido a que supera el tope de %d días de licencia",
+                l.getArticulo().getArticulo(),
+                l.getPersona().getNombre(),
+                l.getPersona().getApellido(),
+                tope);
+    }
+
+    public String getErrorLicenciaTopeDias36AAnual(Licencia l, int tope) {
+        return String.format(
+                "NO se otorga Licencia artículo 36A a %s %s debido a que supera el tope de %d días de licencia por año",
+                l.getPersona().getNombre(),
+                l.getPersona().getApellido(),
+                tope);
+    }
+
+    public String getErrorLicenciaSinCargo(Licencia l) {
+        return String.format(
+                "NO se otorga Licencia artículo %s a %s %s debido a que el agente no posee ningún cargo en la institución",
+                l.getArticulo().getArticulo(),
+                l.getPersona().getNombre(),
+                l.getPersona().getApellido());
+    }
+
+    public String getErrorLicenciaSinDesignacionEseDia(Licencia l) {
+        return String.format(
+                "NO se otorga Licencia artículo %s a %s %s debido a que el agente no tiene designación ese día en la institución",
+                l.getArticulo().getArticulo(),
+                l.getPersona().getNombre(),
+                l.getPersona().getApellido());
+    }
+
+    // MENSAJES ARTICULO LICENCIA //
+    public String getMensajeAgregarArticuloLicencia(unpsjb.labprog.backend.model.ArticuloLicencia a) {
+        return String.format("Artículo de licencia '%s' ingresado correctamente", a.getArticulo());
+    }
+
+    public String getMensajeActualizarArticuloLicencia(unpsjb.labprog.backend.model.ArticuloLicencia a) {
+        return String.format("Artículo de licencia '%s' actualizado correctamente", a.getArticulo());
+    }
+
+    public String getMensajeEliminacionDeArticuloLicencia(int id) {
+        return "Artículo de licencia " + id + " eliminado correctamente";
+    }
+
+    public String getMensajeArticuloLicenciaNoEncontrado(int id) {
+        return "Artículo de licencia id " + id + " no encontrado";
+    }
 }

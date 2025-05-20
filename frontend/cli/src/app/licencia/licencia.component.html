@@ -36,12 +36,12 @@
                     <td>{{ i + 1 }}</td>
                     <td>{{ licencia.persona?.nombre }}</td>
                     <td>{{ licencia.persona?.apellido }}</td>
-                    <td>{{ licencia.pedidoDesde }}</td>
-                    <td>{{ licencia.pedidoHasta }}</td>
-                    <td>{{ licencia.certificadoMedico }}</td>
-                    <td>{{ licencia.articuloLicencia?.descripcion }}</td>
+                    <td>{{ licencia.pedidoDesde | date: 'dd/MM/yyyy' }}</td>
+                    <td>{{ licencia.pedidoHasta | date: 'dd/MM/yyyy' }}</td>
+                    <td>{{ licencia.certificadoMedico? 'Presentado':'No Presentado' }}</td>
+                    <td>{{ licencia.articulo?.descripcion }}</td>
                     <td class="text-center">
-                        <a [routerLink]="['/licencias/id', licencia.id]">
+                        <a [routerLink]="['/licencias', licencia.id]">
                             <button class="btn btn-sm btn-penguin me-1" title="Editar">
                                 <i class="fa fa-pencil"></i>
                             </button>

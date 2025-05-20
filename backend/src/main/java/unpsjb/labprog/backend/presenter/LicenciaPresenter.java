@@ -48,7 +48,7 @@ public class LicenciaPresenter {
         } catch (IllegalArgumentException e) {
             return Response.internalServerError(null, e.getMessage());
         } catch (Exception e) {
-            return Response.dbError("Error inesperado al guardar la designación: " + e.getMessage());
+            return Response.dbError("Error inesperado al guardar la licencia: " + e.getMessage());
         }
     }
 
@@ -56,11 +56,10 @@ public class LicenciaPresenter {
     public ResponseEntity<Object> update(@RequestBody Licencia aLicencia) {
         try {
             Licencia updated = service.save(aLicencia);
-            return Response.ok(service.getMensajeActualizar(updated));
-        } catch (IllegalArgumentException e) {
-            return Response.notImplemented(null, e.getMessage());
+            Licencia completa = service.findById(updated.getId());
+            return Response.ok(completa);
         } catch (Exception e) {
-            return Response.dbError("Error al actualizar la designación");
+            return Response.dbError("Error al actualizar la licencia");
         }
     }
 

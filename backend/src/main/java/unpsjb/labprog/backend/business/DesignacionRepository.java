@@ -1,6 +1,7 @@
 package unpsjb.labprog.backend.business;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Query;
@@ -66,4 +67,14 @@ public interface DesignacionRepository
             @Param("nuevaFechaInicio") LocalDateTime nuevaFechaInicio,
             @Param("nuevaFechaFin") LocalDateTime nuevaFechaFin,
             @Param("designacionId") Integer designacionId);
+
+    @Query("SELECT d FROM Designacion d WHERE d.persona.dni = :dni")
+    List<Designacion> findByPersonaDni(@Param("dni") int dni);
+
+    @Query("SELECT d FROM Designacion d WHERE d.persona.dni = :dni AND " +
+            "(d.fechaFin IS NULL OR d.fechaFin >= :desde) AND d.fechaInicio <= :hasta")
+    List<Designacion> findDesignacionesActivasEnPeriodo(
+            @Param("dni") int dni,
+            @Param("desde") LocalDateTime desde,
+            @Param("hasta") LocalDateTime hasta);
 }

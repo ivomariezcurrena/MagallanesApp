@@ -10,5 +10,5 @@ export interface Licencia {
     certificadoMedico: boolean;
     persona?: Persona;
     designaciones?: Designacion[];
-    articuloLicencia?: ArticuloLicencia;
+    articulo?: ArticuloLicencia;
 }
