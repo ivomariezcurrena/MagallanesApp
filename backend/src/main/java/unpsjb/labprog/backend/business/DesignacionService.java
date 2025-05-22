@@ -2,6 +2,7 @@ package unpsjb.labprog.backend.business;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import unpsjb.labprog.backend.business.utils.MensajeFormateador;
 import unpsjb.labprog.backend.business.utils.Validador;
 import unpsjb.labprog.backend.model.Designacion;
+import unpsjb.labprog.backend.model.Licencia;
 
 @Service
 public class DesignacionService {
@@ -27,6 +29,9 @@ public class DesignacionService {
 
     @Autowired
     MensajeFormateador mensaje;
+
+    @Autowired
+    LicenciaRepository licenciaRepository;
 
     public List<Designacion> findAll() {
         List<Designacion> result = new ArrayList<>();
@@ -53,6 +58,25 @@ public class DesignacionService {
     @Transactional
     public Designacion save(Designacion e) {
         validador.validar(e);
+
+        // Buscar designación solapada
+        Optional<Designacion> solapada = repository.findDesignacionActivaOSolapada(
+                e.getCargo().getNombre(),
+                e.getFechaInicio(),
+                e.getFechaFin(),
+                e.getId() == 0 ? null : e.getId());
+
+        if (solapada.isPresent()) {
+            // Buscar licencias en ese periodo para la designación solapada
+            List<Licencia> licencias = licenciaRepository.findLicenciasEnPeriodo(
+                    solapada.get().getId(),
+                    e.getFechaInicio(),
+                    e.getFechaFin());
+            if (licencias.isEmpty()) {
+                throw new IllegalArgumentException("Ya existe una designación activa o solapada en ese periodo.");
+            }
+        }
+
         return repository.save(e);
     }
 
