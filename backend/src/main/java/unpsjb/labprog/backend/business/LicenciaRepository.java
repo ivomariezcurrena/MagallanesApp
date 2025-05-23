@@ -24,11 +24,11 @@ public interface LicenciaRepository
         List<Licencia> findAllByPersonaAndArticuloAndAnio(int dni, int articuloId, int anio);
 
         @Query("""
-                            SELECT l FROM Licencia l
-                            JOIN l.designaciones d
-                            WHERE d.id = :designacionId
-                            AND l.pedidoDesde <= :hasta
-                            AND l.pedidoHasta >= :desde
+                        SELECT l FROM Licencia l
+                        JOIN l.designaciones d
+                        WHERE d.id = :designacionId
+                        AND l.pedidoDesde <= :desde
+                        AND l.pedidoHasta >= :hasta
                         """)
         List<Licencia> findLicenciasEnPeriodo(
                         @Param("designacionId") int designacionId,

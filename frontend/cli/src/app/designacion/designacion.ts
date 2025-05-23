@@ -4,8 +4,8 @@ import { Persona } from "../personas/persona";
 export interface Designacion {
     id: number;
     situacionRevista: string;
-    fechaInicio: Date;
-    fechaFin?: Date;
+    fechaInicio: string; // Cambia a string
+    fechaFin?: string;
     persona?: Persona;
     cargo?: Cargo;
 }

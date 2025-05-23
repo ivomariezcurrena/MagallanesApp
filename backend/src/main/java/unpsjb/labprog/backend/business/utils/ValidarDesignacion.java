@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 import unpsjb.labprog.backend.business.DesignacionRepository;
 import unpsjb.labprog.backend.business.DesignacionService;
+import unpsjb.labprog.backend.business.LicenciaRepository;
 import unpsjb.labprog.backend.model.Designacion;
 import unpsjb.labprog.backend.model.TipoDesignacion;
 
@@ -18,6 +19,10 @@ public class ValidarDesignacion {
     @Autowired
     @Lazy
     DesignacionRepository repository;
+
+    @Autowired
+    @Lazy
+    LicenciaRepository licenciaRepository;
 
     @Autowired
     private MensajeFormateador mensaje;
@@ -48,23 +53,26 @@ public class ValidarDesignacion {
     }
 
     private void validarDesignacionSinDivision(Designacion d) {
-        var existente = repository.findDesignacionActivaOSolapada(
+        var existentes = repository.findDesignacionActivaOSolapada(
                 d.getCargo().getNombre(), d.getFechaInicio(), d.getFechaFin(), d.getId());
 
-        if (existente.isPresent()) {
-            var e = existente.get();
-            throw new IllegalArgumentException(mensaje.getErrorDesignacionYaExisteCargo(
-                    d.getPersona().getNombre(),
-                    d.getPersona().getApellido(),
-                    d.getCargo().getNombre(),
-                    e.getPersona().getNombre(),
-                    e.getPersona().getApellido()));
+        for (var e : existentes) {
+            var licencias = licenciaRepository.findLicenciasEnPeriodo(
+                    e.getId(), d.getFechaInicio(), d.getFechaFin());
+            if (licencias == null || licencias.isEmpty()) {
+                throw new IllegalArgumentException(mensaje.getErrorDesignacionYaExisteCargo(
+                        d.getPersona().getNombre(),
+                        d.getPersona().getApellido(),
+                        d.getCargo().getNombre(),
+                        e.getPersona().getNombre(),
+                        e.getPersona().getApellido()));
+            }
         }
     }
 
     private void validarDesignacionConDivision(Designacion d) {
         var div = d.getCargo().getDivision();
-        var existente = repository.findSolapamientoEnDivision(
+        var existentes = repository.findSolapamientoEnDivision(
                 d.getCargo().getNombre(),
                 div.getAnio(),
                 div.getNumDivision(),
@@ -73,17 +81,20 @@ public class ValidarDesignacion {
                 d.getFechaFin(),
                 d.getId());
 
-        if (existente.isPresent()) {
-            var e = existente.get();
-            throw new IllegalArgumentException(mensaje.getErrorDesignacionYaExisteEspacioCurricular(
-                    d.getPersona().getNombre(),
-                    d.getPersona().getApellido(),
-                    d.getCargo().getNombre(),
-                    div.getAnio(),
-                    div.getNumDivision(),
-                    div.getTurno(),
-                    e.getPersona().getNombre(),
-                    e.getPersona().getApellido()));
+        for (var e : existentes) {
+            var licencias = licenciaRepository.findLicenciasEnPeriodo(
+                    e.getId(), d.getFechaInicio(), d.getFechaFin());
+            if (licencias == null || licencias.isEmpty()) {
+                throw new IllegalArgumentException(mensaje.getErrorDesignacionYaExisteEspacioCurricular(
+                        d.getPersona().getNombre(),
+                        d.getPersona().getApellido(),
+                        d.getCargo().getNombre(),
+                        div.getAnio(),
+                        div.getNumDivision(),
+                        div.getTurno(),
+                        e.getPersona().getNombre(),
+                        e.getPersona().getApellido()));
+            }
         }
     }
 }

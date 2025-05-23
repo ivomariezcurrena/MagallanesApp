@@ -53,7 +53,7 @@ When('se presiona el botón guardar', function () {
         cargo: designacion.cargo,
         fechaInicio: designacion.fechaDesde,
         fechaFin: designacion.fechaHasta,
-        situacionRevista: 'Designación automática de test'
+        situacionRevista: 'Titular'
     };
 
     try {

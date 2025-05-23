@@ -171,6 +171,12 @@ public class MensajeFormateador {
                 apellidoOcupante);
     }
 
+    public String getMensajeDesignacionEnReemplazo(String nombre, String apellido, String cargo,
+            String nombreReemplazado, String apellidoReemplazado) {
+        return String.format("%s %s ha sido designado/a al cargo %s exitosamente, en reemplazo de %s %s",
+                nombre, apellido, cargo, nombreReemplazado, apellidoReemplazado);
+    }
+
     // MENSAJE LICENCIA
 
     public String getMensajeAgregarLicencia(Licencia l) {

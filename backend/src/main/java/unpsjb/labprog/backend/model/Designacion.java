@@ -19,7 +19,10 @@ import lombok.Setter;
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {
         "persona_id",
-        "cargo_id" }))
+        "cargo_id",
+        "fechaInicio",
+        "fechaFin"
+}))
 @Getter
 @Setter
 @NoArgsConstructor

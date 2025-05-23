@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ import unpsjb.labprog.backend.business.utils.MensajeFormateador;
 import unpsjb.labprog.backend.business.utils.Validador;
 import unpsjb.labprog.backend.model.Designacion;
 import unpsjb.labprog.backend.model.Licencia;
+import unpsjb.labprog.backend.model.Persona;
 
 @Service
 public class DesignacionService {
@@ -31,7 +33,10 @@ public class DesignacionService {
     MensajeFormateador mensaje;
 
     @Autowired
+    @Lazy
     LicenciaRepository licenciaRepository;
+    @Autowired
+    PersonaService personaService;
 
     public List<Designacion> findAll() {
         List<Designacion> result = new ArrayList<>();
@@ -56,28 +61,11 @@ public class DesignacionService {
     }
 
     @Transactional
-    public Designacion save(Designacion e) {
-        validador.validar(e);
-
-        // Buscar designación solapada
-        Optional<Designacion> solapada = repository.findDesignacionActivaOSolapada(
-                e.getCargo().getNombre(),
-                e.getFechaInicio(),
-                e.getFechaFin(),
-                e.getId() == 0 ? null : e.getId());
-
-        if (solapada.isPresent()) {
-            // Buscar licencias en ese periodo para la designación solapada
-            List<Licencia> licencias = licenciaRepository.findLicenciasEnPeriodo(
-                    solapada.get().getId(),
-                    e.getFechaInicio(),
-                    e.getFechaFin());
-            if (licencias.isEmpty()) {
-                throw new IllegalArgumentException("Ya existe una designación activa o solapada en ese periodo.");
-            }
-        }
-
-        return repository.save(e);
+    public Designacion save(Designacion d) {
+        // Validar y guardar
+        validador.validar(d);
+        Designacion guardada = repository.save(d);
+        return guardada;
     }
 
     @Transactional

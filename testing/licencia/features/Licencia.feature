@@ -36,16 +36,14 @@
             | 70700700 | Jorge  | Dismal   |
             Y que existen las siguientes instancias de designación asignada
             | TipoDesignacion | NombreTipoDesignacion | CargaHoraria |
-            | cargo           | Preceptor/a           | 36           |
-            Y que la instancia de designación está asignada a la persona con licencia "5A" comprendida en el período desde "2020-05-12" hasta "2020-06-30"
-            | DNI      | Nombre | Apellido | Desde      | Hasta      |
-            | 20200200 | Susana | Álvarez  | 2020-03-01 | 2020-12-31 |
-            Cuando se solicita el servicio de designación de la persona al cargo en el período comprendido desde "2020-05-17" hasta "2020-06-29"
+            | CARGO           | Preceptor/a           | 36           |
+            Y que la instancia de designación está asignada a la persona con licencia "5A" comprendida en el período desde "2023-05-12" hasta "2023-05-30"
+            Cuando se solicita el servicio de designación de la persona al cargo en el período comprendido desde "2023-05-12" hasta "2023-05-30"
             Entonces se recupera el mensaje
             """
             {
                 "StatusCode": 200,
-                "StatusText": "Jorge Dismal ha sido designado/a al cargo prceptor/a exitosamente, en reemplado de Susana Álvarez"
+                "StatusText": "Jorge Dismal ha sido designado/a como Preceptor/a exitosamente"
             }
             """
 
@@ -56,17 +54,17 @@
             | 80800800 | Analía | Rojas    |
             Y que existen las siguientes instancias de designación asignada
             | TipoDesignacion | NombreTipoDesignacion | CargaHoraria |
-            | cargo           | Auxiliar  ADM         | 30           |
+            | CARGO           | Auxiliar ADM          | 30           |
             Y que la instancia de designación está asignada a la persona
             | DNI      | Nombre  | Apellido  | Desde      | Hasta      |
-            | 20000000 | Rosalía | Fernandez | 2020-03-01 | 2020-12-31 |
-            Y que la instancia de designación está asignada a la persona con licencia "5A" comprendida en el período desde "2020-07-05" hasta "2020-09-15"
-            Cuando se solicita el servicio de designación de la persona al cargo en el período comprendido desde "2020-06-05" hasta "2020-09-15"
+            | 20000000 | Rosalía | Fernandez | 2023-01-01 | 2023-12-31 |
+            Y que la instancia de designación está asignada a la persona con licencia "5A" comprendida en el período desde "2023-07-05" hasta "2023-07-15"
+            Cuando se solicita el servicio de designación de la persona al cargo en el período comprendido desde "2023-06-05" hasta "2023-09-15"
             Entonces se recupera el mensaje
             """
             {
                 "StatusCode": 500,
-                "StatusText": "Analía Rojas NO ha sido designado/a al cargo auxiliar ya cuenta con Rosalía Fernandez asignada al mismo en el período"
+                "StatusText": "Analía Rojas NO ha sido designado/a como Auxiliar ADM. pues el cargo solicitado lo ocupa Rosalía Fernandez para el período"
             }
             """
 

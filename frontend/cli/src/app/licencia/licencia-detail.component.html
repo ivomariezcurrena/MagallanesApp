@@ -49,7 +49,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="form-label fw-semibold">Domicilio</label>
-                        <input *ngIf="licencia" type="text" class="form-control" [(ngModel)]="licencia.domicilio" name="domicilio" required>
+                        <input *ngIf="licencia && licencia.persona" type="text" class="form-control" [(ngModel)]="licencia.persona.domicilio" name="domicilio" required>
                     </div>
                 </div>
                 <div class="col-md-6">

@@ -138,18 +138,10 @@ export class DesignacionDetailComponent {
 
 
   save() {
-    this.designacion.fechaInicio = new Date(
-      this.fechaInicioModel.year,
-      this.fechaInicioModel.month - 1,
-      this.fechaInicioModel.day
-    );
-
+    // Enviar la fecha como string yyyy-MM-ddT00:00:00 para que Java lo acepte como LocalDateTime
+    this.designacion.fechaInicio = `${this.fechaInicioModel.year}-${String(this.fechaInicioModel.month).padStart(2, '0')}-${String(this.fechaInicioModel.day).padStart(2, '0')}T00:00:00`;
     if (this.fechaFinModel) {
-      this.designacion.fechaFin = new Date(
-        this.fechaFinModel.year,
-        this.fechaFinModel.month - 1,
-        this.fechaFinModel.day
-      );
+      this.designacion.fechaFin = `${this.fechaFinModel.year}-${String(this.fechaFinModel.month).padStart(2, '0')}-${String(this.fechaFinModel.day).padStart(2, '0')}T00:00:00`;
     } else {
       this.designacion.fechaFin = undefined;
     }
@@ -181,7 +173,7 @@ export class DesignacionDetailComponent {
   }
 
   get isNew(): boolean {
-    return this.designacion.id == undefined;
+    return !this.designacion || this.designacion.id == undefined;
   }
 
 

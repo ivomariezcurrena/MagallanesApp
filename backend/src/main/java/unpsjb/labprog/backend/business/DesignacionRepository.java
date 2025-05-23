@@ -35,7 +35,7 @@ public interface DesignacionRepository
                 )
             )
             """)
-    Optional<Designacion> findDesignacionActivaOSolapada(
+    List<Designacion> findDesignacionActivaOSolapada(
             @Param("nombreCargo") String nombreCargo,
             @Param("nuevaFechaInicio") LocalDateTime nuevaFechaInicio,
             @Param("nuevaFechaFin") LocalDateTime nuevaFechaFin,
@@ -59,7 +59,7 @@ public interface DesignacionRepository
                     )
                 )
             """)
-    Optional<Designacion> findSolapamientoEnDivision(
+    List<Designacion> findSolapamientoEnDivision(
             @Param("nombreCargo") String nombreCargo,
             @Param("anio") int anio,
             @Param("numDivision") int numDivision,

@@ -19,6 +19,7 @@ export class DesignacionService {
     return this.http.get<DataPackage>(`${this.designacionesUrl}/${id}`);
   }
   save(designacion: Designacion): Observable<DataPackage> {
+    console.log('Enviando designacion:', designacion);
     return designacion.id ? this.http.put<DataPackage>(this.designacionesUrl, designacion) : this.http.post<DataPackage>(this.designacionesUrl, designacion);
   }
 
