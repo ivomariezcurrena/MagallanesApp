@@ -152,19 +152,10 @@ export class LicenciaDetailComponent {
   }
 
   save() {
-    console.log('Intentando guardar licencia:', this.licencia);
-    this.licencia.pedidoDesde = new Date(
-      this.fechaInicioModel.year,
-      this.fechaInicioModel.month - 1,
-      this.fechaInicioModel.day
-    ).toISOString();
-
+    // Enviar la fecha como string yyyy-MM-ddT00:00:00 para que Java lo acepte como LocalDateTime
+    this.licencia.pedidoDesde = `${this.fechaInicioModel.year}-${String(this.fechaInicioModel.month).padStart(2, '0')}-${String(this.fechaInicioModel.day).padStart(2, '0')}T00:00:00`;
     if (this.fechaFinModel) {
-      this.licencia.pedidoHasta = new Date(
-        this.fechaFinModel.year,
-        this.fechaFinModel.month - 1,
-        this.fechaFinModel.day
-      ).toISOString();
+      this.licencia.pedidoHasta = `${this.fechaFinModel.year}-${String(this.fechaFinModel.month).padStart(2, '0')}-${String(this.fechaFinModel.day).padStart(2, '0')}T00:00:00`;
     }
     this.errorMessage = null;
     this.successMessage = null;
