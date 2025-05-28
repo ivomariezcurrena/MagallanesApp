@@ -9,6 +9,4 @@ TRUNCATE TABLE cargo RESTART IDENTITY CASCADE;
 
 TRUNCATE TABLE division RESTART IDENTITY CASCADE;
 
-TRUNCATE TABLE articulo_licencia RESTART IDENTITY CASCADE;
-
 -- Agrega aquí otras tablas si tienes más en tu modelo
