@@ -19,7 +19,7 @@ public class ReglaValidacionFactory {
         reglas.put("5A", new Validacion1(licenciaRepository, mensajeFormateador, 30));
         reglas.put("23A", new Validacion1(licenciaRepository, mensajeFormateador, 30));
         reglas.put("36A", new Validacion2(licenciaRepository, mensajeFormateador, 2, 6));
-        // Agrega más reglas según sea necesario
+
     }
 
     public Validable getRegla(String articulo) {

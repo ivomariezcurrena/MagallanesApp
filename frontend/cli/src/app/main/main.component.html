@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light bg-light shadow-sm header">
+<nav class="navbar navbar-expand-md navbar-light shadow-sm header">
     <div class="container-fluid position-relative">
 
         <!-- 1) Logo+texto ABSOLUTELY centrados -->
@@ -19,6 +19,13 @@
 
     </div>
 </nav>
+
 <div class="body" [ngClass]="sizeClass()">
     <router-outlet />
 </div>
+
+<footer>
+    <div class="container-fluid text-center">
+        <p class="text-muted mb-0">Magallanes App &copy; 2025</p>
+    </div>
+</footer>

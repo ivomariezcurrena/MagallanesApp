@@ -6,7 +6,7 @@ import { NgbTypeaheadModule, NgbModule, NgbDatepickerModule, NgbDateStruct, NgbC
 import { Observable, of } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, map, switchMap, tap } from 'rxjs/operators';
 import { trigger, transition, style, animate } from '@angular/animations';
-import { Licencia } from './licencia';
+import { Licencia, Log } from './licencia';
 import { Persona } from '../personas/persona';
 import { ArticuloLicencia } from './aticuloLicencia';
 import { LicenciaService } from './licencia.service';
@@ -35,6 +35,7 @@ export class LicenciaDetailComponent {
   licencia!: Licencia;
   personas: Persona[] = [];
   articulos: ArticuloLicencia[] = [];
+  logs: Log[] = [];
   successMessage: string | null = null;
   fechaInicioModel!: NgbDateStruct;
   fechaFinModel!: NgbDateStruct;
@@ -163,18 +164,29 @@ export class LicenciaDetailComponent {
     this.licenciaService.save(this.licencia).subscribe({
       next: dataPackage => {
         this.loading = false;
+        const licenciaGuardada = dataPackage.data as Licencia;
+        const ultimoLogMensaje = dataPackage.message; // El backend envía el mensaje del último log
+
         // Si el status no es 200, mostrar el mensaje de error
         if (!dataPackage || dataPackage.status !== 200) {
-          this.errorMessage = typeof dataPackage?.data === 'string'
-            ? dataPackage.data
-            : JSON.stringify(dataPackage?.data) || 'Error desconocido al guardar la licencia';
+          this.errorMessage = ultimoLogMensaje || 'Error desconocido al guardar la licencia';
+          this.licencia = licenciaGuardada; // Refresca los logs y estado
         } else {
-          this.licencia = <Licencia>dataPackage.data;
-          if (this.isNew) {
-            this.successMessage = '¡Licencia creada exitosamente!';
+          this.licencia = licenciaGuardada;
+          // Busca el último log (si existe)
+          const logs = this.licencia.logs || [];
+          const ultimoLog = logs.length > 0 ? logs[logs.length - 1] : null;
+
+          if (ultimoLog && ultimoLog.estatus !== 200) {
+            // Si el último log indica error, muestra su mensaje
+            this.errorMessage = ultimoLog.mensaje || ultimoLogMensaje || 'La licencia no es válida. Revisá los logs.';
           } else {
-            this.successMessage = '¡Licencia actualizada exitosamente!';
-            this.get(); // Recarga la licencia desde el backend
+            if (this.isNew) {
+              this.successMessage = '¡Licencia creada exitosamente!';
+            } else {
+              this.successMessage = '¡Licencia actualizada exitosamente!';
+              this.get(); // Recarga la licencia desde el backend
+            }
           }
         }
       },

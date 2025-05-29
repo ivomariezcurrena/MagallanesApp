@@ -7,10 +7,11 @@ import { Licencia } from './licencia';
 import { ResultsPage } from '../results-page';
 import { LicenciaService } from './licencia.service';
 import { ModalService } from '../modal/modal.service';
+import { TabsLicenciasComponent } from "./tabs-licencias.component";
 
 @Component({
   selector: 'app-licencia',
-  imports: [CommonModule, FormsModule, RouterModule, PaginationComponent],
+  imports: [CommonModule, FormsModule, RouterModule, PaginationComponent, TabsLicenciasComponent],
   templateUrl: `licencia.component.html`,
   styleUrl: `licencia.component.css`
 })

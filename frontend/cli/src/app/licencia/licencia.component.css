@@ -361,3 +361,58 @@
         max-width: 100%;
     }
 }
+
+/* --- Pestañas de navegación tipo pingüino --- */
+.penguin-tabs {
+    border-bottom: 2.5px solid #ececec;
+    margin-bottom: 1.5rem;
+    background: transparent;
+    font-size: 1.18rem;
+    font-weight: 600;
+}
+
+.penguin-tabs .nav-link {
+    border: none;
+    color: #36393b;
+    background: none;
+    padding: 0.7rem 2.1rem 0.7rem 0.7rem;
+    transition: color 0.18s, border-color 0.18s;
+    position: relative;
+}
+
+.penguin-tabs .nav-link.active,
+.penguin-tabs .nav-link.router-link-active {
+    color: #198754;
+    background: none;
+    border: none;
+}
+
+.penguin-tabs .nav-link.active::after,
+.penguin-tabs .nav-link.router-link-active::after {
+    content: "";
+    display: block;
+    height: 3.5px;
+    background: #198754;
+    border-radius: 2px 2px 0 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2.5px;
+}
+
+.penguin-tabs .nav-link:not(.active):hover {
+    color: #157347;
+}
+:host ::ng-deep router-outlet~* {
+    animation: fadeIn 0.35s cubic-bezier(.4, 2, .6, 1);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

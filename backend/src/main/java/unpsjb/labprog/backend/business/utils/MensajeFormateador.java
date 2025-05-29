@@ -256,6 +256,14 @@ public class MensajeFormateador {
                 l.getPersona().getApellido());
     }
 
+    public String getErrorLicenciaSinCertificado(Licencia l) {
+        return String.format(
+                "NO se otorga Licencia artículo %s a %s %s debido a que no posee certificado médico",
+                l.getArticulo().getArticulo(),
+                l.getPersona().getNombre(),
+                l.getPersona().getApellido());
+    }
+
     // MENSAJES ARTICULO LICENCIA //
     public String getMensajeAgregarArticuloLicencia(unpsjb.labprog.backend.model.ArticuloLicencia a) {
         return String.format("Artículo de licencia '%s' ingresado correctamente", a.getArticulo());

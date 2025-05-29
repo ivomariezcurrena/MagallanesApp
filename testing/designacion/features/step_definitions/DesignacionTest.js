@@ -62,7 +62,7 @@ When('se presiona el botón guardar', function () {
     } catch (error) {
         apiResponse = {
             status: error.statusCode || 500,
-            data: error.message
+            message: error.message
         };
     }
 });
@@ -70,6 +70,6 @@ When('se presiona el botón guardar', function () {
 Then('se espera el siguiente {int} y {string}', function (statusEsperado, mensajeEsperado) {
     assert.strictEqual(apiResponse.status, statusEsperado,
         `Esperado ${statusEsperado} pero se recibió ${apiResponse.status}`);
-    assert.strictEqual(apiResponse.data, mensajeEsperado,
-        `Esperado mensaje "${mensajeEsperado}" pero se recibió "${apiResponse.data}"`);
+    assert.strictEqual(apiResponse.message, mensajeEsperado,
+        `Esperado mensaje "${mensajeEsperado}" pero se recibió "${apiResponse.message}"`);
 });

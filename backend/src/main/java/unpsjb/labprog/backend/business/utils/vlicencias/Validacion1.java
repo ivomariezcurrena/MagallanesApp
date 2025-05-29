@@ -4,7 +4,10 @@ import java.time.temporal.ChronoUnit;
 
 import unpsjb.labprog.backend.business.LicenciaRepository;
 import unpsjb.labprog.backend.business.utils.MensajeFormateador;
+import unpsjb.labprog.backend.model.Estado;
 import unpsjb.labprog.backend.model.Licencia;
+import unpsjb.labprog.backend.model.Log;
+
 import java.util.List;
 
 public class Validacion1 implements Validable {
@@ -41,9 +44,23 @@ public class Validacion1 implements Validable {
 
         int total = diasUsados + diasActual;
 
-        if (total > topeDias) {
-            throw new IllegalArgumentException(
-                    mensajeFormateador.getErrorLicenciaTopeDias(licencia, topeDias));
+        if (!licencia.isCertificadoMedico()) {
+            String mensaje = mensajeFormateador.getErrorLicenciaSinCertificado(licencia);
+            licencia.setEstado(Estado.Invalido);
+            AgregarLog.agregarLog(licencia, mensaje, 500);
+            return;
         }
+        if (total > topeDias) {
+            String mensaje = mensajeFormateador.getErrorLicenciaTopeDias(licencia, topeDias);
+            licencia.setEstado(Estado.Invalido);
+            AgregarLog.agregarLog(licencia, mensaje, 500);
+            return;
+        }
+        if (licencia.getEstado() != Estado.Invalido) {
+            String mensaje = mensajeFormateador.getMensajeLicenciaOtorgada(licencia);
+            licencia.setEstado(Estado.Valido);
+            AgregarLog.agregarLog(licencia, mensaje, 200);
+        }
+
     }
 }

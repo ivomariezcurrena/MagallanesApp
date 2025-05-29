@@ -1,4 +1,5 @@
 <div class="container mt-4">
+
     <div class="text-center mb-5">
         <h1><strong>Lista de Licencias</strong></h1>
     </div>
@@ -27,6 +28,7 @@
                     <th>Desde</th>
                     <th>Hasta</th>
                     <th>Certificado</th>
+                    <th>Estado</th>
                     <th>Razon</th>
                     <th class="text-center" style="width:120px;">Acciones</th>
                 </tr>
@@ -39,6 +41,7 @@
                     <td>{{ licencia.pedidoDesde | date: 'dd/MM/yyyy' }}</td>
                     <td>{{ licencia.pedidoHasta | date: 'dd/MM/yyyy' }}</td>
                     <td>{{ licencia.certificadoMedico? 'Presentado':'No Presentado' }}</td>
+                    <td>{{ licencia.estado}}</td>
                     <td>{{ licencia.articulo?.descripcion }}</td>
                     <td class="text-center">
                         <a [routerLink]="['/licencias', licencia.id]">

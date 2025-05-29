@@ -1,5 +1,6 @@
 package unpsjb.labprog.backend.business;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +39,10 @@ public class LicenciaService {
         return repository.findAll(PageRequest.of(page, size));
     }
 
+    public Page<Licencia> findAllValidas(int page, int size) {
+        return repository.findAllValidas(PageRequest.of(page, size));
+    }
+
     @Transactional
     public Licencia save(Licencia e) {
         validador.validar(e);
@@ -64,4 +69,9 @@ public class LicenciaService {
     public String getMensajeNoEncontrada(int id) {
         return mensaje.getMensajeLicenciaNoEncontrada(id);
     }
+
+    public Page<Licencia> findAllDesdeFecha(LocalDateTime fechaDesde, int page, int size) {
+        return repository.findAllDesdeFecha(fechaDesde, PageRequest.of(page, size));
+    }
+
 }

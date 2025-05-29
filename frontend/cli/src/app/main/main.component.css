@@ -7,6 +7,7 @@
     transition: all 0.5s ease;
     background: #ffffff;
     padding: 3rem;
+    padding-top: 5rem; /* Ajusta según la altura de tu navbar */
 }
 
 .body-trimmed {
@@ -32,11 +33,15 @@ img {
 .header {
     width: calc(100% - 5rem);
     margin-left: 5rem;
-    z-index: 0;
-    position: relative;
+    z-index: 1000; /* Asegura que quede por encima del contenido */
+    position: fixed; /* Fija la barra en la parte superior */
     top: 0;
+    left: 0;
     transition: all 0.5s ease;
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.5); /* Fondo translúcido */
+    backdrop-filter: blur(8px);            /* Efecto glassmorphism */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* Sombra suave opcional */
+    border-bottom: 1px solid rgba(200,200,200,0.2); /* Línea sutil opcional */
 }
 
 .header-trimmed {
@@ -47,4 +52,8 @@ img {
 .header-md-screen {
     width: calc(100% - 5rem);
     margin-left: 5rem;
+}
+footer {
+    margin-left: 5rem;
+    /* Ajusta el valor según lo que necesites */
 }

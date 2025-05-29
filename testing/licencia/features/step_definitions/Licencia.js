@@ -116,11 +116,12 @@ When('se solicita el servicio de designación de la persona al cargo en el perí
   const parsed = JSON.parse(res.getBody('utf8'));
   resultadoServicio = {
     StatusCode: parsed.status || parsed.StatusCode || 200,
-    StatusText: parsed.data || parsed.mensaje || parsed.message || ""
+    StatusText: parsed.message || parsed.mensaje || parsed.message || ""
   };
 });
 
 Then('debería obtener la siguiente resultado de {int} y {string}', function (statusEsperado, mensajeEsperado) {
+
   assert.strictEqual(
     apiResponse.status,
     statusEsperado,
@@ -128,9 +129,9 @@ Then('debería obtener la siguiente resultado de {int} y {string}', function (st
   );
 
   assert.strictEqual(
-    apiResponse.data,
+    apiResponse.message,
     mensajeEsperado,
-    `Esperado mensaje "${mensajeEsperado}" pero se recibió "${apiResponse.data}"`
+    `Esperado mensaje "${mensajeEsperado}" pero se recibió "${apiResponse.message}"`
   );
 });
 

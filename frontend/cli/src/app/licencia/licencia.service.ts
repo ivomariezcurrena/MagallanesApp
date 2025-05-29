@@ -36,6 +36,13 @@ export class LicenciaService {
     );
   }
 
+
+  byPageValidas(page: number, size: number): Observable<DataPackage> {
+    return this.http.get<DataPackage>(
+      `${this.licenciasUrl}/page/validas?page=${page - 1}&size=${size}`
+    );
+  }
+
   search(searchTerm: string): Observable<DataPackage> {
     return this.http.get<DataPackage>(`${this.licenciasUrl}/search/${searchTerm}`);
   }
@@ -45,6 +52,15 @@ export class LicenciaService {
       params: {
         term: searchTerm,
         page: page.toString(),
+        size: size.toString()
+      }
+    });
+  }
+  byFechaDesde(fecha: string, page: number, size: number): Observable<DataPackage> {
+    return this.http.get<DataPackage>(`${this.licenciasUrl}/desde`, {
+      params: {
+        fecha: fecha + 'T00:00:00',
+        page: (page - 1).toString(),
         size: size.toString()
       }
     });

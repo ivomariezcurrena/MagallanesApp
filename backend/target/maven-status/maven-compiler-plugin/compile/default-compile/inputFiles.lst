@@ -3,6 +3,8 @@
 /app/src/main/java/unpsjb/labprog/backend/business/utils/ValidarCargo.java
 /app/src/main/java/unpsjb/labprog/backend/model/Turno.java
 /app/src/main/java/unpsjb/labprog/backend/business/CargoRepository.java
+/app/src/main/java/unpsjb/labprog/backend/business/utils/vlicencias/AgregarLog.java
+/app/src/main/java/unpsjb/labprog/backend/model/Estado.java
 /app/src/main/java/unpsjb/labprog/backend/presenter/DesignacionPresenter.java
 /app/src/main/java/unpsjb/labprog/backend/GlobalExceptionHandler.java
 /app/src/main/java/unpsjb/labprog/backend/business/utils/MensajeFormateador.java
@@ -34,6 +36,7 @@
 /app/src/main/java/unpsjb/labprog/backend/business/utils/vlicencias/ReglaValidacionFactory.java
 /app/src/main/java/unpsjb/labprog/backend/business/ArticuloLicenciaService.java
 /app/src/main/java/unpsjb/labprog/backend/business/CargoService.java
+/app/src/main/java/unpsjb/labprog/backend/model/Log.java
 /app/src/main/java/unpsjb/labprog/backend/utils/StringNormalizer.java
 /app/src/main/java/unpsjb/labprog/backend/business/DesignacionRepository.java
 /app/src/main/java/unpsjb/labprog/backend/Response.java

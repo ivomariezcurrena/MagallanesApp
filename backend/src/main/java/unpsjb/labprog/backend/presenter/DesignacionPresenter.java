@@ -43,9 +43,9 @@ public class DesignacionPresenter {
     public ResponseEntity<Object> create(@RequestBody Designacion aDesignacion) {
         try {
             Designacion saved = service.save(aDesignacion);
-            return Response.ok(service.getMensajeAgregar(saved));
+            return Response.ok(saved, service.getMensajeAgregar(saved));
         } catch (IllegalArgumentException e) {
-            return Response.internalServerError(null, e.getMessage());
+            return Response.internalServerError(e.getMessage(), e);
         } catch (Exception e) {
             return Response.dbError("Error inesperado al guardar la designación: " + e.getMessage());
         }

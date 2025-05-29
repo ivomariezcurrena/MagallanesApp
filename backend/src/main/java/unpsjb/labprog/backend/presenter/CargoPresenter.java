@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import unpsjb.labprog.backend.Response;
 import unpsjb.labprog.backend.business.CargoService;
 import unpsjb.labprog.backend.model.Cargo;
-import unpsjb.labprog.backend.model.Division;
 import unpsjb.labprog.backend.model.TipoDesignacion;
-import unpsjb.labprog.backend.model.Turno;
 
 @RestController
 @RequestMapping("cargos")

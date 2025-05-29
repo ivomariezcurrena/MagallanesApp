@@ -2,7 +2,6 @@ package unpsjb.labprog.backend.business;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -14,8 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 import unpsjb.labprog.backend.business.utils.MensajeFormateador;
 import unpsjb.labprog.backend.business.utils.Validador;
 import unpsjb.labprog.backend.model.Designacion;
-import unpsjb.labprog.backend.model.Licencia;
-import unpsjb.labprog.backend.model.Persona;
 
 @Service
 public class DesignacionService {
@@ -35,6 +32,7 @@ public class DesignacionService {
     @Autowired
     @Lazy
     LicenciaRepository licenciaRepository;
+
     @Autowired
     PersonaService personaService;
 

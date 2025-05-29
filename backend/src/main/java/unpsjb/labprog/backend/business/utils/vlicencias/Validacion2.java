@@ -5,7 +5,9 @@ import java.util.List;
 
 import unpsjb.labprog.backend.business.LicenciaRepository;
 import unpsjb.labprog.backend.business.utils.MensajeFormateador;
+import unpsjb.labprog.backend.model.Estado;
 import unpsjb.labprog.backend.model.Licencia;
+import unpsjb.labprog.backend.model.Log;
 
 public class Validacion2 implements Validable {
 
@@ -65,15 +67,29 @@ public class Validacion2 implements Validable {
 
         // Control anual
         if (diasUsadosAnio + diasActual > topeAnio) {
-            throw new IllegalArgumentException(
-                    mensajeFormateador.getErrorLicenciaTopeDias36AAnual(licencia, topeAnio));
+            // throw new IllegalArgumentException(
+            // mensajeFormateador.getErrorLicenciaTopeDias36AAnual(licencia, topeAnio));
+            String mensaje = mensajeFormateador.getErrorLicenciaTopeDias36AAnual(licencia, topeAnio);
+            licencia.setEstado(Estado.Invalido);
+            AgregarLog.agregarLog(licencia, mensaje, 500);
+            return;
         }
 
         // Control mensual
         if (diasUsadosMes + diasActual > topeMes) {
-            throw new IllegalArgumentException(
-                    mensajeFormateador.getErrorLicenciaTopeDias(licencia, topeMes));
+            // throw new IllegalArgumentException(
+            // mensajeFormateador.getErrorLicenciaTopeDias(licencia, topeMes));
+            String mensaje = mensajeFormateador.getErrorLicenciaTopeDias(licencia, topeMes);
+            licencia.setEstado(Estado.Invalido);
+            AgregarLog.agregarLog(licencia, mensaje, 500);
+            return;
         }
+        if (licencia.getEstado() != Estado.Invalido) {
+            String mensaje = mensajeFormateador.getMensajeLicenciaOtorgada(licencia);
+            licencia.setEstado(Estado.Valido);
+            AgregarLog.agregarLog(licencia, mensaje, 200);
+        }
+
     }
 
 }

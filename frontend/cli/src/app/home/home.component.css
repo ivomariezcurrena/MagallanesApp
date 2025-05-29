@@ -1,0 +1,62 @@
+.transition {
+    transition: transform 0.2s;
+}
+
+.rotate-180 {
+    transform: rotate(180deg);
+}
+
+.card,
+.parte-diario-card {
+    background: #f9fafb !important;
+    border-radius: 1.1rem;
+    box-shadow: 0 2px 12px rgba(67, 197, 158, 0.07);
+    border: none;
+    color: #36393b;
+}
+
+.parte-diario-icon {
+    background: #f9fafb;
+    border-radius: 0.7rem;
+    padding: 0.4rem 0.7rem 0.4rem 0.6rem;
+    display: flex;
+    align-items: center;
+    font-size: 1.6rem !important;
+    color: #36393b;
+}
+
+.parte-diario-title,
+.parte-diario-num {
+    color: #36393b !important;
+}
+
+.parte-diario-fecha {
+    font-size: 1.01rem;
+    font-weight: 500;
+    color: #36393b !important;
+}
+
+.parte-diario-label {
+    font-size: 1.1rem;
+    margin-bottom: 0.2rem;
+    color: #36393b !important;
+}
+
+.text-warning-emphasis {
+    color: #36393b !important;
+}
+
+.badge.bg-warning {
+    background: #f9fafb !important;
+    color: #36393b !important;
+    border: 1px solid #36393b;
+}
+
+.card-body {
+    color: #36393b !important;
+}
+.estadisticas-card {
+    background: #f9fafb;
+    border-radius: 1.1rem;
+    color: #36393b;
+}

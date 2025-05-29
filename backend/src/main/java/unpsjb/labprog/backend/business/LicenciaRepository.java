@@ -1,5 +1,7 @@
 package unpsjb.labprog.backend.business;
 
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -15,12 +17,12 @@ public interface LicenciaRepository
                 extends CrudRepository<Licencia, Integer>, PagingAndSortingRepository<Licencia, Integer> {
 
         @Query("SELECT l FROM Licencia l WHERE l.persona.dni = ?1 AND l.articulo = ?2 " +
-                        "AND l.pedidoDesde <= ?4 AND l.pedidoHasta >= ?3 AND l.id <> ?5")
+                        "AND l.pedidoDesde <= ?4 AND l.pedidoHasta >= ?3 AND l.id <> ?5 AND l.estado = 'Valido'")
         List<Licencia> verificarFechas(int dni, ArticuloLicencia articulo, LocalDateTime desde, LocalDateTime hasta,
                         int idActual);
 
         @Query("SELECT l FROM Licencia l WHERE l.persona.dni = ?1 AND l.articulo.id = ?2 " +
-                        "AND YEAR(l.pedidoDesde) = ?3")
+                        "AND YEAR(l.pedidoDesde) = ?3 AND l.estado = 'Valido'")
         List<Licencia> findAllByPersonaAndArticuloAndAnio(int dni, int articuloId, int anio);
 
         @Query("""
@@ -29,10 +31,19 @@ public interface LicenciaRepository
                         WHERE d.id = :designacionId
                         AND l.pedidoDesde <= :desde
                         AND l.pedidoHasta >= :hasta
+                        AND l.estado = 'Valido'
                         """)
         List<Licencia> findLicenciasEnPeriodo(
                         @Param("designacionId") int designacionId,
                         @Param("desde") LocalDateTime desde,
                         @Param("hasta") LocalDateTime hasta);
+
+        @Query("SELECT l FROM Licencia l WHERE l.pedidoDesde >= :fechaDesde AND l.estado = 'Valido'")
+        Page<Licencia> findAllDesdeFecha(
+                        @Param("fechaDesde") LocalDateTime fechaDesde,
+                        Pageable pageable);
+
+        @Query("SELECT l FROM Licencia l WHERE l.estado = 'Valido'")
+        Page<Licencia> findAllValidas(Pageable pageable);
 
 }

@@ -12,6 +12,7 @@ import unpsjb.labprog.backend.business.LicenciaRepository;
 import unpsjb.labprog.backend.business.PersonaRepository;
 import unpsjb.labprog.backend.business.utils.MensajeFormateador;
 import unpsjb.labprog.backend.model.Designacion;
+import unpsjb.labprog.backend.model.Estado;
 import unpsjb.labprog.backend.model.Licencia;
 
 @Component
@@ -82,7 +83,10 @@ public class ValidarLicencia {
     private void validarDesignaciones(Licencia licencia) {
         if (licencia.getPersona() == null || licencia.getPersona().getDesignaciones() == null
                 || licencia.getPersona().getDesignaciones().isEmpty()) {
-            throw new IllegalArgumentException(mensajeFormateador.getErrorLicenciaSinCargo(licencia));
+            String mensaje = mensajeFormateador.getErrorLicenciaSinCargo(licencia);
+            licencia.setEstado(Estado.Invalido);
+            AgregarLog.agregarLog(licencia, mensaje, 500);
+            return;
         }
         boolean tieneDesignacionEseDia = licencia.getPersona().getDesignaciones().stream().anyMatch(designacion -> {
             return (designacion.getFechaInicio() == null
@@ -91,7 +95,10 @@ public class ValidarLicencia {
                             || !licencia.getPedidoDesde().isAfter(designacion.getFechaFin()));
         });
         if (!tieneDesignacionEseDia) {
-            throw new IllegalArgumentException(mensajeFormateador.getErrorLicenciaSinDesignacionEseDia(licencia));
+            String mensaje = mensajeFormateador.getErrorLicenciaSinDesignacionEseDia(licencia);
+            licencia.setEstado(Estado.Invalido);
+            AgregarLog.agregarLog(licencia, mensaje, 500);
+            return;
         }
     }
 
@@ -103,7 +110,10 @@ public class ValidarLicencia {
                 licencia.getPedidoHasta(),
                 licencia.getId() == 0 ? -1 : licencia.getId());
         if (!superpuestas.isEmpty()) {
-            throw new IllegalArgumentException(mensajeFormateador.getErrorLicenciaSuperposicion(licencia));
+            String mensaje = mensajeFormateador.getErrorLicenciaSuperposicion(licencia);
+            licencia.setEstado(Estado.Invalido);
+            AgregarLog.agregarLog(licencia, mensaje, 500);
+            return;
         }
     }
 
