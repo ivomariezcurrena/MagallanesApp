@@ -77,7 +77,9 @@ services:
       - ./testing/control/node_modules:/home/node/control/node_modules
       - ./testing/licencia:/home/node/licencia
       - ./testing/licencia/node_modules:/home/node/licencia/node_modules
-    command: sh -c " echo '▶️  Ejecutando test de PERSONAS'; \ cd personas && npm test; \ echo '▶️  Ejecutando test de DIVISIONES'; \ cd ../divisiones && npm test; \ echo '▶️  Ejecutando test de CARGOS'; \ cd ../cargo && npm test; \ echo '▶️  Ejecutando test de DESIGNACIONES'; \ cd ../designacion && npm test;  \ echo '▶️  Ejecutando test de CONTROL'; \ cd ../control && npm test; \ echo '▶️  Ejecutando test de LICENCIAS'; \ cd ../licencia && npm test;"
+      - ./testing/parte:/home/node/parte
+      - ./testing/parte/node_modules:/home/node/parte/node_modules
+    command: sh -c " echo '▶️  Ejecutando test de PERSONAS'; \ cd personas && npm test; \ echo '▶️  Ejecutando test de DIVISIONES'; \ cd ../divisiones && npm test; \ echo '▶️  Ejecutando test de CARGOS'; \ cd ../cargo && npm test; \ echo '▶️  Ejecutando test de DESIGNACIONES'; \ cd ../designacion && npm test;  \ echo '▶️  Ejecutando test de CONTROL'; \ cd ../control && npm test; \ echo '▶️  Ejecutando test de LICENCIAS'; \ cd ../licencia && npm test; \ echo '▶️  Ejecutando test de PARTES'; \ cd ../parte && npm test;"
     depends_on:
       - backend
 

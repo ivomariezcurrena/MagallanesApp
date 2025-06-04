@@ -14,6 +14,7 @@ import unpsjb.labprog.backend.Response;
 import unpsjb.labprog.backend.business.CargoService;
 import unpsjb.labprog.backend.model.Cargo;
 import unpsjb.labprog.backend.model.TipoDesignacion;
+import unpsjb.labprog.backend.model.Turno;
 
 @RestController
 @RequestMapping("cargos")
@@ -98,5 +99,21 @@ public class CargoPresenter {
     @RequestMapping(value = "/search/{term}", method = RequestMethod.GET)
     public ResponseEntity<Object> search(@PathVariable("term") String term) {
         return Response.ok(service.search(term));
+    }
+
+    @GetMapping("/buscar-por-nombre-tipo-division")
+    public ResponseEntity<Object> buscarPorNombreTipoDivision(
+            @RequestParam String nombre,
+            @RequestParam TipoDesignacion tipo,
+            @RequestParam int anio,
+            @RequestParam int numero,
+            @RequestParam Turno turno) {
+
+        Cargo cargo = service.buscarPorNombreTipoDivision(nombre, tipo, anio, numero, turno);
+        if (cargo != null) {
+            return Response.ok(cargo);
+        } else {
+            return Response.notFound("No se encontró un cargo con ese nombre, tipo y división");
+        }
     }
 }

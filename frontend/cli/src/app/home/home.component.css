@@ -1,62 +1,149 @@
-.transition {
-    transition: transform 0.2s;
+.home-container {
+    max-width: 1400px;
+    margin: auto;
+    padding: 2.5rem;
+    font-family: 'Segoe UI', sans-serif;
 }
 
-.rotate-180 {
-    transform: rotate(180deg);
+.titulo {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
 }
 
-.card,
-.parte-diario-card {
-    background: #f9fafb !important;
-    border-radius: 1.1rem;
-    box-shadow: 0 2px 12px rgba(67, 197, 158, 0.07);
-    border: none;
-    color: #36393b;
+.subtitulo {
+    font-size: 1.3rem;
+    color: #555;
+    text-align: center;
 }
 
-.parte-diario-icon {
-    background: #f9fafb;
-    border-radius: 0.7rem;
-    padding: 0.4rem 0.7rem 0.4rem 0.6rem;
+/* --- TARJETAS SUPERIORES --- */
+.tarjetas-superiores {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+    justify-items: center;
+}
+
+.tarjeta {
+    width: 100%;
+    height: 180px;
+    border-radius: 15px;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.08);
+    padding: 1.5rem;
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+}
+
+/* Colores */
+.tarjeta-verde {
+    background-color: #2d8a4e;
+    color: white;
+}
+.tarjeta-verde h5{
+    background-color: #2d8a4e;
+    color: white;
+}
+
+.tarjeta-blanca {
+    background-color: white;
+}
+
+.boton-verde {
+    display: inline-block;
+    background-color: white;
+    color: #2d8a4e;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+    border: none;
+}
+
+.boton-verde:hover {
+    background-color: #e0e0e0; }
+
+/* --- ACCESOS RÁPIDOS --- */
+.accesos-rapidos {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.acceso-btn {
+    display: inline-flex;
+    justify-content: center;
     align-items: center;
-    font-size: 1.6rem !important;
-    color: #36393b;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background-color: #404041;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-size: 1.6rem;
+    border: none;
+    transition: background-color 0.2s;
 }
 
-.parte-diario-title,
-.parte-diario-num {
-    color: #36393b !important;
+.acceso-btn:hover {
+    background-color: #a0a0a0; }
+/* --- GRÁFICO Y CALENDARIO --- */
+.graficos-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+    padding: 0 2rem; }
+    
+.tarjeta-grafico {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+    height: auto;
+    min-height: 250px;
+    /* Para evitar que sea muy chica */     }
+
+@media (max-width: 700px) {
+  .graficos-container {
+    grid-template-columns: 1fr !important;
+    padding: 0 0.5rem;
+  }
+  .tarjeta-grafico {
+    min-width: 0;
+    width: 100%;
+    margin-bottom: 1.2rem;
+  }
 }
 
-.parte-diario-fecha {
-    font-size: 1.01rem;
-    font-weight: 500;
-    color: #36393b !important;
-}
+/* --- PARTE DIARIO --- */
+.tarjeta-parte {
+    background-color: white;
+    border-radius: 16px;
+    padding: 1rem;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1); }
 
-.parte-diario-label {
-    font-size: 1.1rem;
-    margin-bottom: 0.2rem;
-    color: #36393b !important;
+.tarjeta-parte {
+    width: 100%;
+    overflow-x: auto;
+    /* si la tabla es más ancha, se puede scrollear */
+    padding: 1rem;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;     
 }
-
-.text-warning-emphasis {
-    color: #36393b !important;
-}
-
-.badge.bg-warning {
-    background: #f9fafb !important;
-    color: #36393b !important;
-    border: 1px solid #36393b;
-}
-
-.card-body {
-    color: #36393b !important;
-}
-.estadisticas-card {
-    background: #f9fafb;
-    border-radius: 1.1rem;
-    color: #36393b;
+.seccion-titulo {
+    font-size: 1.4rem;
+    margin-top: 3rem;
+    margin-bottom: 1.2rem;
 }

@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -111,5 +112,20 @@ public class LicenciaPresenter {
         } catch (Exception e) {
             return Response.internalServerError(null, "Formato de fecha inválido. Use yyyy-MM-ddTHH:mm:ss");
         }
+    }
+
+    @GetMapping("/vigentes-en-fecha")
+    public ResponseEntity<Object> getLicenciasVigentesEnFecha(@RequestParam("fecha") String fecha) {
+        try {
+            LocalDateTime fechaConsulta = LocalDateTime.parse(fecha);
+            return Response.ok(service.findLicenciasVigentesEnFecha(fechaConsulta));
+        } catch (Exception e) {
+            return Response.internalServerError(null, "Formato de fecha inválido. Use yyyy-MM-ddTHH:mm:ss");
+        }
+    }
+
+    @GetMapping("/{id}/suplente")
+    public ResponseEntity<Object> getPrimerSuplenteDeLicencia(@PathVariable("id") int id) {
+        return Response.ok(service.findDesignacionSuplente(id));
     }
 }

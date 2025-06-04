@@ -23,3 +23,11 @@
             | 12120120 | Homero      | Manzi        | 20121201209 | M    | Profesor de Tecnología   | Masukic 799    | +54 (280) 511-2222 | 200    | Homero Manzi con DNI 12120120 ingresado/a correctamente        |
             | 99999999 | Raúl        | Guitierrez   | 20999999909 | M    |                          | Mitre 1855     | +54 (280) 477-7777 | 200    | Raúl Guitierrez con DNI 99999999 ingresado/a correctamente     |
             | 88888888 | Marisa      | Balaguer     | 20888888009 | F    |                          | Mitre 1855     | +54 (280) 477-7777 | 200    | Marisa Balaguer con DNI 88888888 ingresado/a correctamente     |
+            | 88100000 | Raúl        | Orellanos    | 20881000009 | M    |                          |                |                    | 200    | Raúl Orellanos con DNI 88100000 ingresado/a correctamente      |
+            | 88200000 | Matías      | Barto        | 20882000009 | M    |                          |                |                    | 200    | Matías Barto con DNI 88200000 ingresado/a correctamente        |
+            | 88300000 | Andrea      | Sosa         | 20883000009 | F    |                          |                |                    | 200    | Andrea Sosa con DNI 88300000 ingresado/a correctamente         |
+            | 88400000 | Laura       | Barrientos   | 20884000009 | F    |                          |                |                    | 200    | Laura Barrientos con DNI 88400000 ingresado/a correctamente    |
+            | 88500000 | Natalia     | Zabala       | 20885000009 | F    |                          |                |                    | 200    | Natalia Zabala con DNI 88500000 ingresado/a correctamente      |
+            | 88600000 | Marta       | Ríos         | 20886000009 | F    |                          |                |                    | 200    | Marta Ríos con DNI 88600000 ingresado/a correctamente          |
+            | 88700000 | Rosalía     | Ramón        | 20887000009 | F    |                          |                |                    | 200    | Rosalía Ramón con DNI 88700000 ingresado/a correctamente       |
+            | 88800000 | José        | Pérez        | 20888000009 | M    |                          |                |                    | 200    | José Pérez con DNI 88800000 ingresado/a correctamente          |

@@ -15,4 +15,9 @@
             | 2   | 3      | Física      | Mañana | 200    | División 2 3 turno Mañana ingresada correctamente |
             | 1   | 1      | Matemáticas | Tarde  | 200    | División 1 1 turno Tarde ingresada correctamente  |
             | 4   | 3      | Tecnología  | Mañana | 200    | División 4 3 turno Mañana ingresada correctamente |
+            | 6   | 1      | Química     | Noche  | 200    | División 6 1 turno Noche ingresada correctamente  |
+            | 2   | 2      | Biología    | Mañana | 200    | División 2 2 turno Mañana ingresada correctamente |
+            | 1   | 2      | Lengua      | Tarde  | 200    | División 1 2 turno Tarde ingresada correctamente  |
+            | 3   | 2      | Inglés      | Mañana | 200    | División 3 2 turno Mañana ingresada correctamente |
+            | 5   | 1      | Historia    | Tarde  | 200    | División 5 1 turno Tarde ingresada correctamente  |
 

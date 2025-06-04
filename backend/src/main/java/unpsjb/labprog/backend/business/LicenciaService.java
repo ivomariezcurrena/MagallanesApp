@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import unpsjb.labprog.backend.business.utils.MensajeFormateador;
 import unpsjb.labprog.backend.business.utils.Validador;
+import unpsjb.labprog.backend.model.Designacion;
 import unpsjb.labprog.backend.model.Licencia;
 
 @Service
@@ -24,6 +26,10 @@ public class LicenciaService {
 
     @Autowired
     MensajeFormateador mensaje;
+
+    @Autowired
+    @Lazy
+    DesignacionRepository designacionRepository;
 
     public List<Licencia> findAll() {
         List<Licencia> result = new ArrayList<>();
@@ -74,4 +80,45 @@ public class LicenciaService {
         return repository.findAllDesdeFecha(fechaDesde, PageRequest.of(page, size));
     }
 
+    public List<Licencia> findLicenciasVigentesEnFecha(LocalDateTime fecha) {
+        return repository.findLicenciasVigentesEnFecha(fecha);
+    }
+
+    /**
+     * Busca la designación suplente asociada a una licencia.
+     *
+     * @param licenciaId ID de la licencia para la cual se busca el suplente.
+     * @return La primera {@link Designacion} suplente encontrada, o {@code null} si
+     *         no existe.
+     */
+    public Designacion findDesignacionSuplente(int licenciaId) {
+        Licencia licencia = findById(licenciaId);
+        if (!esLicenciaValida(licencia)) {
+            return null;
+        }
+
+        Designacion designacionOriginal = obtenerPrimeraDesignacion(licencia);
+        if (designacionOriginal == null) {
+            return null;
+        }
+
+        List<Designacion> suplentes = buscarSuplentes(licencia, designacionOriginal);
+        return suplentes.isEmpty() ? null : suplentes.get(0);
+    }
+
+    private boolean esLicenciaValida(Licencia licencia) {
+        return licencia != null && licencia.getDesignaciones() != null && !licencia.getDesignaciones().isEmpty();
+    }
+
+    private Designacion obtenerPrimeraDesignacion(Licencia licencia) {
+        return licencia.getDesignaciones().stream().findFirst().orElse(null);
+    }
+
+    private List<Designacion> buscarSuplentes(Licencia licencia, Designacion designacionOriginal) {
+        return designacionRepository.findDesignacionesSuplentes(
+                designacionOriginal.getCargo().getId(),
+                licencia.getPedidoDesde(),
+                licencia.getPedidoHasta(),
+                designacionOriginal.getId());
+    }
 }

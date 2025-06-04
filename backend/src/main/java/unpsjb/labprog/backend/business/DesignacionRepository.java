@@ -76,4 +76,17 @@ public interface DesignacionRepository
                         @Param("dni") int dni,
                         @Param("desde") LocalDateTime desde,
                         @Param("hasta") LocalDateTime hasta);
+
+        @Query("""
+                            SELECT d FROM Designacion d
+                            WHERE d.cargo.id = :cargoId
+                            AND d.id <> :designacionId
+                            AND (d.fechaFin >= :desde)
+                            AND d.fechaInicio <= :hasta
+                        """)
+        List<Designacion> findDesignacionesSuplentes(
+                        @Param("cargoId") int cargoId,
+                        @Param("desde") LocalDateTime desde,
+                        @Param("hasta") LocalDateTime hasta,
+                        @Param("designacionId") Integer designacionId);
 }

@@ -1,4 +1,68 @@
-<div class="px-3 py-3 pt-md-5">
-    <h1 class="display-4 text-start"><strong>Bienvenido/a</strong></h1>
-    <p class="text-secondary ms-2">{{ fechaHoy }}</p>
+<div class="home-container">
+    <!-- Encabezado -->
+    <div class="text-center mb-4">
+        <h1 class="titulo"><strong>BIENVENIDO/A</strong></h1>
+        <p class="subtitulo">{{ fechaHoy }}</p>
+    </div>
+
+    <!-- Tarjetas superiores -->
+    <div class="tarjetas-superiores">
+        <!-- Nueva licencia -->
+        <div class="tarjeta tarjeta-verde">
+            <h5><strong>Nueva licencia</strong></h5>
+            <p>Para crear una nueva licencia toca el boton de abajo</p>
+            <a routerLink="/licencias/new" class="boton-verde">
+                <i class="fa fa-plus"></i> Nueva licencia</a>
+        </div>
+
+        <!-- Personas con licencia hoy -->
+        <div class="tarjeta tarjeta-blanca">
+            <h5><strong>De licencia hoy</strong></h5>
+            <h2>{{ licenciasHoy }}</h2>
+            <p>Persona/as</p>
+        </div>
+    </div>
+
+    <!-- Accesos rápidos -->
+    <div class="text-center mt-5">
+        <h5 class="seccion-titulo"><strong>Accesos rápidos</strong></h5>
+        <div class="accesos-rapidos">
+            <a routerLink="personas" class="acceso-btn" title="Personas">
+                <i class="fal fa-users"></i>
+            </a>
+            <a routerLink="licencias" class="acceso-btn" title="Ver licencias">
+                <i class="fal fa-file-alt"></i>
+            </a>
+            <a routerLink="designaciones" class="acceso-btn" title="Ver Designaciones">
+                <i class="fal fa-user-tie"></i>
+            </a>
+            <a routerLink="cargos" class="acceso-btn" title="Ver Cargos">
+                <i class="fal fa-briefcase"></i>
+            </a>
+            <a routerLink="partesdiarios" class="acceso-btn" title="Parte Diario">
+                <i class="fal fa-clipboard-list"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Gráfico y calendario -->
+    <div class="graficos-container">
+        <div class="tarjeta tarjeta-grafico">
+            <h6>ESTADO DE LAS DESIGNACIONES</h6>
+            <app-grafico></app-grafico>
+        </div>
+        <div class="tarjeta tarjeta-grafico">
+            <h6>DESIGNACIONES AFECTADAS</h6>
+        </div>
+
+    </div>
+
+    <!-- Parte diario -->
+    <div class="parte-diario">
+        <h5 class="seccion-titulo"><strong>Calendario</strong></h5>
+
+            <app-calendar></app-calendar>
+
+    </div>
 </div>
+  

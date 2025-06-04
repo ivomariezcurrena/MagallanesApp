@@ -65,4 +65,8 @@ export class LicenciaService {
       }
     });
   }
+
+  getPrimerSuplenteDeLicencia(id: number): Observable<DataPackage> {
+    return this.http.get<DataPackage>(`${this.licenciasUrl}/${id}/suplente`);
+  }
 }

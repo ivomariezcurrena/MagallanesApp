@@ -126,4 +126,5 @@ public class ValidarLicencia {
                     "No se encontró una regla de validación para el artículo: " + licencia.getArticulo().getArticulo());
         }
     }
+
 }

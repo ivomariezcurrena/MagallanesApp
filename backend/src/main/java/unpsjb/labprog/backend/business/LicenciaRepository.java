@@ -38,12 +38,20 @@ public interface LicenciaRepository
                         @Param("desde") LocalDateTime desde,
                         @Param("hasta") LocalDateTime hasta);
 
-        @Query("SELECT l FROM Licencia l WHERE l.pedidoDesde >= :fechaDesde AND l.estado = 'Valido'")
+        @Query("SELECT l FROM Licencia l WHERE l.pedidoHasta >= :fechaDesde AND l.pedidoDesde <= :fechaDesde AND l.estado = 'Valido'")
         Page<Licencia> findAllDesdeFecha(
                         @Param("fechaDesde") LocalDateTime fechaDesde,
                         Pageable pageable);
 
         @Query("SELECT l FROM Licencia l WHERE l.estado = 'Valido'")
         Page<Licencia> findAllValidas(Pageable pageable);
+
+        @Query("""
+                            SELECT l FROM Licencia l
+                            WHERE l.estado = 'Valido'
+                                AND l.pedidoDesde <= :fecha
+                                AND l.pedidoHasta >= :fecha
+                        """)
+        List<Licencia> findLicenciasVigentesEnFecha(@Param("fecha") LocalDateTime fecha);
 
 }

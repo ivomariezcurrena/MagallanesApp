@@ -1,0 +1,186 @@
+h2 {
+    margin: 0;
+    font-size: 16px;
+}
+
+ul {
+    margin: 0;
+    padding: 0 0 0 1.5em;
+}
+
+li {
+    margin: 1.5em 0;
+    padding: 0;
+}
+
+b {
+    /* used for event dates/times */
+    margin-right: 3px;
+}
+
+.demo-app {
+    display: flex;
+    min-height: 100%;
+    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+    font-size: 14px;
+}
+
+.demo-app-sidebar {
+    width: 300px;
+    line-height: 1.5;
+    background: #eaf9ff;
+    border-right: 1px solid #d3e2e8;
+    border-radius: 16px 0 0 16px;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.03);
+}
+
+.demo-app-sidebar-section {
+    padding: 2em;
+}
+
+.demo-app-main {
+    flex-grow: 1;
+    padding: 3em;
+    border-radius: 18px;
+    background: #fff;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+    margin: 0.5em 0;
+    overflow: hidden;
+}
+
+/* Fondo y estructura minimalista */
+:host ::ng-deep .fc {
+    background: #fff !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 1.5em 0.5em !important;
+    font-family: 'Segoe UI', Arial, Helvetica, sans-serif !important;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* Título */
+:host ::ng-deep .fc-toolbar-title {
+    color: #36393b !important;
+    font-size: 1.3rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.5px;
+    text-align: center !important;
+    margin-bottom: 0.5em !important;
+}
+
+/* Botones minimalistas */
+:host ::ng-deep .fc-button, 
+:host ::ng-deep .fc-button-primary {
+    background: transparent !important;
+    color: var(--penguin-grey) !important;
+    border: none !important;
+    font-weight: 500 !important;
+    box-shadow: none !important;
+    font-size: 1em !important;
+    padding: 0.4em 1em !important;
+    transition: background 0.2s, color 0.2s;
+}
+:host ::ng-deep .fc-button:hover, 
+:host ::ng-deep .fc-button-primary:hover, 
+:host ::ng-deep .fc-button:focus {
+    background: #f0f0f0 !important;
+    color: #36393b !important;
+}
+
+/* Días de la semana */
+:host ::ng-deep .fc-col-header-cell-cushion {
+    color: var(--penguin-grey) !important;
+    font-weight: 500 !important;
+    font-size: 1em !important;
+    background: transparent !important;
+    letter-spacing: 0.2px;
+}
+
+/* Días del mes */
+:host ::ng-deep .fc-daygrid-day {
+    background: #fff !important;
+    border: none !important;
+    transition: background 0.2s;
+}
+:host ::ng-deep .fc-daygrid-day:hover {
+    background: #f8f8f8 !important;
+}
+
+/* Día actual resaltado */
+:host ::ng-deep .fc-day-today {
+    background: #f8f8f8 !important;
+    border: none !important;
+}
+
+/* Números de los días */
+:host ::ng-deep .fc-daygrid-day-number {
+    color: var(--penguin-grey) !important;
+    font-weight: 500 !important;
+    font-size: 1em !important;
+    padding: 2px 4px !important;
+    border-radius: 0 !important;
+    transition: background 0.2s, color 0.2s;
+}
+:host ::ng-deep .fc-daygrid-day-number:hover,
+:host ::ng-deep .fc-daygrid-day-number:focus {
+    color: #36393b !important;
+    background: #f0f0f0 !important;
+    text-decoration: underline !important;
+}
+
+/* Quitar el azul de los links */
+:host ::ng-deep .fc a {
+    color: inherit !important;
+    text-decoration: none !important;
+}
+
+/* Eventos minimalistas */
+:host ::ng-deep .fc-event {
+    background: var(--penguin-grey) !important;
+    color: #fff !important;
+    border-radius: 16px !important; /* Redondeo estilo Google */
+    font-weight: 400 !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 2px 12px !important;
+    font-size: 0.95em !important;
+    margin-top: 2px !important;
+    margin-bottom: 2px !important;
+    min-height: 28px !important;
+    display: flex !important;
+    align-items: center !important;
+}
+:host ::ng-deep .fc-event-title {
+    color: #fff !important;
+    font-weight: 400 !important;
+}
+
+/* Vista lista */
+:host ::ng-deep .fc-list-event {
+    background: #f8f8f8 !important;
+    color: var(--penguin-grey) !important;
+    border-radius: 0 !important;
+    margin-bottom: 4px;
+    font-size: 0.98em !important;
+}
+
+/* Scrollbar minimalista */
+:host ::ng-deep .fc-scroller::-webkit-scrollbar {
+    width: 8px;
+    background: #f8f8f8;
+}
+:host ::ng-deep .fc-scroller::-webkit-scrollbar-thumb {
+    background: var(--penguin-grey);
+    border-radius: 0;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    :host ::ng-deep .fc {
+        padding: 0.5em 0.1em !important;
+    }
+    :host ::ng-deep .fc-toolbar-title {
+        font-size: 1.1rem !important;
+    }
+}

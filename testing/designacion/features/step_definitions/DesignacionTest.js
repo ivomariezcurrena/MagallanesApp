@@ -10,20 +10,37 @@ Given('la persona con {int} {string} y {string}', function (dni, nombre, apellid
     persona = { dni, nombre, apellido };
 });
 
-Given('que se asigna al cargo  con tipo de designación {string} y {string}', function (tipo, nombreDesignacion) {
-    const url = `http://backend:8080/cargos/buscar-por-nombre-y-tipo?nombre=${encodeURIComponent(nombreDesignacion)}&tipo=${encodeURIComponent(tipo)}`;
-    const res = request('GET', url);
-
-    if (res.statusCode !== 200) throw new Error("Cargo no encontrado");
-
-    const cargo = JSON.parse(res.getBody('utf8')).data;
-    designacion.cargo = {
-        id: cargo.id,
-        nombre: cargo.nombre,
-        tipoDesignacion: cargo.tipoDesignacion,
-        division: cargo.division
-    };
-});
+Given('que se asigna al cargo con tipo de designación {string} y {string} en la división {string} {string} {string}',
+    function (tipo, nombreDesignacion, anio, numero, turno) {
+        if (
+            tipo === 'ESPACIO_CURRICULAR' &&
+            anio && numero && turno
+        ) {
+            // Buscar el cargo por nombre, tipo y división
+            const url = `http://backend:8080/cargos/buscar-por-nombre-tipo-division?nombre=${encodeURIComponent(nombreDesignacion)}&tipo=${encodeURIComponent(tipo)}&anio=${anio}&numero=${numero}&turno=${encodeURIComponent(turno)}`;
+            const res = request('GET', url);
+            if (res.statusCode !== 200) throw new Error("Cargo no encontrado");
+            const cargo = JSON.parse(res.getBody('utf8')).data;
+            designacion.cargo = {
+                id: cargo.id,
+                nombre: cargo.nombre,
+                tipoDesignacion: cargo.tipoDesignacion,
+                division: cargo.division
+            };
+        } else {
+            // Buscar solo por nombre y tipo
+            const url = `http://backend:8080/cargos/buscar-por-nombre-y-tipo?nombre=${encodeURIComponent(nombreDesignacion)}&tipo=${encodeURIComponent(tipo)}`;
+            const res = request('GET', url);
+            if (res.statusCode !== 200) throw new Error("Cargo no encontrado");
+            const cargo = JSON.parse(res.getBody('utf8')).data;
+            designacion.cargo = {
+                id: cargo.id,
+                nombre: cargo.nombre,
+                tipoDesignacion: cargo.tipoDesignacion,
+                division: cargo.division
+            };
+        }
+    });
 
 Given('que si el tipo es {string}, opcionalmente se asigna a la división {string} {string} {string}',
     function (tipoOriginal, anio, numero, turno) {

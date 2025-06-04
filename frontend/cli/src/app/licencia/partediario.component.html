@@ -25,7 +25,7 @@
                     <th>Hasta</th>
                     <th>Certificado</th>
                     <th>Razon</th>
-                    <th class="text-center" style="width:120px;">Acciones</th>
+                    <th class="text-center" style="width:120px;">Suplente</th>
                 </tr>
             </thead>
             <tbody>
@@ -37,16 +37,11 @@
                     <td>{{ licencia.pedidoHasta | date: 'dd/MM/yyyy' }}</td>
                     <td>{{ licencia.certificadoMedico? 'Presentado':'No Presentado' }}</td>
                     <td>{{ licencia.articulo?.descripcion }}</td>
-                    <td class="text-center">
-                        <a [routerLink]="['/licencias', licencia.id]">
-                            <button class="btn btn-sm btn-penguin me-1" title="Editar">
-                                <i class="fa fa-pencil"></i>
-                            </button>
-                        </a>
-                        <button class="btn btn-sm btn-danger" (click)="remove(licencia.id)" title="Eliminar">
-                            <i class="fa fa-trash"></i>
+                    <td>
+                      <div class="d-flex justify-content-center">
+                        <button class="btn-suplente fa fa-user" title="Ver suplente" (click)="abrirModalSuplente(licencia)">
                         </button>
-
+                      </div>
                     </td>
                 </tr>
                 <tr *ngIf="filtredLicencias.length === 0">

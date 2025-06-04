@@ -29,6 +29,11 @@
             | 88888888 | Marisa      | Balaguer   | 36A      | ASUNTOS PARTICULARES          | 2023-03-04 | 2023-03-04 | 500    | NO se otorga Licencia artículo 36A a Marisa Balaguer debido a que el agente no tiene designación ese día en la institución |
             | 20200200 | Susana      | Álvarez    | 5A       | ENFERMEDAD DE CORTA EVOLUCIÓN | 2023-05-12 | 2023-05-30 | 200    | Se otorga Licencia artículo 5A a Susana Álvarez                                                                            |
             | 20000000 | Rosalía     | Fernandez  | 5A       | ENFERMEDAD DE CORTA EVOLUCIÓN | 2023-07-05 | 2023-07-15 | 200    | Se otorga Licencia artículo 5A a Rosalía Fernandez                                                                         |
+            | 88100000 | Raúl        | Orellanos  | 5A       | ENFERMEDAD DE CORTA EVOLUCIÓN | 2024-05-07 | 2024-05-15 | 200    | Se otorga Licencia artículo 5A a Raúl Orellanos                                                                            |
+            | 88200000 | Matías      | Barto      | 5A       | ENFERMEDAD DE CORTA EVOLUCIÓN | 2024-05-10 | 2024-05-15 | 200    | Se otorga Licencia artículo 5A a Matías Barto                                                                              |
+            | 88300000 | Andrea      | Sosa       | 5A       | ENFERMEDAD DE CORTA EVOLUCIÓN | 2024-05-30 | 2024-06-17 | 200    | Se otorga Licencia artículo 5A a Andrea Sosa                                                                               |
+            | 88400000 | Laura       | Barrientos | 23A      | ATENCIÓN DE UN MIEMBRO DEL GF | 2024-05-08 | 2024-05-16 | 200    | Se otorga Licencia artículo 23A a Laura Barrientos                                                                         |
+            | 88500000 | Natalia     | Zabala     | 23A      | ATENCIÓN DE UN MIEMBRO DEL GF | 2024-05-13 | 2024-05-22 | 200    | Se otorga Licencia artículo 23A a Natalia Zabala                                                                           |
 
             Escenario: 1 persona en instancias de designación de cargo que cubre una licencia de otra persona en la misma designación. Infomar que está correcto y que reemplaza al docente que solicitó licencia.
             Dado que existe la persona

@@ -29,4 +29,19 @@ public interface CargoRepository extends CrudRepository<Cargo, Integer>, PagingA
 
     Cargo findByNombreIgnoreCaseAndTipoDesignacion(String nombre, TipoDesignacion tipo);
 
+    @Query("""
+                SELECT c FROM Cargo c
+                WHERE UPPER(c.nombre) = UPPER(:nombre)
+                  AND c.tipoDesignacion = :tipo
+                  AND c.division.anio = :anio
+                  AND c.division.numDivision = :numero
+                  AND c.division.turno = :turno
+            """)
+    Cargo findByNombreTipoDivision(
+            @Param("nombre") String nombre,
+            @Param("tipo") TipoDesignacion tipo,
+            @Param("anio") int anio,
+            @Param("numero") int numero,
+            @Param("turno") unpsjb.labprog.backend.model.Turno turno);
+
 }

@@ -8,7 +8,6 @@
     box-shadow: 0 8px 40px rgba(0, 0, 0, 0.10);
     padding: 0;
     margin-bottom: 2rem;
-    animation: fadeInUp 0.7s cubic-bezier(.4, 2, .6, 1);
     overflow: hidden;
 }
 
@@ -236,18 +235,6 @@
     }
 }
 
-/* Animación de entrada para la tabla */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(40px) scale(0.98);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
 
 /* Botón Agregar persona */
 .btn-add {

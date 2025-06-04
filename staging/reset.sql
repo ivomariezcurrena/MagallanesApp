@@ -9,9 +9,6 @@ TRUNCATE TABLE cargo RESTART IDENTITY CASCADE;
 
 TRUNCATE TABLE division RESTART IDENTITY CASCADE;
 
-<<<<<<< HEAD
 TRUNCATE TABLE log RESTART IDENTITY CASCADE;
 
-=======
->>>>>>> refs/remotes/origin/main
 -- Agrega aquí otras tablas si tienes más en tu modelo

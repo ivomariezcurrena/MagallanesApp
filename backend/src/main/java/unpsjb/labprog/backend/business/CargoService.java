@@ -14,6 +14,7 @@ import unpsjb.labprog.backend.business.utils.MensajeFormateador;
 import unpsjb.labprog.backend.business.utils.Validador;
 import unpsjb.labprog.backend.model.Cargo;
 import unpsjb.labprog.backend.model.TipoDesignacion;
+import unpsjb.labprog.backend.model.Turno;
 import unpsjb.labprog.backend.utils.StringNormalizer;
 
 @Service
@@ -67,6 +68,11 @@ public class CargoService {
 
     public Cargo buscarPorNombreYTipo(String nombre, TipoDesignacion tipo) {
         return repository.findByNombreIgnoreCaseAndTipoDesignacion(nombre, tipo);
+    }
+
+    public Cargo buscarPorNombreTipoDivision(String nombre, TipoDesignacion tipo, int anio, int numero,
+            Turno turno) {
+        return repository.findByNombreTipoDivision(nombre, tipo, anio, numero, turno);
     }
 
     // MENSAJES

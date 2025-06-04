@@ -72,4 +72,22 @@ export class PartediarioComponent {
       this.getLicencias();
     }
   }
+  abrirModalSuplente(licencia: Licencia) {
+    this.licenciaService.getPrimerSuplenteDeLicencia(licencia.id).subscribe(dataPackage => {
+      const suplente = dataPackage.data as any;
+      if (!suplente) {
+        this.modalService.confirm(
+          'Sin suplente',
+          'Esta licencia no tiene suplente asignado.',
+          ''
+        );
+      } else {
+        this.modalService.confirm(
+          'Suplente asignado',
+          `Suplente: ${suplente.persona?.nombre} ${suplente.persona?.apellido}`,
+          `Está suplantando a: ${licencia.persona?.nombre} ${licencia.persona?.apellido}`
+        );
+      }
+    });
+  }
 }
