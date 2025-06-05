@@ -30,22 +30,29 @@ public class ValidarLicencia {
     ArticuloLicenciaRepository articuloLicenciaRepository;
 
     @Autowired
-    MensajeFormateador mensajeFormateador;
-
-    @Autowired
     @Lazy
     DesignacionRepository designacionRepository;
 
+    private final List<Validable> workflowValidaciones;
+
     @Autowired
-    ReglaValidacionFactory reglaValidacionFactory;
+    public void setPluginDependencies(
+            LicenciaRepository licenciaRepository,
+            MensajeFormateador mensajeFormateador) {
+        PluginDependencies.licenciaRepository = licenciaRepository;
+        PluginDependencies.mensajeFormateador = mensajeFormateador;
+    }
+
+    public ValidarLicencia() {
+        this.workflowValidaciones = PluginManager.cargarPlugins();
+    }
 
     public void validar(Licencia licencia) {
         cargarEntidades(licencia);
-        validarFechasNoNulasYOrden(licencia);
         cargarDesignaciones(licencia);
-        validarDesignaciones(licencia);
-        validarFechasSuperpuestas(licencia);
-        validarReglaArticulo(licencia);
+        for (Validable validacion : workflowValidaciones) {
+            validacion.validar(licencia);
+        }
     }
 
     private void cargarEntidades(Licencia licencia) {
@@ -58,18 +65,6 @@ public class ValidarLicencia {
         }
     }
 
-    private void validarFechasNoNulasYOrden(Licencia licencia) {
-        if (licencia.getPedidoDesde() == null) {
-            throw new IllegalArgumentException("La fecha desde no puede ser nula");
-        }
-        if (licencia.getPedidoHasta() == null) {
-            throw new IllegalArgumentException("La fecha hasta no puede ser nula");
-        }
-        if (licencia.getPedidoDesde().isAfter(licencia.getPedidoHasta())) {
-            throw new IllegalArgumentException("La fecha desde no puede ser posterior a la fecha hasta");
-        }
-    }
-
     private void cargarDesignaciones(Licencia licencia) {
         if (licencia.getPersona() != null && licencia.getPedidoDesde() != null && licencia.getPedidoHasta() != null) {
             List<Designacion> designaciones = designacionRepository.findDesignacionesActivasEnPeriodo(
@@ -77,53 +72,6 @@ public class ValidarLicencia {
                     licencia.getPedidoDesde(),
                     licencia.getPedidoHasta());
             licencia.setDesignaciones(designaciones);
-        }
-    }
-
-    private void validarDesignaciones(Licencia licencia) {
-        if (licencia.getPersona() == null || licencia.getPersona().getDesignaciones() == null
-                || licencia.getPersona().getDesignaciones().isEmpty()) {
-            String mensaje = mensajeFormateador.getErrorLicenciaSinCargo(licencia);
-            licencia.setEstado(Estado.Invalido);
-            AgregarLog.agregarLog(licencia, mensaje, 500);
-            return;
-        }
-        boolean tieneDesignacionEseDia = licencia.getPersona().getDesignaciones().stream().anyMatch(designacion -> {
-            return (designacion.getFechaInicio() == null
-                    || !licencia.getPedidoHasta().isBefore(designacion.getFechaInicio()))
-                    && (designacion.getFechaFin() == null
-                            || !licencia.getPedidoDesde().isAfter(designacion.getFechaFin()));
-        });
-        if (!tieneDesignacionEseDia) {
-            String mensaje = mensajeFormateador.getErrorLicenciaSinDesignacionEseDia(licencia);
-            licencia.setEstado(Estado.Invalido);
-            AgregarLog.agregarLog(licencia, mensaje, 500);
-            return;
-        }
-    }
-
-    private void validarFechasSuperpuestas(Licencia licencia) {
-        List<Licencia> superpuestas = licenciaRepository.verificarFechas(
-                licencia.getPersona().getDni(),
-                licencia.getArticulo(),
-                licencia.getPedidoDesde(),
-                licencia.getPedidoHasta(),
-                licencia.getId() == 0 ? -1 : licencia.getId());
-        if (!superpuestas.isEmpty()) {
-            String mensaje = mensajeFormateador.getErrorLicenciaSuperposicion(licencia);
-            licencia.setEstado(Estado.Invalido);
-            AgregarLog.agregarLog(licencia, mensaje, 500);
-            return;
-        }
-    }
-
-    private void validarReglaArticulo(Licencia licencia) {
-        Validable regla = reglaValidacionFactory.getRegla(licencia.getArticulo().getArticulo());
-        if (regla != null) {
-            regla.validar(licencia);
-        } else {
-            throw new IllegalArgumentException(
-                    "No se encontró una regla de validación para el artículo: " + licencia.getArticulo().getArticulo());
         }
     }
 

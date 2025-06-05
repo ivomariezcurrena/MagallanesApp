@@ -2,34 +2,23 @@ package unpsjb.labprog.backend.business.utils.vlicencias;
 
 import java.time.temporal.ChronoUnit;
 import java.util.List;
-
-import unpsjb.labprog.backend.business.LicenciaRepository;
-import unpsjb.labprog.backend.business.utils.MensajeFormateador;
 import unpsjb.labprog.backend.model.Estado;
 import unpsjb.labprog.backend.model.Licencia;
-import unpsjb.labprog.backend.model.Log;
 
-public class Validacion2 implements Validable {
+public class Validacion36A implements Validable {
 
-    private final LicenciaRepository licenciaRepository;
-    private final MensajeFormateador mensajeFormateador;
-    private final int topeMes;
-    private final int topeAnio;
-
-    public Validacion2(LicenciaRepository licenciaRepository, MensajeFormateador mensajeFormateador,
-            int topeMes, int topeAnio) {
-        this.licenciaRepository = licenciaRepository;
-        this.mensajeFormateador = mensajeFormateador;
-        this.topeMes = topeMes;
-        this.topeAnio = topeAnio;
-    }
+    private final int topeMes = 2;
+    private final int topeAnio = 6;
 
     @Override
     public void validar(Licencia licencia) {
+        if (!"36A".equals(licencia.getArticulo().getArticulo())) {
+            return; // Solo aplica para el artículo 36A
+        }
         int anio = licencia.getPedidoDesde().getYear();
         int mes = licencia.getPedidoDesde().getMonthValue();
 
-        List<Licencia> licenciasAnio = licenciaRepository.findAllByPersonaAndArticuloAndAnio(
+        List<Licencia> licenciasAnio = PluginDependencies.licenciaRepository.findAllByPersonaAndArticuloAndAnio(
                 licencia.getPersona().getDni(),
                 licencia.getArticulo().getId(),
                 anio);
@@ -67,9 +56,7 @@ public class Validacion2 implements Validable {
 
         // Control anual
         if (diasUsadosAnio + diasActual > topeAnio) {
-            // throw new IllegalArgumentException(
-            // mensajeFormateador.getErrorLicenciaTopeDias36AAnual(licencia, topeAnio));
-            String mensaje = mensajeFormateador.getErrorLicenciaTopeDias36AAnual(licencia, topeAnio);
+            String mensaje = PluginDependencies.mensajeFormateador.getErrorLicenciaTopeDias36AAnual(licencia, topeAnio);
             licencia.setEstado(Estado.Invalido);
             AgregarLog.agregarLog(licencia, mensaje, 500);
             return;
@@ -77,15 +64,13 @@ public class Validacion2 implements Validable {
 
         // Control mensual
         if (diasUsadosMes + diasActual > topeMes) {
-            // throw new IllegalArgumentException(
-            // mensajeFormateador.getErrorLicenciaTopeDias(licencia, topeMes));
-            String mensaje = mensajeFormateador.getErrorLicenciaTopeDias(licencia, topeMes);
+            String mensaje = PluginDependencies.mensajeFormateador.getErrorLicenciaTopeDias(licencia, topeMes);
             licencia.setEstado(Estado.Invalido);
             AgregarLog.agregarLog(licencia, mensaje, 500);
             return;
         }
         if (licencia.getEstado() != Estado.Invalido) {
-            String mensaje = mensajeFormateador.getMensajeLicenciaOtorgada(licencia);
+            String mensaje = PluginDependencies.mensajeFormateador.getMensajeLicenciaOtorgada(licencia);
             licencia.setEstado(Estado.Valido);
             AgregarLog.agregarLog(licencia, mensaje, 200);
         }
