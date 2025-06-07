@@ -1,9 +1,6 @@
 package unpsjb.labprog.backend.presenter;
 
 import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +18,6 @@ import unpsjb.labprog.backend.business.LicenciaService;
 import unpsjb.labprog.backend.business.utils.vlicencias.AgregarLog;
 import unpsjb.labprog.backend.model.Estado;
 import unpsjb.labprog.backend.model.Licencia;
-import unpsjb.labprog.backend.model.Log;
 
 @RestController
 @RequestMapping("licencias")
