@@ -124,4 +124,54 @@ public class LicenciaPresenter {
     public ResponseEntity<Object> getPrimerSuplenteDeLicencia(@PathVariable("id") int id) {
         return Response.ok(service.findDesignacionSuplente(id));
     }
+
+    @GetMapping("/anio")
+    public ResponseEntity<Object> findAllByAAnio(
+            @RequestParam("anio") String fechaDesde,
+            @RequestParam("page") int page,
+            @RequestParam("size") int size) {
+        // Aquí parseas la fecha y llamas al servicio
+        // Ejemplo:
+        try {
+            LocalDateTime fecha = LocalDateTime.parse(fechaDesde);
+            return Response.ok(service.findAllAnio(fecha, page, size));
+        } catch (Exception e) {
+            return Response.internalServerError(null, "Formato de fecha inválido. Use yyyy-MM-ddTHH:mm:ss");
+        }
+    }
+
+    @RequestMapping(value = "/reporte-concepto", method = RequestMethod.GET)
+    public ResponseEntity<Object> reporteConcepto(
+            @RequestParam("anio") String fechaDesde,
+            @RequestParam("page") int page,
+            @RequestParam("size") int size) {
+        try {
+            LocalDateTime fecha = LocalDateTime.parse(fechaDesde);
+            return Response.ok(service.reporteDeConcepto(fecha, page, size));
+        } catch (Exception e) {
+            return Response.internalServerError(null, "Error al generar el reporte de concepto: " + e.getMessage());
+        }
+    }
+
+    @RequestMapping(value = "/validas", method = RequestMethod.GET)
+    public ResponseEntity<Object> getLicenciasValidas(
+            @RequestParam("anio") String anio) {
+        try {
+            int aAnio = Integer.parseInt(anio.substring(0, 4));
+            return Response.ok(service.getValidas(aAnio));
+        } catch (Exception e) {
+            return Response.internalServerError(null, "Error al obtener las licencias validas: " + e.getMessage());
+        }
+    }
+
+    @RequestMapping(value = "/invalidas", method = RequestMethod.GET)
+    public ResponseEntity<Object> getLicenciasInvalidas(
+            @RequestParam("anio") String anio) {
+        try {
+            int aAnio = Integer.parseInt(anio.substring(0, 4));
+            return Response.ok(service.getInvalidas(aAnio));
+        } catch (Exception e) {
+            return Response.internalServerError(null, "Error al obtener las licencias inválidas: " + e.getMessage());
+        }
+    }
 }

@@ -1,5 +1,6 @@
 package unpsjb.labprog.backend.business;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +17,8 @@ import unpsjb.labprog.backend.business.utils.MensajeFormateador;
 import unpsjb.labprog.backend.business.utils.Validador;
 import unpsjb.labprog.backend.model.Designacion;
 import unpsjb.labprog.backend.model.Licencia;
+import unpsjb.labprog.backend.model.Persona;
+import unpsjb.labprog.backend.utils.ReportePersona;
 
 @Service
 public class LicenciaService {
@@ -30,6 +34,10 @@ public class LicenciaService {
     @Autowired
     @Lazy
     DesignacionRepository designacionRepository;
+
+    @Autowired
+    @Lazy
+    PersonaRepository personaRepository;
 
     public List<Licencia> findAll() {
         List<Licencia> result = new ArrayList<>();
@@ -121,4 +129,83 @@ public class LicenciaService {
                 licencia.getPedidoHasta(),
                 designacionOriginal.getId());
     }
+
+    public Page<Licencia> findAllAnio(LocalDateTime fechaDesde, int page, int size) {
+        LocalDateTime inicioAnio = fechaDesde.withDayOfYear(1).withHour(0).withMinute(0).withSecond(0).withNano(0);
+        LocalDateTime inicioSiguienteAnio = inicioAnio.plusYears(1);
+        return repository.findAllAnio(inicioAnio, inicioSiguienteAnio, PageRequest.of(page, size));
+    }
+
+    public List<Licencia> getValidas(int anio) {
+        return repository.getValidas(anio);
+    }
+
+    public List<Licencia> getInvalidas(int anio) {
+        return repository.getInvalidas(anio);
+    }
+
+    public Page<ReportePersona> reporteDeConcepto(LocalDateTime fechaDesde, int page, int size) {
+        int anio = fechaDesde.getYear();
+        // busco las personas que tuvieron una designacion ese año
+        List<Integer> personas = designacionRepository.findPersonasConDesignacionEnAnio(anio);
+
+        List<ReportePersona> reporte = new ArrayList<>();
+
+        for (Integer dni : personas) {
+            // busca las licencias de la persona en el año
+            List<Licencia> licencias = repository.findAllByPersonaAndAnio(dni, anio);
+            ReportePersona aReporte = new ReportePersona();
+            aReporte.id = dni;
+
+            // buscamos la persona ya que puede o no tener lciencia
+            Persona persona = personaRepository.findById(dni).orElse(null);
+            aReporte.nombre = persona.getNombre();
+            aReporte.apellido = persona.getApellido();
+
+            // cantidad de licencias que se tomo
+            aReporte.cantidadLicencias = licencias.size();
+
+            // calcular total de dias de licencia
+            int totalDiasLicencia = 0;
+            for (Licencia licencia : licencias) {
+                LocalDate desde = licencia.getPedidoDesde().toLocalDate();
+                LocalDate hasta = licencia.getPedidoHasta().toLocalDate();
+                // Limitar los días al año consultado
+                LocalDate desdeA = desde.isBefore(LocalDate.of(anio, 1, 1)) ? LocalDate.of(anio, 1, 1) : desde;
+                LocalDate hastaA = hasta.isAfter(LocalDate.of(anio, 12, 31)) ? LocalDate.of(anio, 12, 31) : hasta;
+                int dias = (int) (hastaA.toEpochDay() - desdeA.toEpochDay()) + 1;
+                totalDiasLicencia += Math.max(dias, 0);
+            }
+            aReporte.totalDias = totalDiasLicencia;
+
+            // buscar la designacion de la persona
+            List<Designacion> designaciones = designacionRepository.findDesignacionesActivasEnPeriodo(
+                    dni,
+                    LocalDateTime.of(anio, 1, 1, 0, 0),
+                    LocalDateTime.of(anio, 12, 31, 23, 59));
+
+            int diasTrabajados = 0;
+            for (Designacion aDesignacion : designaciones) {
+                LocalDate desde = aDesignacion.getFechaInicio().toLocalDate();
+                LocalDate hasta = aDesignacion.getFechaFin() != null ? aDesignacion.getFechaFin().toLocalDate()
+                        : LocalDate.of(anio, 12, 31);
+                LocalDate desdeA = desde.isBefore(LocalDate.of(anio, 1, 1)) ? LocalDate.of(anio, 1, 1) : desde;
+                LocalDate hastaA = hasta.isAfter(LocalDate.of(anio, 12, 31)) ? LocalDate.of(anio, 12, 31) : hasta;
+                // calcula la cantidad de dias de esa designacion dentro del año:
+                int dias = (int) (hastaA.toEpochDay() - desdeA.toEpochDay()) + 1;
+                // suma al total de dias trabajados
+                diasTrabajados += Math.max(dias, 0);
+            }
+
+            int diasDePresencia = diasTrabajados - aReporte.totalDias;
+            aReporte.porcentajePresencia = diasTrabajados > 0 ? Math.round((diasDePresencia * 100f) / diasTrabajados)
+                    : 0;
+            reporte.add(aReporte);
+        }
+        int start = page * size;
+        int end = Math.min(start + size, reporte.size());
+        List<ReportePersona> pageContent = start < end ? reporte.subList(start, end) : new ArrayList<>();
+        return new PageImpl<>(pageContent, PageRequest.of(page, size), reporte.size());
+    }
+
 }

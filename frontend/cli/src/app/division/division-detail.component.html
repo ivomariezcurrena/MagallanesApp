@@ -6,96 +6,94 @@
 
     <div class="row justify-content-center g-4">
         <div class="d-flex justify-content-center mb-4">
-            <h1 class="mb-0"><strong>{{ isNew ? 'Agregar División' : 'Editar División' }}</strong></h1>
+            <h2 class="mb-0"><strong>{{ isNew ? 'Agregar División' : 'Editar División' }}</strong></h2>
         </div>
-        <form #form="ngForm" class="row g-3" (ngSubmit)="save()" novalidate>
-            <!-- Columna izquierda -->
-            <div class="col-md-6">
-                <!-- Año -->
-                <div class="form-group mt-3">
-                    <label for="anio" class="form-label fw-semibold">Año</label>
-                    <input
-                        type="number"
-                        class="form-control"
-                        id="anio"
-                        [(ngModel)]="division.anio"
-                        name="anio"
-                        required
-                        [ngClass]="{'is-invalid': form.submitted && !division.anio}"
-                    >
-                    <div *ngIf="form.submitted && !division.anio" class="invalid-feedback">
-                        El año es obligatorio.
+        <form #form="ngForm" (ngSubmit)="save()" novalidate>
+            <div class="row">
+                <!-- Columna izquierda -->
+                <div class="col-md-6 d-flex flex-column gap-3">
+                    <!-- Año -->
+                    <div class="form-group position-relative">
+                        <label for="anio" class="form-label fw-semibold">Año</label>
+                        <input
+                            type="number"
+                            class="form-control"
+                            id="anio"
+                            [(ngModel)]="division.anio"
+                            name="anio"
+                            required
+                            [ngClass]="{'is-invalid': form.submitted && !division.anio}"
+                        >
+                        <div *ngIf="form.submitted && !division.anio" class="invalid-feedback">
+                            El año es obligatorio.
+                        </div>
+                    </div>
+                    <!-- Turno -->
+                    <div class="form-group position-relative">
+                        <label for="turno" class="form-label fw-semibold">Turno</label>
+                        <select
+                            class="form-select"
+                            id="turno"
+                            [(ngModel)]="division.turno"
+                            name="turno"
+                            required
+                            [ngClass]="{'is-invalid': form.submitted && !division.turno}"
+                        >
+                            <option value="" disabled>Seleccionar</option>
+                            <option value="Mañana">Mañana</option>
+                            <option value="Tarde">Tarde</option>
+                            <option value="Vespertino">Vespertino</option>
+                            <option value="Noche">Noche</option>
+                        </select>
+                        <div *ngIf="form.submitted && !division.turno" class="invalid-feedback">
+                            El turno es obligatorio.
+                        </div>
                     </div>
                 </div>
-
-                <!-- Turno -->
-                <div class="form-group mt-3">
-                    <label for="turno" class="form-label fw-semibold">Turno</label>
-                    <select
-                        class="form-select"
-                        id="turno"
-                        [(ngModel)]="division.turno"
-                        name="turno"
-                        required
-                        [ngClass]="{'is-invalid': form.submitted && !division.turno}"
-                    >
-                        <option value="" disabled>Seleccionar</option>
-                        <option value="Mañana">Mañana</option>
-                        <option value="Tarde">Tarde</option>
-                        <option value="Vespertino">Vespertino</option>
-                        <option value="Noche">Noche</option>
-                    </select>
-                    <div *ngIf="form.submitted && !division.turno" class="invalid-feedback">
-                        El turno es obligatorio.
+                <!-- Columna derecha -->
+                <div class="col-md-6 d-flex flex-column gap-3">
+                    <!-- N° división -->
+                    <div class="form-group position-relative">
+                        <label for="numDivision" class="form-label fw-semibold">N° división</label>
+                        <input
+                            type="number"
+                            class="form-control"
+                            id="numDivision"
+                            [(ngModel)]="division.numDivision"
+                            name="numDivision"
+                            required
+                            [ngClass]="{'is-invalid': form.submitted && !division.numDivision}"
+                        >
+                        <div *ngIf="form.submitted && !division.numDivision" class="invalid-feedback">
+                            El número de división es obligatorio.
+                        </div>
+                    </div>
+                    <!-- Orientación -->
+                    <div class="form-group position-relative">
+                        <label for="orientacion" class="form-label fw-semibold">Orientación</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="orientacion"
+                            [(ngModel)]="division.orientacion"
+                            name="orientacion"
+                            placeholder="Ej: Biología"
+                            required
+                            [ngClass]="{'is-invalid': form.submitted && !division.orientacion}"
+                        >
+                        <div *ngIf="form.submitted && !division.orientacion" class="invalid-feedback">
+                            La orientación es obligatoria.
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Columna derecha -->
-            <div class="col-md-6">
-                <!-- N° división -->
-                <div class="form-group mt-3">
-                    <label for="numDivision" class="form-label fw-semibold">N° división</label>
-                    <input
-                        type="number"
-                        class="form-control"
-                        id="numDivision"
-                        [(ngModel)]="division.numDivision"
-                        name="numDivision"
-                        required
-                        [ngClass]="{'is-invalid': form.submitted && !division.numDivision}"
-                    >
-                    <div *ngIf="form.submitted && !division.numDivision" class="invalid-feedback">
-                        El número de división es obligatorio.
-                    </div>
-                </div>
-
-                <!-- Orientación -->
-                <div class="form-group mt-3">
-                    <label for="orientacion" class="form-label fw-semibold">Orientación</label>
-                    <input
-                        type="text"
-                        class="form-control"
-                        id="orientacion"
-                        [(ngModel)]="division.orientacion"
-                        name="orientacion"
-                        placeholder="Ej: Biología"
-                        required
-                        [ngClass]="{'is-invalid': form.submitted && !division.orientacion}"
-                    >
-                    <div *ngIf="form.submitted && !division.orientacion" class="invalid-feedback">
-                        La orientación es obligatoria.
-                    </div>
-                </div>
-            </div>
-
             <!-- Botones -->
-            <div class="col-12 d-flex justify-content-between mt-4">
-                <button type="button" class="btn btn-outline-danger" (click)="goBack()">
-                    <i class="bi bi-x-circle"></i> Cancelar
+            <div class="d-flex justify-content-between mt-4">
+                <button type="button" class="btn btn-clear" (click)="goBack()">
+                    <i class="fa fa-times"></i> Cancelar
                 </button>
-                <button type="submit" class="btn btn-success" [disabled]="form.invalid">
-                    <i class="bi bi-check-circle"></i> Guardar
+                <button type="submit" class="btn btn-add" [disabled]="form.invalid">
+                    <i class="fa fa-check"></i> Guardar
                 </button>
             </div>
         </form>

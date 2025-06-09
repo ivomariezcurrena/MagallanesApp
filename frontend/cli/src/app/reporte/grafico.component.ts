@@ -18,17 +18,17 @@ export class GraficoComponent implements OnInit {
       type: 'doughnut',
       data: {
         labels: [
-          'Sin suplente',
-          'Con suplente',
+          '5A',
+          '26A',
           'Normal'
         ],
         datasets: [{
           label: 'Cantidad',
           data: [300, 50, 100],
           backgroundColor: [
-            '#dc3545',
-            '#198754',
-            '#36393b'
+            '#BFAFF2',
+            '#F8D57E',
+            '#2B2B2B'
           ],
           hoverOffset: 4
         }]

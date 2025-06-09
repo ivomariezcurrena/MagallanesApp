@@ -170,11 +170,11 @@
 
             <!-- Botones -->
             <div class="col-12 d-flex justify-content-between mt-4">
-                <button type="button" class="btn btn-outline-danger" (click)="goBack()" [disabled]="loading">
-                    <i class="bi bi-x-circle"></i> Cancelar
+                <button type="button" class="btn btn-clear" (click)="goBack()" [disabled]="loading">
+                    <i class="fa fa-times"></i> Cancelar
                 </button>
-                <button type="submit" class="btn btn-success" [disabled]="form.invalid || loading">
-                    <i class="bi bi-check-circle"></i> Guardar
+                <button type="submit" class="btn btn-add" [disabled]="form.invalid || loading">
+                    <i class="fa fa-check"></i> Guardar
                 </button>
             </div>
         </form>

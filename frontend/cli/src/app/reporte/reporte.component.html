@@ -1,0 +1,107 @@
+<div class="container">
+<h1 class="text-center">Reporte de Concepto</h1>
+<div class="buscador">
+  <p class="buscador-label">Seleccione un año</p>
+  <div class="buscador-input-group">
+    <span class="buscador-icon">
+      <svg width="22" height="22" fill="none" stroke="#b197fc" stroke-width="2" viewBox="0 0 24 24">
+        <rect x="3" y="5" width="18" height="16" rx="3" fill="#f4f4f4"/>
+        <path d="M16 3v4M8 3v4M3 9h18" stroke="#b197fc" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </span>
+    <input
+      id="anio"
+      type="number"
+      class="control-año buscador-input"
+      placeholder="Año"
+      [(ngModel)]="fechaDesde"
+      (keyup.enter)="buscar()"
+    />
+  </div>
+</div>
+<div class="tarjetas">
+  <div class="tarjeta">
+    <div class="tarjeta-header">
+      <h5>Licencias totales</h5>
+    </div>
+    <div class="tarjeta-body">
+      <p class="tarjeta-text">{{ resultsPage.totalElements }}</p>
+    </div>
+  </div>
+  <div class="tarjeta">
+    <div class="tarjeta-header">
+      <h5>Valdias</h5>
+    </div>
+    <div class="tarjeta-body">
+      <p class="tarjeta-text">{{ totalLicenciasValidas }}</p>
+    </div>
+  </div>
+  <div class="tarjeta">
+    <div class="tarjeta-header">
+      <h5>Invaldias</h5>
+    </div>
+    <div class="tarjeta-body">
+      <p class="tarjeta-text">{{ totalLicenciasInvalidas }}</p>
+    </div>
+  </div>
+</div>
+
+<div class="estadisticas">
+ <div class="grafico-dona">
+  <app-grafico></app-grafico>
+ </div>
+ <div class="grafico-barras">
+
+ </div>
+</div>
+<div class="table-responsive">
+    <table class="penguin-table">
+        <thead>
+            <tr>
+                <th>N°</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Licencias</th>
+                <th>Total de días</th>
+                <th>% Presencia</th>
+                <th>Detalle</th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let persona of reportePersonas; index as i">
+            <td>{{ i + 1 }}</td>
+            <td>{{ persona.nombre }}</td>
+            <td>{{ persona.apellido }}</td>
+            <td>{{ persona.cantidadLicencias }}</td>
+            <td>{{ persona.totalDias }}</td>
+            <td>{{ persona.porcentajePresencia }}%</td>
+            <td>
+              <a [routerLink]="['/reporte/dni']">
+                <button class="btn btn-penguin" title="Ver Detalle">
+                  <i class="fa fa-eye"></i>
+                </button>
+              </a>
+            </td>
+          </tr>
+          <tr *ngIf="reportePersonas.length === 0">
+            <td colspan="6">No hay coincidencias</td>
+          </tr>
+        </tbody>
+    </table>
+</div>
+<div class="d-flex justify-content-center mt-3" *ngIf="resultsPage.numberOfElements > 0">
+    <app-pagination [totalPages]="resultsPage.totalPages" [currentPage]="currentPage"
+        (pageChangesRequested)="onPageChangeRequested($event)" [number]="resultsPage.number"
+        [hidden]="resultsPage.numberOfElements<1">
+    </app-pagination>
+</div>
+
+<div class="export-buttons">
+    <button class="btn-export" (click)="exportarExcel()" title="Exportar a Excel">
+        <i class="fa fa-file-excel-o"></i> Exportar a Excel
+    </button>
+    <button class="btn-export" (click)="exportarPDF()" title="Exportar a PDF">
+        <i class="fa fa-file-pdf-o"></i> Exportar a PDF
+    </button>
+</div>
+</div>

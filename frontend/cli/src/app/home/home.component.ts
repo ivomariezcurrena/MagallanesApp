@@ -1,18 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, RouterOutlet } from '@angular/router';
-import { GraficoComponent } from "./grafico.component";
-import { PartediarioComponent } from "../licencia/partediario.component";
 import { LicenciaService } from '../licencia/licencia.service';
-import { FullCalendarModule } from '@fullcalendar/angular';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import interactionPlugin from '@fullcalendar/interaction';
 import { CalendarComponent } from "./calendar.component";
 // Asegúrate de importar el servicio
 
 @Component({
     selector: 'app-home',
-    imports: [CommonModule, RouterOutlet, GraficoComponent, RouterModule, PartediarioComponent, CalendarComponent],
+    imports: [CommonModule, RouterModule, CalendarComponent],
     templateUrl: `home.component.html`,
     styleUrl: `home.component.css`,
 })

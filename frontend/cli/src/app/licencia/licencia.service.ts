@@ -69,4 +69,41 @@ export class LicenciaService {
   getPrimerSuplenteDeLicencia(id: number): Observable<DataPackage> {
     return this.http.get<DataPackage>(`${this.licenciasUrl}/${id}/suplente`);
   }
+
+  byAño(anio: string, page: number, size: number): Observable<DataPackage> {
+    // Asegura el formato yyyy-MM-ddTHH:mm:ss
+    const fecha = `${anio}-01-01T00:00:00`;
+    return this.http.get<DataPackage>(`${this.licenciasUrl}/anio`, {
+      params: {
+        anio: fecha,
+        page: (page - 1).toString(),
+        size: size.toString()
+      }
+    });
+  }
+
+  
+  reporteConcepto(anio: string, page: number, size: number): Observable<DataPackage> {
+    const fecha = `${anio}-01-01T00:00:00`;
+    return this.http.get<DataPackage>(`${this.licenciasUrl}/reporte-concepto`, {
+      params: {
+        anio: fecha,
+        page: (page - 1).toString(),
+        size: size.toString()
+      }
+    });
+  }
+
+  getValidas(anio: string): Observable<DataPackage>{
+    return this.http.get<DataPackage>(`${this.licenciasUrl}/validas`, {
+      params: { anio }
+    });
+  }
+  getInvalidas(anio: string): Observable<DataPackage>{
+    return this.http.get<DataPackage>(`${this.licenciasUrl}/invalidas`, {
+      params: { anio }
+    });
+  }
 }
+
+

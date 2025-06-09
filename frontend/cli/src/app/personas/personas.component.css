@@ -1,319 +1,210 @@
-/* Encabezado */
+/* General */
+body {
+    background: var(--blanco);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
-/* --- Tabla más limpia y moderna --- */
+/* Título */
+h1 {
+    color: var(--grey);
+    font-size: 2.7rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    margin-top: 5rem; /* Más espacio para separar de la nav */
+}
 
-.table-responsive {
-    border-radius: 1.5rem;
-    background: #fff;
-    box-shadow: 0 8px 40px rgba(0,0,0,0.10);
+/* Toolbar */
+.personas-toolbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.8rem;
+}
+
+.btn.btn-add {
+    background-color: var(--amarillo);
+    color: var(--grey);
+    font-weight: 600;
+    padding: 0.6rem 1.3rem;
+    border-radius: 12px;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Input y botones */
+.form-control {
+    width: 280px;
+    padding: 0.55rem 1rem;
+    border-radius: 10px;
+    font-size: 1rem;
+}
+
+.btn.btn-search,
+.btn.btn-clear {
+    padding: 0.55rem 0.85rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn.btn-search {
+    background-color: var(--violeta);
+    color: var(--blanco);
+    border: none;
+    font-size: 1.25rem;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: 0 1px 2px rgba(44,44,44,0.04);
+    transition: background 0.18s, box-shadow 0.18s;
     padding: 0;
+    margin-right: 0.2rem;
+}
+.btn.btn-search:hover {
+    background-color: #a185d1;
+    box-shadow: 0 2px 6px rgba(44,44,44,0.10);
+}
+
+.btn.btn-clear {
+    color: var(--violeta);
+    background: #fff;
+    border: 2px solid var(--violeta);
+    box-shadow: 0 1px 2px rgba(44,44,44,0.04);
+    font-size: 1.25rem;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    transition: border-color 0.18s, box-shadow 0.18s, background 0.18s, color 0.18s;
+    padding: 0;
+}
+.btn.btn-clear:hover {
+    border-color: #a185d1;
+    background: #f6f3ff;
+    color: var(--violeta); /* Mantiene el color violeta en hover */
+    box-shadow: 0 2px 6px rgba(44,44,44,0.10);
+}
+
+/* Tabla */
+.table-responsive {
+    overflow-x: auto;
+    max-width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(44,44,44,0.10); /* Sombra agregada */
+    background: transparent;
     margin-bottom: 2rem;
-    animation: fadeInUp 0.7s cubic-bezier(.4,2,.6,1);
-    overflow: hidden;
 }
 
 .penguin-table {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
-    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
 }
 
-.penguin-table th {
-    background: #36393b;
-    color: #ffffff;
-    font-size: 1.08rem;
-    font-weight: 700;
-    border: none;
-    padding: 1.05rem 1.1rem;
-    text-align: center;
-    letter-spacing: 0.5px;
-    border-bottom: 1.5px solid #ececec;
-    transition: background 0.22s;
+.penguin-table thead {
+    background-color: var(--grey);
+    color: var(--blanco);
 }
 
-.penguin-table th:first-child {
-    border-top-left-radius: 1.1rem;
-}
-.penguin-table th:last-child {
-    border-top-right-radius: 1.1rem;
-}
-
+.penguin-table th,
 .penguin-table td {
-    color: #36393b;
-    font-size: 1.04rem;
-    background: #fff;
-    border: none;
-    border-bottom: 1.5px solid #f2f2f2;
+    padding: 1rem 1.2rem;
+    text-align: left;
+}
+
+
+
+.penguin-table tr:hover td {
+    background-color: #f7f7f7;
+    transition: background-color 0.2s;
+}
+
+.penguin-table td:last-child {
     text-align: center;
-    padding: 1rem 1.1rem;
-    transition: background 0.18s;
+    white-space: nowrap;
 }
 
-.penguin-table tbody tr:last-child td {
-    border-bottom: none;
-}
-
-/* Hover suave en filas */
-.penguin-table tbody tr {
-    transition: background 0.18s, box-shadow 0.18s;
-}
-
-.penguin-table tbody tr:hover {
-    background: #f5f7fa;
-    box-shadow: 0 2px 10px rgba(67,197,158,0.07);
-    animation: rowPop 0.24s cubic-bezier(.4,2,.6,1);
-}
-
-@keyframes rowPop {
-    0% { transform: scale(1);}
-    60% { transform: scale(1.012);}
-    100% { transform: scale(1);}
-}
-
-/* Ajuste para que las esquinas inferiores sean redondeadas */
-.penguin-table tr:last-child td:first-child {
-    border-bottom-left-radius: 1.1rem;
-}
-.penguin-table tr:last-child td:last-child {
-    border-bottom-right-radius: 1.1rem;
-}
-
-/* Opcional: un poco más de espacio entre celdas en móvil */
-@media (max-width: 700px) {
-    .penguin-table th, .penguin-table td {
-        padding: 0.7rem 0.3rem;
-        font-size: 0.97rem;
-    }
-}
-
-/* Opción A: sobreescribes el outline-success global */
-.btn-outline-secondary {
-    border-color: #36393b;
-    color: #36393b;
-}
-
-.btn-outline-secondary:hover {
-    background-color: #36393b;
-    color: #f3f3f3;
-}
-
-/* Opción B: defines un estilo “pingüino” */
-.btn-penguin {
-    background-color: #36393b;
-    border-color: #36393b;
-    color: #f3f3f3;
-}
-
-.btn-penguin:hover {
-    background-color: #f3f3f3;
-    color: #36393b;
-}
-
-.btn-primary {
-    border-color: #198754;
-    background-color: #198754;
-    color: #f3f3f3;
-}
-
-.btn-primary:hover {
-    border-color: #198754;
-    background-color: #f3f3f3;
-    color: #198754;
-}
-
-.btn-danger {
-    background-color: #df4e4e;
-}
-
-.btn-danger:hover {
-    background-color: #8b2f2f;
-    border-color: #8b2f2f;
-}
-
-/* Botones de acción con animación y sombra */
-.penguin-table .btn {
-    border-radius: 50%;
-    width: 2.2rem;
-    height: 2.2rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.15rem;
-    box-shadow: 0 2px 8px rgba(67,197,158,0.10);
-    margin: 0 0.1rem;
-    padding: 0;
-    outline: none;
-    border: none;
-}
-
-.penguin-table .btn:active {
-    filter: brightness(0.93);
-    transform: scale(0.96);
-}
-
-.penguin-table .btn-penguin {
-    background-color: #36393b;
-    color: #fff;
-}
-
-.penguin-table .btn-penguin:hover, 
-.penguin-table .btn-penguin:focus {
-    background-color: #585d61;
-    color: #fff;
-    transform: scale(1.11) rotate(-6deg);
-    box-shadow: 0 6px 24px rgba(67,197,158,0.21);
-}
-
-.penguin-table .btn-danger {
-    background-color: #df4e4e;
-    color: #fff;
-}
-
-.penguin-table .btn-danger:hover, 
-.penguin-table .btn-danger:focus {
-    background-color: #8b2f2f;
-    color: #fff;
-    transform: scale(1.11) rotate(6deg);
-    box-shadow: 0 6px 24px rgba(220,53,69,0.17);
-}
-
-/* Efecto de resplandor en el botón al enfocar con teclado */
-.penguin-table .btn:focus-visible {
-    box-shadow: 0 0 0 0.18rem rgba(67,197,158,0.24), 0 2px 8px rgba(67,197,158,0.10);
-}
-
-/* Íconos animados */
-.penguin-table .btn i {
-    margin: 0;
-    font-size: 1.15rem;
-    transition: transform 0.15s;
-}
-
-.penguin-table .btn-penguin:hover i {
-    transform: scale(1.22) rotate(-12deg);
-}
-
-.penguin-table .btn-danger:hover i {
-    transform: scale(1.22) rotate(12deg);
-}
-
-/* Sombra y resalte al input de búsqueda */
-.form-control:focus {
-    border-color: #43c59e;
-    box-shadow: 0 0 0 0.18rem rgba(67,197,158,0.13);
-    outline: none;
-    animation: inputPop 0.18s cubic-bezier(.4,2,.6,1);
-}
-
-@keyframes inputPop {
-    0% { box-shadow: 0 0 0 0 rgba(67,197,158,0.13); transform: scale(1); }
-    60% { box-shadow: 0 0 0 0.25rem rgba(67,197,158,0.18); transform: scale(1.035);}
-    100% { box-shadow: 0 0 0 0.18rem rgba(67,197,158,0.13); transform: scale(1);}
-}
-
-
-
-/* Botón Agregar persona */
-.btn-add {
-    background: #198754;
-    color: #fff;
-    border: none;
-    font-weight: 600;
-    padding: 0.55rem 1.3rem;
-    font-size: 1.03rem;
-    border-radius: 0.7rem;
-    box-shadow: 0 2px 8px rgba(67,197,158,0.07);
-    transition: background 0.18s, box-shadow 0.13s, transform 0.13s;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-}
-.btn-add:hover, .btn-add:focus {
-    background: #157347;
-    color: #fff;
-    transform: translateY(-1px) scale(1.03);
-    box-shadow: 0 4px 16px rgba(67,197,158,0.14);
-    text-decoration: none;
-}
-
-/* Botón Buscar */
-.btn-search {
-    background: #36393b;
-    color: #fff;
-    border: none;
-    font-weight: 500;
-    padding: 0.55rem 1.1rem;
-    font-size: 1.01rem;
-    border-radius: 0.7rem;
-    box-shadow: 0 2px 8px rgba(67,197,158,0.07);
-    transition: background 0.18s, box-shadow 0.13s, transform 0.13s;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-}
-.btn-search:hover, .btn-search:focus {
-    background: #232425;
-    color: #fff;
-    transform: translateY(-1px) scale(1.03);
-    box-shadow: 0 4px 16px rgba(67,197,158,0.10);
-}
-
-/* Botón Limpiar */
-.btn-clear {
-    background: #fff;
-    color: #36393b;
-    border: 1.5px solid #ececec;
-    font-weight: 500;
-    padding: 0.55rem 1.1rem;
-    font-size: 1.01rem;
-    border-radius: 0.7rem;
-    box-shadow: 0 2px 8px rgba(67,197,158,0.04);
-    transition: background 0.18s, color 0.18s, border 0.18s, box-shadow 0.13s, transform 0.13s;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-}
-.btn-clear:hover, .btn-clear:focus {
-    background: #f5f7fa;
-    color: #198754;
-    border: 1.5px solid #198754;
-    transform: translateY(-1px) scale(1.03);
-    box-shadow: 0 4px 14px rgba(67,197,158,0.09);
-    text-decoration: none;
-}
-
-/* Íconos en botones */
-.btn-add i, .btn-search i, .btn-clear i {
-    font-size: 1.08rem;
-    margin-right: 0.3rem;
+.penguin-table td:last-child a,
+.penguin-table td:last-child button {
+    display: inline-block;
     vertical-align: middle;
 }
 
-/* Ajuste de input para alineación */
-.form-control {
-    min-width: 220px;
-    max-width: 400px;
-    font-size: 1.03rem;
-    padding: 0.55rem 1rem;
-    border-radius: 0.7rem;
+/* Acciones */
+.btn.btn-penguin {
+    background-color: var(--violeta);
+    color: var(--blanco);
+    border: none;
+    padding: 0.45rem 0.65rem;
+    border-radius: 8px;
+    margin-right: 0.4rem;
 }
 
-/* Espaciado entre botones y campos */
-.d-flex.justify-content-center.mb-4.flex-wrap.gap-2 > * {
-    margin-bottom: 0.3rem;
+.btn.btn-danger {
+    background-color: var(--grey);
+    color: var(--blanco);
+    border: none;
+    padding: 0.45rem 0.65rem;
+    border-radius: 8px;
 }
 
-/* Responsive: botones y campos apilados en móvil */
-@media (max-width: 700px) {
-    .d-flex.justify-content-center.mb-4.flex-wrap.gap-2 {
-        flex-direction: column !important;
-        align-items: stretch !important;
-        gap: 0.5rem !important;
+/* Tabla vacía */
+.penguin-table td[colspan="6"] {
+    text-align: center;
+    padding: 2rem;
+    color: #999;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .penguin-table th,
+    .penguin-table td {
+        padding: 0.6rem 0.5rem;
+        font-size: 0.95rem;
     }
-    .form-control {
-        width: 100% !important;
-        min-width: 0;
-        max-width: 100%;
+}
+
+@media (max-width: 700px) {
+    .penguin-table th:nth-child(5),
+    .penguin-table td:nth-child(5) {
+        display: none; /* Oculta la columna Título */
+    }
+}
+
+@media (max-width: 600px) {
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    .penguin-table {
+        min-width: 520px;
+        font-size: 0.92rem;
+    }
+    .penguin-table th,
+    .penguin-table td {
+        padding: 0.45rem 0.3rem;
+    }
+    .penguin-table th:nth-child(1),
+    .penguin-table td:nth-child(1) {
+        display: none; /* Oculta la columna N° */
+    }
+    .penguin-table th:nth-child(5),
+    .penguin-table td:nth-child(5) {
+        display: none; /* Oculta la columna Título */
     }
 }

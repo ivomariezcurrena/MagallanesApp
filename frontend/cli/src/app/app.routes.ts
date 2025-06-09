@@ -12,6 +12,7 @@ import { LicenciaComponent } from './licencia/licencia.component';
 import { LicenciaDetailComponent } from './licencia/licencia-detail.component';
 import { PartediarioComponent } from './licencia/partediario.component';
 import { LicenciasLayoutComponent } from './licencia/licencias-layout.component';
+import { ReporteComponent } from './reporte/reporte.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -31,5 +32,6 @@ export const routes: Routes = [
           { path: 'licencias', component: LicenciaComponent },
           { path: 'partesdiarios', component: PartediarioComponent },
         ]
-      }
+    },
+    { path: 'reportes', component: ReporteComponent }
 ];

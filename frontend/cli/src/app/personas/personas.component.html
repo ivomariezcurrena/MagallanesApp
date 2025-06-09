@@ -1,22 +1,23 @@
-<div class="container mt-4">
+<div class="container">
     <div class="text-center mb-5">
-        <h1><strong>Lista de Personas</strong></h1>
+        <h1>Lista de personas</h1>
     </div>
-    <div class="d-flex justify-content-center mb-4 flex-wrap gap-2">
-        <a routerLink="/personas/dni/new" class="btn btn-add me-2">
-            <i class="fa fa-user-plus"></i> Agregar persona
+    <div class="personas-toolbar">
+        <a routerLink="/personas/dni/new" class="btn btn-add">
+            <i class="fa fa-plus"></i> Agregar persona
         </a>
-        <input type="text" class="form-control w-50 me-2" placeholder="Buscar por DNI, nombre o apellido..."
+        <input type="text" class="form-control"
+            placeholder="Buscar por nombre, Dni o apellido"
             [(ngModel)]="searchTerm" (keyup.enter)="buscar()" />
-        <button class="btn btn-search me-2" (click)="buscar()">
-            <i class="fa fa-search"></i> Buscar
+        <button class="btn btn-search" (click)="buscar()" title="Buscar">
+            <i class="fa fa-search"></i>
         </button>
-        <button class="btn btn-clear" (click)="limpiar()">
-            <i class="fa fa-times"></i> Limpiar
+        <button class="btn btn-clear" (click)="limpiar()" title="Limpiar">
+            <i class="fa fa-times"></i>
         </button>
     </div>
     <div class="table-responsive">
-        <table class="penguin-table table table-hover">
+        <table class="penguin-table">
             <thead>
                 <tr>
                     <th>N°</th>
@@ -24,7 +25,7 @@
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Título</th>
-                    <th class="text-center" style="width:120px;">Acciones</th>
+                    <th style="text-align:center;">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -34,19 +35,19 @@
                     <td>{{ persona.nombre }}</td>
                     <td>{{ persona.apellido }}</td>
                     <td>{{ persona.titulo }}</td>
-                    <td class="text-center">
+                    <td style="text-align:center;">
                         <a [routerLink]="['/personas/dni', persona.dni]">
-                            <button class="btn btn-sm btn-penguin me-1" title="Editar">
+                            <button class="btn btn-penguin" title="Editar">
                                 <i class="fa fa-pencil"></i>
                             </button>
                         </a>
-                        <button class="btn btn-sm btn-danger" (click)="remove(persona.dni)" title="Eliminar">
+                        <button class="btn btn-danger" (click)="remove(persona.dni)" title="Eliminar">
                             <i class="fa fa-trash"></i>
                         </button>
                     </td>
                 </tr>
                 <tr *ngIf="filteredPersonas.length === 0">
-                    <td colspan="6" class="text-center py-3">No hay coincidencias</td>
+                    <td colspan="6">No hay coincidencias</td>
                 </tr>
             </tbody>
         </table>

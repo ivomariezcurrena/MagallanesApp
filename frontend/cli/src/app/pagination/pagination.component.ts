@@ -28,38 +28,44 @@ import { Component, EventEmitter, Input, Output, SimpleChange, SimpleChanges } f
   `,
   styles: `
   .custom-pagination .page-link {
-  background-color:rgb(33,37,41,255);
-  color: #dcdcdc;
-  border: 1px solid #3c3c4a;
-  margin: 0 2px;
-  transition: all 0.2s ease;
-  border-radius: 0.375rem;
-}
+    background-color: var(--violeta);
+    color: #dcdcdc;
+    margin: 0 2px;
+    transition: all 0.2s ease;
+    border-radius: 0.375rem;
+    opacity: 1;
+    box-shadow: 0 2px 6px 0 rgba(0,0,0,0.04);
+  }
 
-.custom-pagination .page-link:hover {
-  background-color: #343a40;
-  color: #ffffff;
-  transform: scale(1.05);
-}
+  .custom-pagination .page-link:hover {
+    background-color: var(--violeta);
+    color: #ffffff;
+    transform: scale(1.05);
+    filter: brightness(1.1);
+  }
 
-.custom-pagination .page-item.active .page-link {
-  background-color: #343a40; /* Bootstrap primary */
-  border-color: #343a40;
-  color: #fff;
-}
+  .custom-pagination .page-item.active .page-link {
+    background-color: var(--violeta);
+    border-color: var(--violeta);
+    color: #fff;
+    font-weight: bold;
+    box-shadow: 0 0 0 2px #fff3, 0 2px 8px 0 rgba(0,0,0,0.08);
+  }
 
-.custom-pagination .page-item.disabled .page-link {
-  background-color: #343a40;;
-  
-  color: #666;
-  pointer-events: none;
-  cursor: not-allowed;
-  opacity: 0.6;
-}
+  .custom-pagination .page-item.disabled .page-link {
+    background-color: #e0d6f7;
+    color: #a9a9a9;
+    border-color: #d1c4e9;
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.6;
+    filter: grayscale(0.4);
+    box-shadow: none;
+  }
 
-.custom-pagination {
-  user-select: none;
-}
+  .custom-pagination {
+    user-select: none;
+  }
 `
 })
 export class PaginationComponent {

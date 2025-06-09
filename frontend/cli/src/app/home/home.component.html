@@ -1,68 +1,77 @@
-<div class="home-container">
+<div class="container py-4">
     <!-- Encabezado -->
     <div class="text-center mb-4">
-        <h1 class="titulo"><strong>BIENVENIDO/A</strong></h1>
-        <p class="subtitulo">{{ fechaHoy }}</p>
+        <h1 class="display-4 fw-bold">Bienvenido/a</h1>
+        <p class="text-muted">{{ fechaHoy }}</p>
     </div>
 
     <!-- Tarjetas superiores -->
-    <div class="tarjetas-superiores">
+    <div class="row g-4">
         <!-- Nueva licencia -->
-        <div class="tarjeta tarjeta-verde">
-            <h5><strong>Nueva licencia</strong></h5>
-            <p>Para crear una nueva licencia toca el boton de abajo</p>
-            <a routerLink="/licencias/new" class="boton-verde">
-                <i class="fa fa-plus"></i> Nueva licencia</a>
+        <div class="col-md-6">
+            <div class="card tarjeta-violeta h-100 shadow text-center">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <h5 class="card-title fw-bold text-white">Nueva licencia</h5>
+                    <p class="card-text text-white">¿Desea añadir una nueva licencia?</p>
+                    <a routerLink="/licencias/new" class="btn btn-amarillo fw-bold mt-2">
+                        Añadir
+                    </a>
+                </div>
+            </div>
         </div>
+          
 
-        <!-- Personas con licencia hoy -->
-        <div class="tarjeta tarjeta-blanca">
-            <h5><strong>De licencia hoy</strong></h5>
-            <h2>{{ licenciasHoy }}</h2>
-            <p>Persona/as</p>
+        <!-- Licencias activas -->
+        <div class="col-md-6">
+            <div class="card h-100 shadow text-center">
+                <div class="card-body">
+                    <h5 class="fw-bold">Actualmente hay</h5>
+                    <h2>{{ licenciasHoy }}</h2>
+                    <p class="text-muted">licencias activas</p>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Accesos rápidos -->
+    <!-- Accesos directos -->
     <div class="text-center mt-5">
-        <h5 class="seccion-titulo"><strong>Accesos rápidos</strong></h5>
-        <div class="accesos-rapidos">
-            <a routerLink="personas" class="acceso-btn" title="Personas">
-                <i class="fal fa-users"></i>
+        <h5 class="fw-bold mb-3">Accesos directos</h5>
+        <div class="accesos-directos-row">
+            <a routerLink="personas" class="acceso-directo">
+                <i class="fa fa-users"></i>
+                <div class="fw-bold">Personas</div>
+                <small class="text-muted">Listado de todas las personas</small>
             </a>
-            <a routerLink="licencias" class="acceso-btn" title="Ver licencias">
-                <i class="fal fa-file-alt"></i>
+            <a routerLink="divisiones" class="acceso-directo">
+                <i class="fal fa-layer-group"></i>
+                <div class="fw-bold">Divisiones</div>
+                <small class="text-muted">Listado de todas las divisiones actuales</small>
             </a>
-            <a routerLink="designaciones" class="acceso-btn" title="Ver Designaciones">
+            <a routerLink="cargos" class="acceso-directo">
+                <i class="fa fa-briefcase"></i>
+                <div class="fw-bold">Cargos</div>
+                <small class="text-muted">Listado de todos los Cargos</small>
+            </a>
+            <a routerLink="designaciones" class="acceso-directo">
                 <i class="fal fa-user-tie"></i>
+                <div class="fw-bold">Designaciones</div>
+                <small class="text-muted">Listado de todas las Designaciones</small>
             </a>
-            <a routerLink="cargos" class="acceso-btn" title="Ver Cargos">
-                <i class="fal fa-briefcase"></i>
-            </a>
-            <a routerLink="partesdiarios" class="acceso-btn" title="Parte Diario">
-                <i class="fal fa-clipboard-list"></i>
+            <a routerLink="licencias" class="acceso-directo">
+                <i class="fa fa-file-alt"></i>
+                <div class="fw-bold">Licencias</div>
+                <small class="text-muted">Listado de todas las licencias válidas o inválidas</small>
             </a>
         </div>
-    </div>
-
-    <!-- Gráfico y calendario -->
-    <div class="graficos-container">
-        <div class="tarjeta tarjeta-grafico">
-            <h6>ESTADO DE LAS DESIGNACIONES</h6>
-            <app-grafico></app-grafico>
-        </div>
-        <div class="tarjeta tarjeta-grafico">
-            <h6>DESIGNACIONES AFECTADAS</h6>
-        </div>
-
     </div>
 
     <!-- Parte diario -->
-    <div class="parte-diario">
-        <h5 class="seccion-titulo"><strong>Calendario</strong></h5>
-
-            <app-calendar></app-calendar>
-
+    <div class="mt-5">
+        <h5 class="fw-bold mb-3">Calendario</h5>
+        <div class="card shadow">
+            <div class="card-body">
+                <app-calendar></app-calendar>
+            </div>
+        </div>
     </div>
 </div>
-  

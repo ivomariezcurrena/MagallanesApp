@@ -1,20 +1,22 @@
-<div class="container mt-4">
+<div class="container">
     <div class="text-center mb-5">
-        <h1><strong>Lista de Divisiones</strong></h1>
+        <h1>Lista de Divisiones</h1>
     </div>
-    <div class="d-flex justify-content-center mb-4 flex-wrap gap-2">
-        <a routerLink="/divisiones/new" class="btn btn-add me-2">
+    <div class="personas-toolbar">
+        <a routerLink="/divisiones/new" class="btn btn-add">
             <i class="fa fa-plus"></i> Agregar división
         </a>
-        <label class="me-2 align-self-center fw-semibold">Filtrar por orientación:</label>
-        <select class="form-select w-auto me-2" [(ngModel)]="searchOrientacion" (ngModelChange)="filtrarDivisiones()"
+        <label class="fw-semibold">Filtrar por orientación:</label>
+        <select class="form-select w-auto"
+            [(ngModel)]="searchOrientacion"
+            (ngModelChange)="filtrarDivisiones()"
             name="searchOrientacion">
             <option value="">Todas</option>
             <option *ngFor="let ori of orientaciones" [value]="ori">{{ ori }}</option>
         </select>
     </div>
     <div class="table-responsive">
-        <table class="penguin-table table table-hover">
+        <table class="penguin-table">
             <thead>
                 <tr>
                     <th>N°</th>
@@ -22,7 +24,7 @@
                     <th>N° división</th>
                     <th>Orientación</th>
                     <th>Turno</th>
-                    <th class="text-center" style="width:120px;">Acciones</th>
+                    <th style="text-align:center;">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,13 +34,13 @@
                     <td>{{ division.numDivision }}</td>
                     <td>{{ division.orientacion }}</td>
                     <td>{{ division.turno }}</td>
-                    <td class="text-center">
+                    <td style="text-align:center;">
                         <a [routerLink]="['/divisiones', division.id]">
-                            <button class="btn btn-sm btn-penguin me-1" title="Editar">
+                            <button class="btn btn-penguin" title="Editar">
                                 <i class="fa fa-pencil"></i>
                             </button>
                         </a>
-                        <button class="btn btn-sm btn-danger" (click)="remove(division.id)" title="Eliminar">
+                        <button class="btn btn-danger" (click)="remove(division.id)" title="Eliminar">
                             <i class="fa fa-trash"></i>
                         </button>
                     </td>

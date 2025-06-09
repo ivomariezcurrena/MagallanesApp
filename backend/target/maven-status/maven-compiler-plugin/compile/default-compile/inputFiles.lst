@@ -2,8 +2,8 @@
 /app/src/main/java/unpsjb/labprog/backend/business/utils/vlicencias/ValidacionFechasSuperpuestas.java
 /app/src/main/java/unpsjb/labprog/backend/business/utils/MensajeFormateador.java
 /app/src/main/java/unpsjb/labprog/backend/presenter/ArticuloLicenciaPresenter.java
-/app/src/main/java/unpsjb/labprog/backend/business/utils/Validador.java
 /app/src/main/java/unpsjb/labprog/backend/presenter/DivisionPresenter.java
+/app/src/main/java/unpsjb/labprog/backend/business/utils/Validador.java
 /app/src/main/java/unpsjb/labprog/backend/business/utils/vlicencias/Validacion36A.java
 /app/src/main/java/unpsjb/labprog/backend/BackendApplication.java
 /app/src/main/java/unpsjb/labprog/backend/model/TipoDesignacion.java
@@ -14,6 +14,7 @@
 /app/src/main/java/unpsjb/labprog/backend/model/Designacion.java
 /app/src/main/java/unpsjb/labprog/backend/business/DivisionService.java
 /app/src/main/java/unpsjb/labprog/backend/presenter/LicenciaPresenter.java
+/app/src/main/java/unpsjb/labprog/backend/utils/ReportePersona.java
 /app/src/main/java/unpsjb/labprog/backend/business/ArticuloLicenciaService.java
 /app/src/main/java/unpsjb/labprog/backend/business/CargoService.java
 /app/src/main/java/unpsjb/labprog/backend/model/ArticuloLicencia.java

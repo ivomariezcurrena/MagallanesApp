@@ -2,6 +2,7 @@ package unpsjb.labprog.backend.business;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -53,5 +54,25 @@ public interface LicenciaRepository
                                 AND l.pedidoHasta >= :fecha
                         """)
         List<Licencia> findLicenciasVigentesEnFecha(@Param("fecha") LocalDateTime fecha);
+
+        @Query("""
+                            SELECT l FROM Licencia l
+                            WHERE l.pedidoDesde >= :inicioAnio
+                              AND l.pedidoDesde < :inicioSiguienteAnio
+                        """)
+        Page<Licencia> findAllAnio(
+                        @Param("inicioAnio") LocalDateTime inicioAnio,
+                        @Param("inicioSiguienteAnio") LocalDateTime inicioSiguienteAnio,
+                        Pageable pageable);
+
+        // busca todas las licencias de una persona en un año
+        @Query("SELECT l FROM Licencia l WHERE l.persona.dni = :dni AND l.estado = 'Valido' AND YEAR(l.pedidoDesde) = :anio")
+        List<Licencia> findAllByPersonaAndAnio(@Param("dni") int dni, @Param("anio") int anio);
+
+        @Query("SELECT l FROM Licencia l WHERE l.estado = 'Valido' AND YEAR(l.pedidoDesde) = :anio")
+        List<Licencia> getValidas(@Param("anio") int anio);
+
+        @Query("SELECT l FROM Licencia l WHERE l.estado = 'Invalido' AND YEAR(l.pedidoDesde) = :anio")
+        List<Licencia> getInvalidas(@Param("anio") int anio);
 
 }

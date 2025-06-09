@@ -3,27 +3,31 @@
 @import "font-awesome/css/font-awesome.css";
 
 :root {
-    --penguin-grey: #5A5A5A;
-    --penguin-beige: #EDE3CD;
-    --penguin-beige-alt: #F5E9D7;
-    --penguin-bg: #F8F8F8;
+    --grey: #2B2B2B;
+    --violeta: #BFAFF2;
+    --amarillo: #F8D57E;
+    --blanco: #ffffff;
+}
+
+body {
+    background: #ffffff;
 }
 
 h1 {
-    color: #36393b;
+    color: #2B2B2B;
 }
 
 h2 {
-    color: #36393b;
+    color: #2B2B2B;
 }
 
 h3 {
-    color: #36393b;
+    color: #2B2B2B;
 }
 
 h4 {
-    color: #36393b;
+    color: #2B2B2B;
 }
 h5 {
-    color: #36393b;
+    color: #2B2B2B;
 }

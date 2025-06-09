@@ -19,94 +19,122 @@
         <div class="d-flex justify-content-center mb-4">
             <h2 class="mb-0"><strong>{{ isNew ? 'Nueva Licencia' : 'Editar Licencia' }}</strong></h2>
         </div>
-        <form *ngIf="licencia" #form="ngForm" class="row g-3" (ngSubmit)="save()" novalidate>
-            <!-- Fila: Desde y Hasta -->
+        <form *ngIf="licencia" #form="ngForm" (ngSubmit)="save()" novalidate>
+            <!-- Fila 1: Desde / Hasta -->
             <div class="row">
                 <div class="col-md-6">
-                    <div class="form-group">
+                    <div class="form-group position-relative">
                         <label class="form-label fw-semibold">Desde</label>
-                        <div class="input-group">
-                            <input class="form-control rounded-start" placeholder="aaaa/mm/dd" name="pedidoDesde"
-                                ngbDatepicker #d1="ngbDatepicker" [(ngModel)]="fechaInicioModel" required
-                                [disabled]="(!isNew && licencia.estado != 'Invalido')">
-                            <button class="btn btn-outline-secondary rounded-end" (click)="d1.toggle()" type="button" [disabled]="(!isNew && licencia.estado != 'Invalido')">📅</button>
-                        </div>
+                        <input class="form-control ps-5"
+                            type="text"
+                            placeholder="Ej: 2025-06-07"
+                            name="pedidoDesde"
+                            ngbDatepicker #d1="ngbDatepicker"
+                            [(ngModel)]="fechaInicioModel"
+                            required
+                            [disabled]="(!isNew && licencia.estado != 'Invalido')">
+                        <i class="fa fa-calendar input-icon"></i>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="form-group">
+                    <div class="form-group position-relative">
                         <label class="form-label fw-semibold">Hasta</label>
-                        <div class="input-group">
-                            <input class="form-control rounded-start" placeholder="aaaa/mm/dd" name="pedidoHasta"
-                                ngbDatepicker #d2="ngbDatepicker" [(ngModel)]="fechaFinModel" [disabled]="(!isNew && licencia.estado != 'Invalido')">
-                            <button class="btn btn-outline-secondary rounded-end" (click)="d2.toggle()" type="button" [disabled]="(!isNew && licencia.estado != 'Invalido')">📅</button>
-                        </div>
+                        <input class="form-control ps-5"
+                            type="text"
+                            placeholder="Ej: 2025-07-01"
+                            name="pedidoHasta"
+                            ngbDatepicker #d2="ngbDatepicker"
+                            [(ngModel)]="fechaFinModel"
+                            [disabled]="(!isNew && licencia.estado != 'Invalido')">
+                        <i class="fa fa-calendar input-icon"></i>
                     </div>
                 </div>
             </div>
-
-            <!-- Fila: Domicilio y Certificado médico -->
-            <div class="row mt-3">
+            <!-- Fila 2: Domicilio / Certificado médico -->
+            <div class="row">
                 <div class="col-md-6">
-                    <div class="form-group">
+                    <div class="form-group position-relative">
                         <label class="form-label fw-semibold">Domicilio</label>
-                        <input *ngIf="licencia && licencia.persona" type="text" class="form-control" [(ngModel)]="licencia.persona.domicilio" name="domicilio" required [disabled]="(!isNew && licencia.estado != 'Invalido')">
+                        <input type="text" class="form-control ps-5"
+                            [ngModel]="licencia.persona?.domicilio"
+                            (ngModelChange)="$event"
+                            name="domicilio"
+                            required
+                            [disabled]="(!isNew && licencia.estado != 'Invalido')">
+                        <i class="fa fa-home input-icon"></i>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group d-flex align-items-center h-100 mt-4 mt-md-0">
+                <div class="col-md-6 d-flex align-items-end">
+                    <div class="form-group d-flex align-items-center w-100">
                         <input class="form-check-input me-2" type="checkbox" role="switch" id="certificadoMedico"
-                            [(ngModel)]="licencia.certificadoMedico" name="certificadoMedico" [disabled]="(!isNew && licencia.estado != 'Invalido')" />
+                            [(ngModel)]="licencia.certificadoMedico" name="certificadoMedico"
+                            [disabled]="(!isNew && licencia.estado != 'Invalido')" />
                         <label class="form-check-label fw-semibold mb-0 ms-2" for="certificadoMedico">
                             ¿Tiene certificado médico?
                         </label>
                     </div>
                 </div>
             </div>
-
-            <!-- Fila: Persona y Artículo -->
-            <div class="row mt-3">
+            <!-- Fila 3: Persona / Artículo -->
+            <div class="row">
                 <div class="col-md-6">
-                    <div class="form-group">
+                    <div class="form-group position-relative">
                         <label class="form-label fw-semibold">Persona</label>
-                        <input class="form-control" [(ngModel)]="licencia.persona" name="persona"
-                            [ngbTypeahead]="buscarPersonas" [editable]="false" [resultFormatter]="resultFormatPersonas"
-                            [inputFormatter]="inputFormatPersonas" (selectItem)="onPersonaSelect($event)"
-                            placeholder="Buscar persona" required [disabled]="(!isNew && licencia.estado != 'Invalido')">
+                        <input class="form-control ps-5"
+                            [(ngModel)]="licencia.persona"
+                            name="persona"
+                            [ngbTypeahead]="buscarPersonas"
+                            [resultFormatter]="resultFormatPersonas"
+                            [inputFormatter]="inputFormatPersonas"
+                            (selectItem)="onPersonaSelect($event)"
+                            placeholder="Ej: Susana Álvarez"
+                            required
+                            [disabled]="(!isNew && licencia.estado != 'Invalido')">
+                        <i class="fa fa-user input-icon"></i>
                     </div>
-                    <!-- Datos de persona -->
-                    <div class="card mt-3 shadow-sm border-0" *ngIf="licencia.persona?.dni">
-                        <div class="card-body p-3 text-secondary">
-                            <p class="mb-1"><strong>Nombre:</strong> {{ licencia.persona?.nombre }}</p>
-                            <p class="mb-1"><strong>Apellido:</strong> {{ licencia.persona?.apellido }}</p>
-                            <p class="mb-0"><strong>DNI:</strong> {{ licencia.persona?.dni }}</p>
+                    <!-- Detalles de persona -->
+                    <div *ngIf="licencia.persona?.dni" class="typeahead-summary mt-2">
+                        <i class="fa fa-user-circle summary-icon"></i>
+                        <div>
+                            <span class="fw-semibold">{{ licencia.persona?.nombre }} {{ licencia.persona?.apellido }}</span>
+                            <span class="text-muted ms-2">DNI: {{ licencia.persona?.dni }}</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="form-group">
+                    <div class="form-group position-relative">
                         <label class="form-label fw-semibold">Artículo</label>
-                        <input class="form-control" [(ngModel)]="licencia.articulo" name="articuloLicencia"
-                            [ngbTypeahead]="buscarArticulos" [editable]="false"
-                            [resultFormatter]="resultFormatArticulos" [inputFormatter]="inputFormatArticulos"
-                            (selectItem)="onArticuloSelect($event)" placeholder="Buscar artículo" required [disabled]="(!isNew && licencia.estado != 'Invalido')">
+                        <input class="form-control ps-5"
+                            [(ngModel)]="licencia.articulo"
+                            name="articuloLicencia"
+                            [ngbTypeahead]="buscarArticulos"
+                            [resultFormatter]="resultFormatArticulos"
+                            [inputFormatter]="inputFormatArticulos"
+                            (selectItem)="onArticuloSelect($event)"
+                            placeholder="Ej: Artículo 12"
+                            required
+                            [disabled]="(!isNew && licencia.estado != 'Invalido')">
+                        <i class="fa fa-file-alt input-icon"></i>
                     </div>
                     <!-- Detalles del artículo -->
-                    <div class="card mt-3 shadow-sm border-0" *ngIf="licencia.articulo?.descripcion">
-                        <div class="card-body p-3 text-secondary">
-                            <p class="mb-0"><strong>Descripción:</strong> {{ licencia.articulo?.descripcion }}</p>
+                    <div *ngIf="licencia.articulo?.descripcion" class="typeahead-summary mt-2">
+                        <i class="fa fa-file-alt summary-icon"></i>
+                        <div>
+                            <span class="fw-semibold">{{ licencia.articulo?.articulo }}</span>
+                            <span class="text-muted ms-2">{{ licencia.articulo?.descripcion }}</span>
                         </div>
                     </div>
                 </div>
             </div>
+            <!-- Tabla de logs -->
             <div class="mb-4 mt-4">
                 <h5>Intentos de creación</h5>
                 <div class="table-responsive">
-                    <table class="penguin-table table table-hover">
-                        <thead class="table-light">
+                    <table class="penguin-table">
+                        <thead>
                             <tr>
-                                <th style="width: 5%">#</th>
-                                <th style="width: 25%">Fecha de creacion</th>
+                                <th style="width: 5%">N°</th>
+                                <th style="width: 25%">Fecha de creación</th>
                                 <th style="width: 70%">Estado</th>
                             </tr>
                         </thead>
@@ -114,19 +142,19 @@
                             <tr *ngFor="let log of licencia.logs; index as i">
                                 <td>{{ i + 1 }}</td>
                                 <td>{{ log.fecha | date:'dd/MM/yyyy' }}</td>
-                                <td >{{ log.mensaje }}</td>
+                                <td>{{ log.mensaje }}</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
             <!-- Botones -->
-            <div class="col-12 d-flex justify-content-between mt-4">
-                <button type="button" class="btn btn-outline-danger" (click)="goBack()" [disabled]="loading">
-                    <i class="bi bi-x-circle"></i> Cancelar
+            <div class="d-flex justify-content-between mt-4">
+                <button type="button" class="btn btn-clear" (click)="goBack()" [disabled]="loading">
+                    <i class="fa fa-times"></i> Cancelar
                 </button>
-                <button type="submit" class="btn btn-success" [disabled]="form.invalid || loading || (!isNew && licencia.estado != 'Invalido')">
-                    <i class="bi bi-check-circle"></i> Guardar
+                <button type="submit" class="btn btn-add" [disabled]="form.invalid || loading || (!isNew && licencia.estado != 'Invalido')">
+                    <i class="fa fa-check"></i> Guardar
                 </button>
             </div>
         </form>

@@ -1,59 +1,83 @@
-.body {
-    width: calc(100% - 5rem);
-    margin-left: 5rem;
-    z-index: 0;
-    position: relative;
-    top: 0;
-    transition: all 0.5s ease;
-    background: #ffffff;
-    padding: 3rem;
-    padding-top: 5rem; /* Ajusta según la altura de tu navbar */
-}
-
-.body-trimmed {
-    width: calc(100% - 16.5625rem);
-    margin-left: 16.5625rem;
-}
-
-.body-md-screen {
-    width: calc(100% - 5rem);
-    margin-left: 5rem;
-}
-
-img {
-    max-width: 7%;
-    height: auto;
-
-}
-
-
-
-
-
 .header {
-    width: calc(100% - 5rem);
-    margin-left: 5rem;
-    z-index: 1000; /* Asegura que quede por encima del contenido */
-    position: fixed; /* Fija la barra en la parte superior */
+    width: 100vw;
+    height: 56px; /* Ajusta este valor según el alto real del header */
+    z-index: 1000;
+    position: fixed;
     top: 0;
     left: 0;
     transition: all 0.5s ease;
-    background: rgba(255, 255, 255, 0.5); /* Fondo translúcido */
-    backdrop-filter: blur(8px);            /* Efecto glassmorphism */
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* Sombra suave opcional */
-    border-bottom: 1px solid rgba(200,200,200,0.2); /* Línea sutil opcional */
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(200, 200, 200, 0.2);
+    padding: 0.5rem 1rem;
 }
 
-.header-trimmed {
-    width: calc(100% - 16.5625rem);
-    margin-left: 16.5625rem;
+.header .container-fluid {
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
-.header-md-screen {
-    width: calc(100% - 5rem);
-    margin-left: 5rem;
+.navbar-nav .nav-link {
+    color: var(--grey);
+    font-weight: 400;
+    transition: all 0.25s ease;
+    cursor: pointer; /* <-- Agrega esta línea */
 }
-footer {
-    margin-left: 5rem;
-    /* Ajusta el valor según lo que necesites */
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    color: var(--grey);
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    background-color: var(--violeta);
+    border-radius: 50%;
+    color: var(--grey);
+    transition: transform 0.2s ease;
+        margin-left: 1rem;
+
+}
+.user-avatar:hover {
+    cursor: pointer; 
+}
+
+.main-content {
+    margin-top: 56px; /* Debe coincidir con el height del header */
+}
+
+@media (max-width: 768px) {
+  .header {
+    width: 100%;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  .header .container-fluid {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  .navbar-nav {
+    align-items: start;
+  }
+  .navbar-nav .nav-link {
+    padding: 0.75rem 1rem;
+    font-size: 1.1rem;
+  }
+  .navbar-collapse {
+    background: rgba(255,255,255,0.95);
+    position: absolute;
+    top: 56px; /* igual al header */
+    left: 0;
+    width: 100vw;
+    z-index: 999;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding-bottom: 1rem;
+  }
+  .main-content {
+    margin-top: 112px; /* o más, según el alto del menú abierto */
+  }
 }
