@@ -60,10 +60,9 @@ public interface LicenciaRepository
                             WHERE l.pedidoDesde >= :inicioAnio
                               AND l.pedidoDesde < :inicioSiguienteAnio
                         """)
-        Page<Licencia> findAllAnio(
+        List<Licencia> findAllAnio(
                         @Param("inicioAnio") LocalDateTime inicioAnio,
-                        @Param("inicioSiguienteAnio") LocalDateTime inicioSiguienteAnio,
-                        Pageable pageable);
+                        @Param("inicioSiguienteAnio") LocalDateTime inicioSiguienteAnio);
 
         // busca todas las licencias de una persona en un año
         @Query("SELECT l FROM Licencia l WHERE l.persona.dni = :dni AND l.estado = 'Valido' AND YEAR(l.pedidoDesde) = :anio")

@@ -1,7 +1,5 @@
 package unpsjb.labprog.backend.business.utils.vlicencias;
 
-import org.springframework.stereotype.Component;
-
 import unpsjb.labprog.backend.model.Licencia;
 import unpsjb.labprog.backend.model.Log;
 

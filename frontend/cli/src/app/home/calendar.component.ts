@@ -8,7 +8,6 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import { INITIAL_EVENTS, createEventId } from './event-utils';
-import { Licencia } from '../licencia/licencia';
 import esLocale from '@fullcalendar/core/locales/es';
 
 @Component({

@@ -26,14 +26,18 @@
     "@fullcalendar/timegrid": "^6.1.17",
     "@ng-bootstrap/ng-bootstrap": "^18.0.0",
     "@popperjs/core": "^2.11.8",
+    "@types/pdfmake": "^0.2.11",
     "all": "^0.0.0",
     "angular": "^1.8.3",
     "animations": "^0.0.0",
     "bootstrap": "^5.3.5",
     "bootstrap-icons": "^1.11.3",
     "chart.js": "^4.4.9",
+    "exceljs": "^4.4.0",
+    "file-saver": "^2.0.5",
     "font-awesome": "^4.7.0",
     "fontawesome": "^5.6.3",
+    "pdfmake": "^0.2.20",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
@@ -43,6 +47,7 @@
     "@angular/cli": "^19.2.6",
     "@angular/compiler-cli": "^19.2.5",
     "@angular/localize": "^19.2.5",
+    "@types/file-saver": "^2.0.7",
     "typescript": "~5.7.2"
   }
 }

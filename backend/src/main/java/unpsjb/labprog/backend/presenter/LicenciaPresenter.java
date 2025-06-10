@@ -127,14 +127,12 @@ public class LicenciaPresenter {
 
     @GetMapping("/anio")
     public ResponseEntity<Object> findAllByAAnio(
-            @RequestParam("anio") String fechaDesde,
-            @RequestParam("page") int page,
-            @RequestParam("size") int size) {
+            @RequestParam("anio") String fechaDesde) {
         // Aquí parseas la fecha y llamas al servicio
         // Ejemplo:
         try {
             LocalDateTime fecha = LocalDateTime.parse(fechaDesde);
-            return Response.ok(service.findAllAnio(fecha, page, size));
+            return Response.ok(service.findAllAnio(fecha));
         } catch (Exception e) {
             return Response.internalServerError(null, "Formato de fecha inválido. Use yyyy-MM-ddTHH:mm:ss");
         }

@@ -8,6 +8,8 @@ import { RouterModule } from '@angular/router';
 import { PaginationComponent } from '../pagination/pagination.component';
 import { ReportePersona } from './ReportePersona';
 import { GraficoComponent } from "./grafico.component";
+import generatePDF from './pdf';
+import { ExcelService } from './exel';
 
 @Component({
   selector: 'app-reporte',
@@ -16,12 +18,7 @@ import { GraficoComponent } from "./grafico.component";
   styleUrl: `reporte.component.css`,
 })
 export class ReporteComponent {
-exportarPDF() {
-throw new Error('Method not implemented.');
-}
-exportarExcel() {
-throw new Error('Method not implemented.');
-}
+
   reporte: ReportePersona[] = [];
   reportePersonas: ReportePersona[] = [];
   currentPage = 1;
@@ -30,9 +27,10 @@ throw new Error('Method not implemented.');
   fechaDesde: string = '';
   totalLicenciasValidas: number = 0;
   totalLicenciasInvalidas: number = 0;
-
+  totalLicencias: number = 0;
   constructor(
-    private licenciaService: LicenciaService, 
+    private licenciaService: LicenciaService,
+    private excelService: ExcelService
   ) { }
   ngOnInit() {
     this.fechaDesde = '2025';
@@ -59,7 +57,6 @@ throw new Error('Method not implemented.');
   }
   cargarTotalLicenciasValidas() {
     this.licenciaService.getValidas(this.fechaDesde).subscribe((dataPackage) => {
-      console.log('Validas:', dataPackage.data);
       this.totalLicenciasValidas = Array.isArray(dataPackage.data) ? dataPackage.data.length : 0;
     });
   }
@@ -68,6 +65,29 @@ throw new Error('Method not implemented.');
     this.licenciaService.getInvalidas(this.fechaDesde).subscribe((dataPackage) => {
       this.totalLicenciasInvalidas = Array.isArray(dataPackage.data) ? dataPackage.data.length : 0;
     })
+  }
+
+  // cargarTotalLicencias() {
+  //   this.licenciaService.byAño(this.fechaDesde).subscribe((dataPackage) => {
+  //     console.log('Total Licencias:', dataPackage.data);
+  //     this.totalLicencias = Array.isArray(dataPackage.data) ? dataPackage.data.length : 0;
+  //   });
+  // }
+
+  exportarPDF() {
+    // Pedir todos los resultados (por ejemplo, hasta 10 000)
+    this.licenciaService.reporteConcepto(this.fechaDesde, 1, 10000).subscribe((dataPackage) => {
+      const resultsPage = dataPackage.data as ResultsPage;
+      const allPersonas = Array.isArray(resultsPage.content) ? resultsPage.content : [];
+      generatePDF(allPersonas, this.fechaDesde, this.totalLicenciasValidas, this.totalLicenciasInvalidas);
+    });
+  }
+  exportarExcel() {
+    this.licenciaService.reporteConcepto(this.fechaDesde, 1, 10000).subscribe((dataPackage) => {
+      const resultsPage = dataPackage.data as ResultsPage;
+      const allPersonas = Array.isArray(resultsPage.content) ? resultsPage.content : [];
+      this.excelService.exportarReporte(allPersonas, this.fechaDesde);
+    });
   }
 
 }

@@ -3,6 +3,8 @@ package unpsjb.labprog.backend.business;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -98,4 +100,7 @@ public interface DesignacionRepository
               AND (d.fechaFin IS NULL OR YEAR(d.fechaFin) >= :anio)
             """)
     List<Integer> findPersonasConDesignacionEnAnio(@Param("anio") int anio);
+
+    @Query("SELECT DISTINCT d.persona.dni FROM Designacion d WHERE YEAR(d.fechaInicio) <= :anio AND (d.fechaFin IS NULL OR YEAR(d.fechaFin) >= :anio)")
+    Page<Integer> findPersonasConDesignacionEnAnio(int anio, Pageable pageable);
 }
