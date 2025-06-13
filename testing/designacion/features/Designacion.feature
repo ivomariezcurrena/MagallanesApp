@@ -1,4 +1,4 @@
-            # language: es
+# language: es
 
             Característica: designar una persona a un cargo docente
             actividad central de información de la escuela secundaria
@@ -29,4 +29,22 @@
             | 88300000 | Andrea      | Sosa         | ESPACIO_CURRICULAR | Química              | 6   | 1      | Noche  | 2024-03-01 |            | 200    | Andrea Sosa ha sido designado/a a la asignatura Química a la división 6º 1º turno Noche exitosamente           |
             | 88400000 | Laura       | Barrientos   | ESPACIO_CURRICULAR | Biología             | 2   | 2      | Mañana | 2024-03-01 |            | 200    | Laura Barrientos ha sido designado/a a la asignatura Biología a la división 2º 2º turno Mañana exitosamente    |
             | 88500000 | Natalia     | Zabala       | ESPACIO_CURRICULAR | Historia             | 5   | 1      | Tarde  | 2024-03-01 |            | 200    | Natalia Zabala ha sido designado/a a la asignatura Historia a la división 5º 1º turno Tarde exitosamente       |
+            | 10101010 | Frank       | Sinatra      | CARGO              | Secretario/a               |     |        |        | 2024-03-01 |            | 200    | Frank Sinatra ha sido designado/a como Secretario/a exitosamente               |
+            | 20202020 | Pity        | Alvarez      | CARGO              | Bibliotecario/a            |     |        |        | 2024-03-01 |            | 200    | Pity Alvarez ha sido designado/a como Bibliotecario/a exitosamente             |
+            | 30303030 | Elvis       | Presley      | CARGO              | Regente                    |     |        |        | 2024-03-01 |            | 200    | Elvis Presley ha sido designado/a como Regente exitosamente                    |
+            | 40404040 | Julian      | Alvarez      | CARGO              | Jefe de Taller             |     |        |        | 2024-03-01 |            | 200    | Julian Alvarez ha sido designado/a como Jefe de Taller exitosamente            |
+            | 50505050 | Paul        | Pogba        | CARGO              | Encargado de Medios        |     |        |        | 2024-03-01 |            | 200    | Paul Pogba ha sido designado/a como Encargado de Medios exitosamente           |
+            | 60606060 | Kilian      | Mbappe       | CARGO              | Coordinador de Turno       |     |        |        | 2024-03-01 |            | 200    | Kilian Mbappe ha sido designado/a como Coordinador de Turno exitosamente       |
+            | 70707070 | Lionel      | Messi        | CARGO              | Prosecretario/a            |     |        |        | 2024-03-01 |            | 200    | Lionel Messi ha sido designado/a como Prosecretario/a exitosamente             |
+            | 80808080 | Cristiano   | Ronaldo      | CARGO              | Referente ESI              |     |        |        | 2024-03-01 |            | 200    | Cristiano Ronaldo ha sido designado/a como Referente ESI exitosamente          |
+            | 90909090 | Ariel       | Ortega       | CARGO              | Coordinador de Biblioteca  |     |        |        | 2024-03-01 |            | 200    | Ariel Ortega ha sido designado/a como Coordinador de Biblioteca exitosamente   |
+            | 11111111 | Franco      | Mastantuono  | CARGO              | Jefe de Laboratorio        |     |        |        | 2024-03-01 |            | 200    | Franco Mastantuono ha sido designado/a como Jefe de Laboratorio exitosamente   |
+            | 12121212 | Ricardo     | Darin        | CARGO              | Psicopedagogo/a            |     |        |        | 2024-03-01 |            | 200    | Ricardo Darin ha sido designado/a como Psicopedagogo/a exitosamente            |
+            | 13131313 | Guillermo   | Francella    | CARGO              | Jefe de Preceptores        |     |        |        | 2024-03-01 |            | 200    | Guillermo Francella ha sido designado/a como Jefe de Preceptores exitosamente  |
+            | 14141414 | Martin      | Palermo      | CARGO              | Coordinador de Área        |     |        |        | 2024-03-01 |            | 200    | Martin Palermo ha sido designado/a como Coordinador de Área exitosamente       |
+            | 15151515 | Enzo        | Perez        | CARGO              | Asesor Pedagógico          |     |        |        | 2024-03-01 |            | 200    | Enzo Perez ha sido designado/a como Asesor Pedagógico exitosamente             |
+            | 16161616 | Gianluigi   | Donnaruma    | CARGO              | Coordinador de Convivencia |     |        |        | 2024-03-01 |            | 200    | Gianluigi Donnaruma ha sido designado/a como Coordinador de Convivencia exitosamente |
+            | 17171717 | Gianluigi   | Buffon       | ESPACIO_CURRICULAR | Computación                | 3   | 2      | Mañana | 2024-03-01 |            | 200    | Gianluigi Buffon ha sido designado/a a la asignatura Computación a la división 3º 2º turno Mañana exitosamente          |
+            | 18181818 | Mario       | Kempes       | ESPACIO_CURRICULAR | Educación Plástica         | 1   | 1      | Tarde  | 2024-03-01 |            | 200    | Mario Kempes ha sido designado/a a la asignatura Educación Plástica a la división 1º 1º turno Tarde exitosamente        |
+            | 19191919 | Diego       | Maradona     | ESPACIO_CURRICULAR | Música                     | 2   | 2      | Mañana | 2024-03-01 |            | 200    | Diego Maradona ha sido designado/a a la asignatura Música a la división 2º 2º turno Mañana exitosamente                 |
 

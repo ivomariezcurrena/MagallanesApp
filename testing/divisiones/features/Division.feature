@@ -20,4 +20,5 @@
             | 1   | 2      | Lengua      | Tarde  | 200    | División 1 2 turno Tarde ingresada correctamente  |
             | 3   | 2      | Inglés      | Mañana | 200    | División 3 2 turno Mañana ingresada correctamente |
             | 5   | 1      | Historia    | Tarde  | 200    | División 5 1 turno Tarde ingresada correctamente  |
+            | 4   | 5      | Pangelbra   | Tarde  | 200    | División 4 5 turno Tarde ingresada correctamente  |
 

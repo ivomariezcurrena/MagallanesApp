@@ -13,8 +13,14 @@ import { Component, EventEmitter, Input, Output, SimpleChange, SimpleChanges } f
     <li class="page-item" [class.disabled]="number === 0">
       <a class="page-link" (click)="onPageChange(-1)" title="Anterior">&lsaquo;</a>
     </li>
+    <li class="page-item disabled" *ngIf="showLeftDots">
+      <span class="page-link">...</span>
+    </li>
     <li *ngFor="let t of pages" class="page-item" [class.active]="t === number">
       <a class="page-link" (click)="onPageChange(t + 1)">{{ t + 1 }}</a>
+    </li>
+    <li class="page-item disabled" *ngIf="showRightDots">
+      <span class="page-link">...</span>
     </li>
     <li class="page-item" [class.disabled]="number === totalPages - 1">
       <a class="page-link" (click)="onPageChange(-3)" title="Siguiente">&rsaquo;</a>
@@ -75,13 +81,30 @@ export class PaginationComponent {
   @Input() number: number = 1;
   @Output() pageChangesRequested = new EventEmitter<number>();
   pages: number[] = [];
+  showLeftDots = false;
+  showRightDots = false;
 
   constructor() { }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['totalPages']) {
-      this.pages = Array.from(Array(this.totalPages).keys());
+    if (changes['totalPages'] || changes['number']) {
+      this.updateVisiblePages();
     }
+  }
+
+  updateVisiblePages() {
+    const maxVisible = 3;
+    let start = Math.max(0, this.number - 1);
+    let end = start + maxVisible;
+
+    if (end > this.totalPages) {
+      end = this.totalPages;
+      start = Math.max(0, end - maxVisible);
+    }
+
+    this.pages = Array.from({ length: end - start }, (_, i) => start + i);
+    this.showLeftDots = start > 0;
+    this.showRightDots = end < this.totalPages;
   }
 
   onPageChange(pageId: number): void {

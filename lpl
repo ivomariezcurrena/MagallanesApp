@@ -43,6 +43,12 @@ case "$1" in
   staging ) echo "Cargando staging $2"
     cat ./staging/$2.sql | docker exec -i database psql -q -U APP -d labprog
     ;;
+  init ) echo "Cargando datos iniciales"
+    for f in personas.sql  divisiones.sql cargos.sql designaciones.sql; do
+      echo "Ejecutando $f"
+      cat ./staging/$f | docker exec -i database psql -q -U APP -d labprog
+    done
+    ;;
   * ) echo "Opción inválida."
       ;;
 esac

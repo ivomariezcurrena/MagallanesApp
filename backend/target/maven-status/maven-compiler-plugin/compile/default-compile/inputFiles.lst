@@ -14,11 +14,13 @@
 /app/src/main/java/unpsjb/labprog/backend/model/Designacion.java
 /app/src/main/java/unpsjb/labprog/backend/business/DivisionService.java
 /app/src/main/java/unpsjb/labprog/backend/presenter/LicenciaPresenter.java
+/app/src/main/java/unpsjb/labprog/backend/business/reporteUtils/ReportePersonaFactory.java
 /app/src/main/java/unpsjb/labprog/backend/utils/ReportePersona.java
 /app/src/main/java/unpsjb/labprog/backend/business/ArticuloLicenciaService.java
 /app/src/main/java/unpsjb/labprog/backend/business/CargoService.java
 /app/src/main/java/unpsjb/labprog/backend/model/ArticuloLicencia.java
 /app/src/main/java/unpsjb/labprog/backend/business/utils/ValidarPersona.java
+/app/src/main/java/unpsjb/labprog/backend/business/reporteUtils/ReporteUtils.java
 /app/src/main/java/unpsjb/labprog/backend/business/utils/ValidarDesignacion.java
 /app/src/main/java/unpsjb/labprog/backend/presenter/PersonaPresenter.java
 /app/src/main/java/unpsjb/labprog/backend/model/Turno.java
@@ -34,6 +36,7 @@
 /app/src/main/java/unpsjb/labprog/backend/presenter/CargoPresenter.java
 /app/src/main/java/unpsjb/labprog/backend/business/PersonaRepository.java
 /app/src/main/java/unpsjb/labprog/backend/business/LicenciaRepository.java
+/app/src/main/java/unpsjb/labprog/backend/business/reporteUtils/PaginadorUtils.java
 /app/src/main/java/unpsjb/labprog/backend/business/utils/vlicencias/Validable.java
 /app/src/main/java/unpsjb/labprog/backend/model/Cargo.java
 /app/src/main/java/unpsjb/labprog/backend/business/DivisionRepository.java

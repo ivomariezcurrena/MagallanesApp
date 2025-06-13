@@ -1,0 +1,3099 @@
+INSERT INTO
+    cargo (
+        id,
+        nombre,
+        carga_Horaria,
+        fecha_Inicio,
+        fecha_Fin,
+        tipo_designacion,
+        division_id
+    )
+VALUES (
+        1,
+        'Director/a',
+        40,
+        '2024-03-01T00:00:00',
+        NULL,
+        'CARGO',
+        NULL
+    ),
+    (
+        2,
+        'Vicedirector/a',
+        40,
+        '2024-03-01T00:00:00',
+        NULL,
+        'CARGO',
+        NULL
+    ),
+    (
+        3,
+        'Secretario/a',
+        40,
+        '2024-03-01T00:00:00',
+        NULL,
+        'CARGO',
+        NULL
+    ),
+    (
+        4,
+        'Prosecretario/a',
+        30,
+        '2024-03-01T00:00:00',
+        NULL,
+        'CARGO',
+        NULL
+    ),
+    (
+        5,
+        'Regente',
+        40,
+        '2024-03-01T00:00:00',
+        NULL,
+        'CARGO',
+        NULL
+    ),
+    (
+        6,
+        'Jefe/a de Preceptores',
+        40,
+        '2024-03-01T00:00:00',
+        NULL,
+        'CARGO',
+        NULL
+    ),
+    (
+        7,
+        'Bibliotecario/a',
+        30,
+        '2024-03-01T00:00:00',
+        NULL,
+        'CARGO',
+        NULL
+    ),
+    (
+        8,
+        'Bibliotecario/a',
+        30,
+        '2024-03-01T00:00:00',
+        NULL,
+        'CARGO',
+        NULL
+    ),
+    (
+        9,
+        'Auxiliar Administrativo',
+        35,
+        '2024-03-01T00:00:00',
+        NULL,
+        'CARGO',
+        NULL
+    ),
+    (
+        10,
+        'Auxiliar de Secretaría',
+        35,
+        '2024-03-01T00:00:00',
+        NULL,
+        'CARGO',
+        NULL
+    ),
+    (
+        11,
+        'Auxiliar de Preceptoría',
+        35,
+        '2024-03-01T00:00:00',
+        NULL,
+        'CARGO',
+        NULL
+    ),
+    (
+        12,
+        'Preceptor/a',
+        30,
+        '2024-03-01T00:00:00',
+        NULL,
+        'CARGO',
+        1
+    ),
+    (
+        13,
+        'Preceptor/a',
+        30,
+        '2024-03-01T00:00:00',
+        NULL,
+        'CARGO',
+        2
+    ),
+    (
+        14,
+        'Preceptor/a',
+        30,
+        '2024-03-01T00:00:00',
+        NULL,
+        'CARGO',
+        3
+    ),
+    (
+        15,
+        'Preceptor/a',
+        30,
+        '2024-03-01T00:00:00',
+        NULL,
+        'CARGO',
+        4
+    ),
+    (
+        16,
+        'Preceptor/a',
+        30,
+        '2024-03-01T00:00:00',
+        NULL,
+        'CARGO',
+        5
+    ),
+    (
+        17,
+        'Preceptor/a',
+        30,
+        '2024-03-01T00:00:00',
+        NULL,
+        'CARGO',
+        6
+    ),
+    (
+        18,
+        'Preceptor/a',
+        30,
+        '2024-03-01T00:00:00',
+        NULL,
+        'CARGO',
+        7
+    ),
+    (
+        19,
+        'Preceptor/a',
+        30,
+        '2024-03-01T00:00:00',
+        NULL,
+        'CARGO',
+        8
+    ),
+    (
+        20,
+        'Preceptor/a',
+        30,
+        '2024-03-01T00:00:00',
+        NULL,
+        'CARGO',
+        9
+    ),
+    (
+        21,
+        'Preceptor/a',
+        30,
+        '2024-03-01T00:00:00',
+        NULL,
+        'CARGO',
+        10
+    ),
+    (
+        22,
+        'Preceptor/a',
+        30,
+        '2024-03-01T00:00:00',
+        NULL,
+        'CARGO',
+        11
+    ),
+    (
+        23,
+        'Preceptor/a',
+        30,
+        '2024-03-01T00:00:00',
+        NULL,
+        'CARGO',
+        12
+    ),
+    (
+        24,
+        'Preceptor/a',
+        30,
+        '2024-03-01T00:00:00',
+        NULL,
+        'CARGO',
+        13
+    ),
+    (
+        25,
+        'Preceptor/a',
+        30,
+        '2024-03-01T00:00:00',
+        NULL,
+        'CARGO',
+        14
+    ),
+    (
+        26,
+        'Preceptor/a',
+        30,
+        '2024-03-01T00:00:00',
+        NULL,
+        'CARGO',
+        15
+    ),
+    -- 1° 1ra
+    (
+        1001,
+        'Lengua y Literatura',
+        6,
+        '2024-03-01T00:00:00',
+        NULL,
+        'ESPACIO_CURRICULAR',
+        1
+    ),
+    (
+        1002,
+        'Matemática',
+        6,
+        '2024-03-01T00:00:00',
+        NULL,
+        'ESPACIO_CURRICULAR',
+        1
+    ),
+    (
+        1003,
+        'Historia',
+        4,
+        '2024-03-01T00:00:00',
+        NULL,
+        'ESPACIO_CURRICULAR',
+        1
+    ),
+    (
+        1004,
+        'Geografía',
+        3,
+        '2024-03-01T00:00:00',
+        NULL,
+        'ESPACIO_CURRICULAR',
+        1
+    ),
+    (
+        1005,
+        'Biología',
+        4,
+        '2024-03-01T00:00:00',
+        NULL,
+        'ESPACIO_CURRICULAR',
+        1
+    ),
+    (
+        1006,
+        'Educación Física',
+        3,
+        '2024-03-01T00:00:00',
+        NULL,
+        'ESPACIO_CURRICULAR',
+        1
+    ),
+    (
+        1007,
+        'Inglés',
+        3,
+        '2024-03-01T00:00:00',
+        NULL,
+        'ESPACIO_CURRICULAR',
+        1
+    ),
+    (
+        1008,
+        'Educación Artística',
+        2,
+        '2024-03-01T00:00:00',
+        NULL,
+        'ESPACIO_CURRICULAR',
+        1
+    ),
+    (
+        1009,
+        'Construcción de Ciudadanía',
+        2,
+        '2024-03-01T00:00:00',
+        NULL,
+        'ESPACIO_CURRICULAR',
+        1
+    ),
+    (
+        1010,
+        'Tecnología',
+        3,
+        '2024-03-01T00:00:00',
+        NULL,
+        'ESPACIO_CURRICULAR',
+        1
+    ),
+    (
+        1011,
+        'Física',
+        2,
+        '2024-03-01T00:00:00',
+        NULL,
+        'ESPACIO_CURRICULAR',
+        1
+    ),
+    (
+        1012,
+        'Química',
+        2,
+        '2024-03-01T00:00:00',
+        NULL,
+        'ESPACIO_CURRICULAR',
+        1
+    ),
+    (
+        1013,
+        'Tutoría',
+        2,
+        '2024-03-01T00:00:00',
+        NULL,
+        'ESPACIO_CURRICULAR',
+        1
+    ),
+
+-- 1° 2da
+(
+    1021,
+    'Lengua y Literatura',
+    6,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    2
+),
+(
+    1022,
+    'Matemática',
+    6,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    2
+),
+(
+    1023,
+    'Historia',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    2
+),
+(
+    1024,
+    'Geografía',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    2
+),
+(
+    1025,
+    'Biología',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    2
+),
+(
+    1026,
+    'Educación Física',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    2
+),
+(
+    1027,
+    'Inglés',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    2
+),
+(
+    1028,
+    'Educación Artística',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    2
+),
+(
+    1029,
+    'Construcción de Ciudadanía',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    2
+),
+(
+    1030,
+    'Tecnología',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    2
+),
+(
+    1031,
+    'Física',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    2
+),
+(
+    1032,
+    'Química',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    2
+),
+(
+    1033,
+    'Tutoría',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    2
+),
+
+-- 1° 3ra
+(
+    1041,
+    'Lengua y Literatura',
+    6,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    3
+),
+(
+    1042,
+    'Matemática',
+    6,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    3
+),
+(
+    1043,
+    'Historia',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    3
+),
+(
+    1044,
+    'Geografía',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    3
+),
+(
+    1045,
+    'Biología',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    3
+),
+(
+    1046,
+    'Educación Física',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    3
+),
+(
+    1047,
+    'Inglés',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    3
+),
+(
+    1048,
+    'Educación Artística',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    3
+),
+(
+    1049,
+    'Construcción de Ciudadanía',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    3
+),
+(
+    1050,
+    'Tecnología',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    3
+),
+(
+    1051,
+    'Física',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    3
+),
+(
+    1052,
+    'Química',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    3
+),
+(
+    1053,
+    'Tutoría',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    3
+),
+
+-- 1° 4ta
+(
+    1061,
+    'Lengua y Literatura',
+    6,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    4
+),
+(
+    1062,
+    'Matemática',
+    6,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    4
+),
+(
+    1063,
+    'Historia',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    4
+),
+(
+    1064,
+    'Geografía',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    4
+),
+(
+    1065,
+    'Biología',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    4
+),
+(
+    1066,
+    'Educación Física',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    4
+),
+(
+    1067,
+    'Inglés',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    4
+),
+(
+    1068,
+    'Educación Artística',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    4
+),
+(
+    1069,
+    'Construcción de Ciudadanía',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    4
+),
+(
+    1070,
+    'Tecnología',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    4
+),
+(
+    1071,
+    'Física',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    4
+),
+(
+    1072,
+    'Química',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    4
+),
+(
+    1073,
+    'Tutoría',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    4
+),
+-- Espacios curriculares para 2° año, divisiones 5 a 8, mismas materias y cargas horarias que 1°
+-- 2° 1ra
+(
+    2001,
+    'Lengua y Literatura',
+    6,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    5
+),
+(
+    2002,
+    'Matemática',
+    6,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    5
+),
+(
+    2003,
+    'Historia',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    5
+),
+(
+    2004,
+    'Geografía',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    5
+),
+(
+    2005,
+    'Biología',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    5
+),
+(
+    2006,
+    'Educación Física',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    5
+),
+(
+    2007,
+    'Inglés',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    5
+),
+(
+    2008,
+    'Educación Artística',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    5
+),
+(
+    2009,
+    'Construcción de Ciudadanía',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    5
+),
+(
+    2010,
+    'Tecnología',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    5
+),
+(
+    2011,
+    'Física',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    5
+),
+(
+    2012,
+    'Química',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    5
+),
+(
+    2013,
+    'Tutoría',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    5
+),
+-- 2° 2da
+(
+    2021,
+    'Lengua y Literatura',
+    6,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    6
+),
+(
+    2022,
+    'Matemática',
+    6,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    6
+),
+(
+    2023,
+    'Historia',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    6
+),
+(
+    2024,
+    'Geografía',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    6
+),
+(
+    2025,
+    'Biología',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    6
+),
+(
+    2026,
+    'Educación Física',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    6
+),
+(
+    2027,
+    'Inglés',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    6
+),
+(
+    2028,
+    'Educación Artística',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    6
+),
+(
+    2029,
+    'Construcción de Ciudadanía',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    6
+),
+(
+    2030,
+    'Tecnología',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    6
+),
+(
+    2031,
+    'Física',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    6
+),
+(
+    2032,
+    'Química',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    6
+),
+(
+    2033,
+    'Tutoría',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    6
+),
+
+-- 2° 3ra
+(
+    2041,
+    'Lengua y Literatura',
+    6,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    7
+),
+(
+    2042,
+    'Matemática',
+    6,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    7
+),
+(
+    2043,
+    'Historia',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    7
+),
+(
+    2044,
+    'Geografía',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    7
+),
+(
+    2045,
+    'Biología',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    7
+),
+(
+    2046,
+    'Educación Física',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    7
+),
+(
+    2047,
+    'Inglés',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    7
+),
+(
+    2048,
+    'Educación Artística',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    7
+),
+(
+    2049,
+    'Construcción de Ciudadanía',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    7
+),
+(
+    2050,
+    'Tecnología',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    7
+),
+(
+    2051,
+    'Física',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    7
+),
+(
+    2052,
+    'Química',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    7
+),
+(
+    2053,
+    'Tutoría',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    7
+),
+
+-- 2° 4ta
+(
+    2061,
+    'Lengua y Literatura',
+    6,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    8
+),
+(
+    2062,
+    'Matemática',
+    6,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    8
+),
+(
+    2063,
+    'Historia',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    8
+),
+(
+    2064,
+    'Geografía',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    8
+),
+(
+    2065,
+    'Biología',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    8
+),
+(
+    2066,
+    'Educación Física',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    8
+),
+(
+    2067,
+    'Inglés',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    8
+),
+(
+    2068,
+    'Educación Artística',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    8
+),
+(
+    2069,
+    'Construcción de Ciudadanía',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    8
+),
+(
+    2070,
+    'Tecnología',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    8
+),
+(
+    2071,
+    'Física',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    8
+),
+(
+    2072,
+    'Química',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    8
+),
+(
+    2073,
+    'Tutoría',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    8
+),
+-- Espacios curriculares para 3° año, divisiones 9 a 12, mismas materias y cargas horarias que 1° y 2°
+-- 3° 1ra
+(
+    3001,
+    'Lengua y Literatura',
+    6,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    9
+),
+(
+    3002,
+    'Matemática',
+    6,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    9
+),
+(
+    3003,
+    'Historia',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    9
+),
+(
+    3004,
+    'Geografía',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    9
+),
+(
+    3005,
+    'Biología',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    9
+),
+(
+    3006,
+    'Educación Física',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    9
+),
+(
+    3007,
+    'Inglés',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    9
+),
+(
+    3008,
+    'Educación Artística',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    9
+),
+(
+    3009,
+    'Construcción de Ciudadanía',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    9
+),
+(
+    3010,
+    'Tecnología',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    9
+),
+(
+    3011,
+    'Física',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    9
+),
+(
+    3012,
+    'Química',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    9
+),
+(
+    3013,
+    'Tutoría',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    9
+),
+
+-- 3° 2da
+(
+    3021,
+    'Lengua y Literatura',
+    6,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    10
+),
+(
+    3022,
+    'Matemática',
+    6,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    10
+),
+(
+    3023,
+    'Historia',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    10
+),
+(
+    3024,
+    'Geografía',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    10
+),
+(
+    3025,
+    'Biología',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    10
+),
+(
+    3026,
+    'Educación Física',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    10
+),
+(
+    3027,
+    'Inglés',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    10
+),
+(
+    3028,
+    'Educación Artística',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    10
+),
+(
+    3029,
+    'Construcción de Ciudadanía',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    10
+),
+(
+    3030,
+    'Tecnología',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    10
+),
+(
+    3031,
+    'Física',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    10
+),
+(
+    3032,
+    'Química',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    10
+),
+(
+    3033,
+    'Tutoría',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    10
+),
+
+-- 3° 3ra
+(
+    3041,
+    'Lengua y Literatura',
+    6,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    11
+),
+(
+    3042,
+    'Matemática',
+    6,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    11
+),
+(
+    3043,
+    'Historia',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    11
+),
+(
+    3044,
+    'Geografía',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    11
+),
+(
+    3045,
+    'Biología',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    11
+),
+(
+    3046,
+    'Educación Física',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    11
+),
+(
+    3047,
+    'Inglés',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    11
+),
+(
+    3048,
+    'Educación Artística',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    11
+),
+(
+    3049,
+    'Construcción de Ciudadanía',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    11
+),
+(
+    3050,
+    'Tecnología',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    11
+),
+(
+    3051,
+    'Física',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    11
+),
+(
+    3052,
+    'Química',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    11
+),
+(
+    3053,
+    'Tutoría',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    11
+),
+
+-- 3° 4ta
+(
+    3061,
+    'Lengua y Literatura',
+    6,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    12
+),
+(
+    3062,
+    'Matemática',
+    6,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    12
+),
+(
+    3063,
+    'Historia',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    12
+),
+(
+    3064,
+    'Geografía',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    12
+),
+(
+    3065,
+    'Biología',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    12
+),
+(
+    3066,
+    'Educación Física',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    12
+),
+(
+    3067,
+    'Inglés',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    12
+),
+(
+    3068,
+    'Educación Artística',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    12
+),
+(
+    3069,
+    'Construcción de Ciudadanía',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    12
+),
+(
+    3070,
+    'Tecnología',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    12
+),
+(
+    3071,
+    'Física',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    12
+),
+(
+    3072,
+    'Química',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    12
+),
+(
+    3073,
+    'Tutoría',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    12
+), -- Espacios curriculares para 4° año, divisiones 13 a 16, materias especializadas según orientación
+
+-- 4° 1ra - Economía y Administración (id=13)
+(
+    4001,
+    'Lengua y Literatura',
+    5,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    13
+),
+(
+    4002,
+    'Matemática',
+    5,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    13
+),
+(
+    4003,
+    'Historia',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    13
+),
+(
+    4004,
+    'Geografía Económica',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    13
+),
+(
+    4005,
+    'Educación Física',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    13
+),
+(
+    4006,
+    'Inglés',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    13
+),
+(
+    4007,
+    'Economía',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    13
+),
+(
+    4008,
+    'Contabilidad',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    13
+),
+(
+    4009,
+    'Gestión de las Organizaciones',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    13
+),
+(
+    4010,
+    'Derecho',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    13
+),
+(
+    4011,
+    'Tecnología de la Información',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    13
+),
+(
+    4012,
+    'Tutoría',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    13
+),
+(
+    4013,
+    'Educación Artística',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    13
+),
+
+-- 4° 2da - Administración Pública (id=14)
+(
+    4021,
+    'Lengua y Literatura',
+    5,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    14
+),
+(
+    4022,
+    'Matemática',
+    5,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    14
+),
+(
+    4023,
+    'Historia Argentina',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    14
+),
+(
+    4024,
+    'Geografía Política',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    14
+),
+(
+    4025,
+    'Educación Física',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    14
+),
+(
+    4026,
+    'Inglés',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    14
+),
+(
+    4027,
+    'Administración Pública',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    14
+),
+(
+    4028,
+    'Derecho Administrativo',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    14
+),
+(
+    4029,
+    'Gestión Pública',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    14
+),
+(
+    4030,
+    'Ética y Ciudadanía',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    14
+),
+(
+    4031,
+    'Tecnología de la Información',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    14
+),
+(
+    4032,
+    'Tutoría',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    14
+),
+(
+    4033,
+    'Educación Artística',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    14
+),
+
+-- 4° 3ra - Economía y Administración (id=15)
+(
+    4041,
+    'Lengua y Literatura',
+    5,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    15
+),
+(
+    4042,
+    'Matemática',
+    5,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    15
+),
+(
+    4043,
+    'Historia',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    15
+),
+(
+    4044,
+    'Geografía Económica',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    15
+),
+(
+    4045,
+    'Educación Física',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    15
+),
+(
+    4046,
+    'Inglés',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    15
+),
+(
+    4047,
+    'Economía',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    15
+),
+(
+    4048,
+    'Contabilidad',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    15
+),
+(
+    4049,
+    'Gestión de las Organizaciones',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    15
+),
+(
+    4050,
+    'Derecho',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    15
+),
+(
+    4051,
+    'Tecnología de la Información',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    15
+),
+(
+    4052,
+    'Tutoría',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    15
+),
+(
+    4053,
+    'Educación Artística',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    15
+),
+
+-- 4° 4ta - Administración Pública (id=16)
+(
+    4061,
+    'Lengua y Literatura',
+    5,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    16
+),
+(
+    4062,
+    'Matemática',
+    5,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    16
+),
+(
+    4063,
+    'Historia Argentina',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    16
+),
+(
+    4064,
+    'Geografía Política',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    16
+),
+(
+    4065,
+    'Educación Física',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    16
+),
+(
+    4066,
+    'Inglés',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    16
+),
+(
+    4067,
+    'Administración Pública',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    16
+),
+(
+    4068,
+    'Derecho Administrativo',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    16
+),
+(
+    4069,
+    'Gestión Pública',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    16
+),
+(
+    4070,
+    'Ética y Ciudadanía',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    16
+),
+(
+    4071,
+    'Tecnología de la Información',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    16
+),
+(
+    4072,
+    'Tutoría',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    16
+),
+(
+    4073,
+    'Educación Artística',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    16
+), -- Espacios curriculares para 5° año, divisiones 17 a 20, materias especializadas según orientación
+
+-- 5° 1ra - Economía y Administración (id=17)
+(
+    5001,
+    'Lengua y Literatura',
+    5,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    17
+),
+(
+    5002,
+    'Matemática',
+    5,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    17
+),
+(
+    5003,
+    'Historia',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    17
+),
+(
+    5004,
+    'Geografía Económica',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    17
+),
+(
+    5005,
+    'Educación Física',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    17
+),
+(
+    5006,
+    'Inglés',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    17
+),
+(
+    5007,
+    'Economía II',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    17
+),
+(
+    5008,
+    'Contabilidad II',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    17
+),
+(
+    5009,
+    'Gestión de las Organizaciones II',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    17
+),
+(
+    5010,
+    'Derecho Laboral',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    17
+),
+(
+    5011,
+    'Tecnología de la Información II',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    17
+),
+(
+    5012,
+    'Tutoría',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    17
+),
+(
+    5013,
+    'Educación Artística',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    17
+),
+
+-- 5° 2da - Administración Pública (id=18)
+(
+    5021,
+    'Lengua y Literatura',
+    5,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    18
+),
+(
+    5022,
+    'Matemática',
+    5,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    18
+),
+(
+    5023,
+    'Historia Argentina II',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    18
+),
+(
+    5024,
+    'Geografía Política II',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    18
+),
+(
+    5025,
+    'Educación Física',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    18
+),
+(
+    5026,
+    'Inglés',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    18
+),
+(
+    5027,
+    'Administración Pública II',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    18
+),
+(
+    5028,
+    'Derecho Administrativo II',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    18
+),
+(
+    5029,
+    'Gestión Pública II',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    18
+),
+(
+    5030,
+    'Ética y Ciudadanía II',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    18
+),
+(
+    5031,
+    'Tecnología de la Información II',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    18
+),
+(
+    5032,
+    'Tutoría',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    18
+),
+(
+    5033,
+    'Educación Artística',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    18
+),
+
+-- 5° 3ra - Economía y Administración (id=19)
+(
+    5041,
+    'Lengua y Literatura',
+    5,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    19
+),
+(
+    5042,
+    'Matemática',
+    5,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    19
+),
+(
+    5043,
+    'Historia',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    19
+),
+(
+    5044,
+    'Geografía Económica',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    19
+),
+(
+    5045,
+    'Educación Física',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    19
+),
+(
+    5046,
+    'Inglés',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    19
+),
+(
+    5047,
+    'Economía II',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    19
+),
+(
+    5048,
+    'Contabilidad II',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    19
+),
+(
+    5049,
+    'Gestión de las Organizaciones II',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    19
+),
+(
+    5050,
+    'Derecho Laboral',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    19
+),
+(
+    5051,
+    'Tecnología de la Información II',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    19
+),
+(
+    5052,
+    'Tutoría',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    19
+),
+(
+    5053,
+    'Educación Artística',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    19
+),
+
+-- 5° 4ta - Administración Pública (id=20)
+(
+    5061,
+    'Lengua y Literatura',
+    5,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    20
+),
+(
+    5062,
+    'Matemática',
+    5,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    20
+),
+(
+    5063,
+    'Historia Argentina II',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    20
+),
+(
+    5064,
+    'Geografía Política II',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    20
+),
+(
+    5065,
+    'Educación Física',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    20
+),
+(
+    5066,
+    'Inglés',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    20
+),
+(
+    5067,
+    'Administración Pública II',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    20
+),
+(
+    5068,
+    'Derecho Administrativo II',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    20
+),
+(
+    5069,
+    'Gestión Pública II',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    20
+),
+(
+    5070,
+    'Ética y Ciudadanía II',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    20
+),
+(
+    5071,
+    'Tecnología de la Información II',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    20
+),
+(
+    5072,
+    'Tutoría',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    20
+),
+(
+    5073,
+    'Educación Artística',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    20
+),
+-- Espacios curriculares para 6° año, divisiones 21 a 24, materias especializadas según orientación
+
+-- 6° 1ra - Economía y Administración (id=21)
+(
+    6001,
+    'Lengua y Literatura',
+    5,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    21
+),
+(
+    6002,
+    'Matemática',
+    5,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    21
+),
+(
+    6003,
+    'Historia',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    21
+),
+(
+    6004,
+    'Geografía Económica',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    21
+),
+(
+    6005,
+    'Educación Física',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    21
+),
+(
+    6006,
+    'Inglés',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    21
+),
+(
+    6007,
+    'Economía III',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    21
+),
+(
+    6008,
+    'Contabilidad III',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    21
+),
+(
+    6009,
+    'Gestión de las Organizaciones III',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    21
+),
+(
+    6010,
+    'Derecho Empresarial',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    21
+),
+(
+    6011,
+    'Práctica Profesionalizante',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    21
+),
+(
+    6012,
+    'Tutoría',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    21
+),
+(
+    6013,
+    'Educación Artística',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    21
+),
+
+-- 6° 2da - Administración Pública (id=22)
+(
+    6021,
+    'Lengua y Literatura',
+    5,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    22
+),
+(
+    6022,
+    'Matemática',
+    5,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    22
+),
+(
+    6023,
+    'Historia Argentina III',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    22
+),
+(
+    6024,
+    'Geografía Política III',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    22
+),
+(
+    6025,
+    'Educación Física',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    22
+),
+(
+    6026,
+    'Inglés',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    22
+),
+(
+    6027,
+    'Administración Pública III',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    22
+),
+(
+    6028,
+    'Derecho Administrativo III',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    22
+),
+(
+    6029,
+    'Gestión Pública III',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    22
+),
+(
+    6030,
+    'Ética y Ciudadanía III',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    22
+),
+(
+    6031,
+    'Práctica Profesionalizante',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    22
+),
+(
+    6032,
+    'Tutoría',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    22
+),
+(
+    6033,
+    'Educación Artística',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    22
+),
+
+-- 6° 3ra - Economía y Administración (id=23)
+(
+    6041,
+    'Lengua y Literatura',
+    5,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    23
+),
+(
+    6042,
+    'Matemática',
+    5,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    23
+),
+(
+    6043,
+    'Historia',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    23
+),
+(
+    6044,
+    'Geografía Económica',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    23
+),
+(
+    6045,
+    'Educación Física',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    23
+),
+(
+    6046,
+    'Inglés',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    23
+),
+(
+    6047,
+    'Economía III',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    23
+),
+(
+    6048,
+    'Contabilidad III',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    23
+),
+(
+    6049,
+    'Gestión de las Organizaciones III',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    23
+),
+(
+    6050,
+    'Derecho Empresarial',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    23
+),
+(
+    6051,
+    'Práctica Profesionalizante',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    23
+),
+(
+    6052,
+    'Tutoría',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    23
+),
+(
+    6053,
+    'Educación Artística',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    23
+),
+
+-- 6° 4ta - Administración Pública (id=24)
+(
+    6061,
+    'Lengua y Literatura',
+    5,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    24
+),
+(
+    6062,
+    'Matemática',
+    5,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    24
+),
+(
+    6063,
+    'Historia Argentina III',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    24
+),
+(
+    6064,
+    'Geografía Política III',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    24
+),
+(
+    6065,
+    'Educación Física',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    24
+),
+(
+    6066,
+    'Inglés',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    24
+),
+(
+    6067,
+    'Administración Pública III',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    24
+),
+(
+    6068,
+    'Derecho Administrativo III',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    24
+),
+(
+    6069,
+    'Gestión Pública III',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    24
+),
+(
+    6070,
+    'Ética y Ciudadanía III',
+    3,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    24
+),
+(
+    6071,
+    'Práctica Profesionalizante',
+    4,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    24
+),
+(
+    6072,
+    'Tutoría',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    24
+),
+(
+    6073,
+    'Educación Artística',
+    2,
+    '2024-03-01T00:00:00',
+    NULL,
+    'ESPACIO_CURRICULAR',
+    24
+);
