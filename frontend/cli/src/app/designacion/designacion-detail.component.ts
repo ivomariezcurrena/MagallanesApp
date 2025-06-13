@@ -153,9 +153,9 @@ export class DesignacionDetailComponent {
         this.loading = false;
         // Si el status no es 200, mostrar el mensaje de error
         if (!dataPackage || dataPackage.status !== 200) {
-          this.errorMessage = typeof dataPackage?.data === 'string'
-            ? dataPackage.data
-            : JSON.stringify(dataPackage?.data) || 'Error desconocido al guardar la designación';
+          this.errorMessage = typeof dataPackage?.message === 'string'
+            ? dataPackage.message
+            : JSON.stringify(dataPackage?.message) || 'Error desconocido al guardar la designación';
         } else {
           this.designacion = <Designacion>dataPackage.data;
           this.successMessage = 'Cargo guardado exitosamente!';

@@ -26,44 +26,75 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
       border-radius: 1rem;
       box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.2);
       border: none;
+      background: var(--blanco, #fff);
+      color: var(--grey, #2B2B2B);
     }
 
     .custom-modal-header {
-      background-color: #f8f9fa;
-      border-bottom: 1px solid #dee2e6;
+      background-color: var(--violeta, #BFAFF2);
+      border-bottom: 1px solid var(--amarillo, #F8D57E);
       border-top-left-radius: 1rem;
       border-top-right-radius: 1rem;
+      color: var(--grey, #2B2B2B);
     }
 
     .close-button {
-  background: transparent;
-  border: none;
-  font-size: 1.8rem; /* más grande */
-  font-weight: bold;
-  line-height: 1;
-  color: #333;
-  cursor: pointer;
-}
+      background: transparent;
+      border: none;
+      font-size: 1.8rem;
+      font-weight: bold;
+      line-height: 1;
+      color: var(--grey, #2B2B2B);
+      cursor: pointer;
+    }
 
     .btn-close:hover {
       opacity: 1;
+      color: var(--violeta, #BFAFF2);
     }
 
     .custom-modal-body {
       padding: 1rem 1.5rem;
       font-size: 1rem;
+      background: var(--blanco, #fff);
+      color: var(--grey, #2B2B2B);
     }
 
     .custom-modal-footer {
       padding: 0.75rem 1.5rem;
-      border-top: 1px solid #dee2e6;
+      border-top: 1px solid var(--amarillo, #F8D57E);
       border-bottom-left-radius: 1rem;
       border-bottom-right-radius: 1rem;
+      background: var(--blanco, #fff);
     }
 
     .modal-title {
       font-weight: 600;
       font-size: 1.25rem;
+      color: var(--grey, #2B2B2B);
+    }
+
+    .btn-success {
+      background-color: var(--violeta, #BFAFF2);
+      border-color: var(--violeta, #BFAFF2);
+      color: var(--grey, #2B2B2B);
+    }
+    .btn-success:hover {
+      background-color: var(--amarillo, #F8D57E);
+      border-color: var(--amarillo, #F8D57E);
+      color: var(--grey, #2B2B2B);
+    }
+    .btn-outline-secondary {
+      color: var(--grey, #2B2B2B);
+      border-color: var(--violeta, #BFAFF2);
+      background: transparent;
+    }
+    .btn-outline-secondary:hover {
+      background: var(--violeta, #BFAFF2);
+      color: var(--grey, #2B2B2B);
+    }
+    .fw-semibold.text-danger {
+      color: var(--amarillo, #F8D57E) !important;
     }
   `]
 })
