@@ -1,6 +1,5 @@
 package unpsjb.labprog.backend.business.utils.vlicencias;
 
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -12,7 +11,6 @@ import unpsjb.labprog.backend.business.LicenciaRepository;
 import unpsjb.labprog.backend.business.PersonaRepository;
 import unpsjb.labprog.backend.business.utils.MensajeFormateador;
 import unpsjb.labprog.backend.model.Designacion;
-import unpsjb.labprog.backend.model.Estado;
 import unpsjb.labprog.backend.model.Licencia;
 
 @Component
@@ -50,7 +48,20 @@ public class ValidarLicencia {
     public void validar(Licencia licencia) {
         cargarEntidades(licencia);
         cargarDesignaciones(licencia);
-        for (Validable validacion : workflowValidaciones) {
+
+        String articulo = licencia.getArticulo() != null ? licencia.getArticulo().getArticulo() : null;
+        List<Validable> validaciones = workflowValidaciones.stream()
+            .filter(v -> {
+                ArticuloValido anotacion = v.getClass().getAnnotation(ArticuloValido.class);
+                if (anotacion == null) return true; // Sin anotación = global
+                for (String art : anotacion.value()) {
+                    if (art.equals(articulo)) return true;
+                }
+                return false;
+            })
+            .toList();
+
+        for (Validable validacion : validaciones) {
             validacion.validar(licencia);
         }
     }

@@ -6,15 +6,13 @@ import java.util.List;
 import unpsjb.labprog.backend.model.Estado;
 import unpsjb.labprog.backend.model.Licencia;
 
+@ArticuloValido("23A")
 public class Validacion23A implements Validable {
 
     private final int topeDias = 30;
 
     @Override
     public void validar(Licencia licencia) {
-        if (!"23A".equals(licencia.getArticulo().getArticulo())) {
-            return; // Solo aplica para el artículo 23A
-        }
         int anio = licencia.getPedidoDesde().getYear();
         List<Licencia> licenciasAnio = PluginDependencies.licenciaRepository.findAllByPersonaAndArticuloAndAnio(
                 licencia.getPersona().getDni(),

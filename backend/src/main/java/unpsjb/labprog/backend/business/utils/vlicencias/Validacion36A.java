@@ -5,6 +5,7 @@ import java.util.List;
 import unpsjb.labprog.backend.model.Estado;
 import unpsjb.labprog.backend.model.Licencia;
 
+@ArticuloValido("36A")
 public class Validacion36A implements Validable {
 
     private final int topeMes = 2;
@@ -12,9 +13,6 @@ public class Validacion36A implements Validable {
 
     @Override
     public void validar(Licencia licencia) {
-        if (!"36A".equals(licencia.getArticulo().getArticulo())) {
-            return; // Solo aplica para el artículo 36A
-        }
         int anio = licencia.getPedidoDesde().getYear();
         int mes = licencia.getPedidoDesde().getMonthValue();
 
