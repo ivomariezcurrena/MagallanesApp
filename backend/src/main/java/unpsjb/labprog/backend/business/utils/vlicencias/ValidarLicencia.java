@@ -21,14 +21,6 @@ public class ValidarLicencia {
 
     @Autowired
     @Lazy
-    PersonaRepository personaRepository;
-
-    @Autowired
-    @Lazy
-    ArticuloLicenciaRepository articuloLicenciaRepository;
-
-    @Autowired
-    @Lazy
     DesignacionRepository designacionRepository;
 
     private final List<Validable> workflowValidaciones;
@@ -46,43 +38,23 @@ public class ValidarLicencia {
     }
 
     public void validar(Licencia licencia) {
-        cargarEntidades(licencia);
-        cargarDesignaciones(licencia);
 
         String articulo = licencia.getArticulo() != null ? licencia.getArticulo().getArticulo() : null;
         List<Validable> validaciones = workflowValidaciones.stream()
-            .filter(v -> {
-                ArticuloValido anotacion = v.getClass().getAnnotation(ArticuloValido.class);
-                if (anotacion == null) return true; // Sin anotación = global
-                for (String art : anotacion.value()) {
-                    if (art.equals(articulo)) return true;
-                }
-                return false;
-            })
-            .toList();
+                .filter(v -> {
+                    ArticuloValido anotacion = v.getClass().getAnnotation(ArticuloValido.class);
+                    if (anotacion == null)
+                        return true; // Sin anotación = global
+                    for (String art : anotacion.value()) {
+                        if (art.equals(articulo))
+                            return true;
+                    }
+                    return false;
+                })
+                .toList();
 
         for (Validable validacion : validaciones) {
             validacion.validar(licencia);
-        }
-    }
-
-    private void cargarEntidades(Licencia licencia) {
-        if (licencia.getPersona() != null && licencia.getPersona().getDni() != 0) {
-            licencia.setPersona(personaRepository.findById(licencia.getPersona().getDni()).orElse(null));
-            licencia.setDomicilio(licencia.getPersona().getDomicilio());
-        }
-        if (licencia.getArticulo() != null && licencia.getArticulo().getId() != 0) {
-            licencia.setArticulo(articuloLicenciaRepository.findById(licencia.getArticulo().getId()).orElse(null));
-        }
-    }
-
-    private void cargarDesignaciones(Licencia licencia) {
-        if (licencia.getPersona() != null && licencia.getPedidoDesde() != null && licencia.getPedidoHasta() != null) {
-            List<Designacion> designaciones = designacionRepository.findDesignacionesActivasEnPeriodo(
-                    licencia.getPersona().getDni(),
-                    licencia.getPedidoDesde(),
-                    licencia.getPedidoHasta());
-            licencia.setDesignaciones(designaciones);
         }
     }
 

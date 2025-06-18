@@ -16,32 +16,38 @@ import unpsjb.labprog.backend.model.TipoDesignacion;
 @Repository
 public interface CargoRepository extends CrudRepository<Cargo, Integer>, PagingAndSortingRepository<Cargo, Integer> {
 
-    @Query("""
-                SELECT e
-                FROM Cargo e
-                WHERE
-                    FUNCTION('unaccent', UPPER(e.nombre)) LIKE :term
-            """)
-    Page<Cargo> search(@Param("term") String term, Pageable pageable);
+        @Query("""
+                            SELECT e
+                            FROM Cargo e
+                            WHERE
+                                FUNCTION('unaccent', UPPER(e.nombre)) LIKE :term
+                        """)
+        Page<Cargo> search(@Param("term") String term, Pageable pageable);
 
-    @Query("select e from Cargo e where e.nombre like ?1")
-    List<Cargo> search(String term);
+        @Query("select e from Cargo e where e.nombre like ?1")
+        List<Cargo> search(String term);
 
-    Cargo findByNombreIgnoreCaseAndTipoDesignacion(String nombre, TipoDesignacion tipo);
+        Cargo findByNombreIgnoreCaseAndTipoDesignacion(String nombre, TipoDesignacion tipo);
 
-    @Query("""
-                SELECT c FROM Cargo c
-                WHERE UPPER(c.nombre) = UPPER(:nombre)
-                  AND c.tipoDesignacion = :tipo
-                  AND c.division.anio = :anio
-                  AND c.division.numDivision = :numero
-                  AND c.division.turno = :turno
-            """)
-    Cargo findByNombreTipoDivision(
-            @Param("nombre") String nombre,
-            @Param("tipo") TipoDesignacion tipo,
-            @Param("anio") int anio,
-            @Param("numero") int numero,
-            @Param("turno") unpsjb.labprog.backend.model.Turno turno);
+        @Query("""
+                            SELECT c FROM Cargo c
+                            WHERE UPPER(c.nombre) = UPPER(:nombre)
+                              AND c.tipoDesignacion = :tipo
+                              AND c.division.anio = :anio
+                              AND c.division.numDivision = :numero
+                              AND c.division.turno = :turno
+                        """)
+        Cargo findByNombreTipoDivision(
+                        @Param("nombre") String nombre,
+                        @Param("tipo") TipoDesignacion tipo,
+                        @Param("anio") int anio,
+                        @Param("numero") int numero,
+                        @Param("turno") unpsjb.labprog.backend.model.Turno turno);
+
+        @Query("""
+                            SELECT c FROM Cargo c
+                            WHERE c.division = :division
+                        """)
+        List<Cargo> findByDivision(@Param("division") unpsjb.labprog.backend.model.Division division);
 
 }

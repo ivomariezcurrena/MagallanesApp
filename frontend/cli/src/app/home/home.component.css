@@ -4,6 +4,9 @@ body, .container {
     font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
     letter-spacing: 0.01em;
 }
+h3{
+    padding-top: 20px;
+}
 
 .card, .acceso-directo {
     font-family: inherit;
@@ -18,12 +21,11 @@ body, .container {
     border-radius: 20px;
     border: none;
     box-shadow: 0 8px 32px rgba(44, 44, 44, 0.13);
-    min-height: 140px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 24px 16px;
+    padding: 28px 16px;
     font-size: 1.03rem;
 }
 
@@ -118,6 +120,8 @@ body, .container {
 
 .mt-5 {
     margin-top: 3.2rem !important;
+
+
 }
 
 .mb-4 {
@@ -141,4 +145,311 @@ body, .container {
     color: #8b8b8b !important;
     font-weight: 500;
     letter-spacing: 0.01em;
+}
+/* Tabla */
+.table-responsive {
+    overflow-x: auto;
+    max-width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(44, 44, 44, 0.10);
+    background: transparent;
+    margin-bottom: 2rem;
+}
+
+.penguin-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.penguin-table thead {
+    background-color: var(--grey);
+    color: var(--blanco);
+}
+
+.penguin-table th,
+.penguin-table td {
+    padding: 0.8rem 0.5rem;
+    /* Menos espacio */
+    text-align: center;
+    vertical-align: middle;
+
+}
+
+.penguin-table td:last-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    vertical-align: middle;
+    padding: 0.5rem 0;
+    /* Opcional: menos espacio lateral */
+    height: 100%;
+}
+
+/* Acciones */
+.btn.btn-penguin {
+    background-color: var(--violeta);
+    color: var(--blanco);
+    border: none;
+    padding: 0.25rem 0.4rem;
+    /* Más pequeño */
+    border-radius: 8px;
+    font-size: 1rem;
+    /* Más pequeño el ícono */
+    margin-right: 0;
+    min-width: 28px;
+    min-height: 28px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn.btn-danger {
+    background-color: var(--grey);
+    color: var(--blanco);
+    border: none;
+    padding: 0.45rem 0.65rem;
+    border-radius: 8px;
+}
+
+/* Tabla vacía */
+.penguin-table td[colspan] {
+    text-align: center;
+    padding: 2rem;
+    color: #999;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+
+    .penguin-table th,
+    .penguin-table td {
+        padding: 0.6rem 0.5rem;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 700px) {
+
+    .penguin-table th:nth-child(5),
+    .penguin-table td:nth-child(5) {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .penguin-table {
+        min-width: 520px;
+        font-size: 0.92rem;
+    }
+
+    .penguin-table th,
+    .penguin-table td {
+        padding: 0.45rem 0.3rem;
+    }
+
+    .penguin-table th:nth-child(1),
+    .penguin-table td:nth-child(1) {
+        display: none;
+    }
+
+    .penguin-table th:nth-child(5),
+    .penguin-table td:nth-child(5) {
+        display: none;
+    }
+}
+
+/* Tabs modernas estilo Penguin */
+.penguin-tabs {
+    display: flex;
+    gap: 0.5rem;
+    border-bottom: 2px solid #ece6fa;
+    background: transparent;
+    padding-left: 0;
+    margin-bottom: 2.2rem;
+    list-style: none;
+    position: relative;
+}
+
+.penguin-tabs li {
+    margin-bottom: 0;
+}
+
+.penguin-tabs a {
+    display: block;
+    padding: 0.7rem 1.6rem 0.6rem 1.6rem;
+    font-size: 1.13rem;
+    font-weight: 500;
+    color: var(--grey);
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    transition: color 0.18s;
+    text-decoration: none;
+    position: relative;
+    box-shadow: none;
+}
+
+.penguin-tabs a.active,
+.penguin-tabs a.router-link-active {
+    color: var(--violeta);
+    background: transparent;
+    font-weight: 700;
+}
+
+.penguin-tabs a.active::after,
+.penguin-tabs a.router-link-active::after {
+    content: '';
+    display: block;
+    margin: 0 auto;
+    margin-top: 0.4rem;
+    width: 60%;
+    height: 3px;
+    border-radius: 2px;
+    background: var(--violeta);
+    opacity: 0.7;
+    transition: width 0.18s;
+}
+
+.penguin-tabs a:not(.active):hover {
+    color: var(--violeta);
+    background: transparent;
+}
+
+.penguin-tabs a::after {
+    content: '';
+    display: block;
+    margin: 0 auto;
+    margin-top: 0.4rem;
+    width: 0;
+    height: 3px;
+    background: transparent;
+    transition: width 0.18s;
+}
+
+.penguin-table td:last-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    vertical-align: middle;
+    padding: 0.5rem 0;
+    /* Opcional: menos espacio lateral */
+    height: 100%;
+}
+
+.penguin-table td:last-child a,
+.penguin-table td:last-child button {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.typeahead-summary {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    background: #fafaff;
+    border: 1px solid #ece6fa;
+    border-radius: 10px;
+    padding: 0.7rem 1.1rem;
+    margin-top: 0.3rem;
+    font-size: 1.04rem;
+    box-shadow: 0 2px 8px rgba(44, 44, 44, 0.04);
+}
+
+.summary-icon {
+    font-size: 1.5rem;
+    color: var(--violeta);
+    opacity: 0.85;
+}
+
+.horario-card {
+    display: flex;
+    /* Cambiado de inline-flex a flex para mejor control */
+    align-items: center;
+    justify-content: center;
+    min-width: 150px;
+    min-height: 60px;
+    max-width: 180px;
+    max-height: none;
+    color: var(--grey);
+    border-radius: 14px;
+    margin: 6px 4px;
+    padding: 0.7rem 1rem;
+        /* Espacio extra a la izquierda */
+    font-size: 1.13rem;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(191, 175, 242, 0.11);
+    transition: background 0.18s, box-shadow 0.18s, transform 0.18s;
+    text-align: center;
+    white-space: normal;
+    /* Permite varias líneas */
+    overflow: visible;
+    /* Permite que el texto se muestre completo */
+    cursor: pointer;
+    word-break: break-word;
+}
+.horario-card:hover {
+    box-shadow: 0 8px 24px rgba(191, 175, 242, 0.22);
+    color: var(--violeta);
+    transform: translateY(-7px) scale(1.04);
+    z-index: 2;
+}
+.selector-division {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.selector-division label {
+    font-size: 1.23rem;
+    color: var(--grey);
+    margin-bottom: 0;
+}
+
+.selector-division select.form-select {
+    min-width: 130px;
+    font-size: 1.13rem;
+    border-radius: 15px;
+    outline: none;
+    border-color: var(--violeta);
+    /* Quita box-shadow aquí */
+    box-shadow: none;
+    transition: box-shadow 0.18s, background 0.18s, border-color 0.18s;
+}
+
+.selector-division select.form-select:focus {
+    border-color: var(--violeta);
+    box-shadow: 0 0 0 0.22rem #967de944;
+}
+.btn-export {
+    background-color: var(--grey);
+    color: var(--blanco);
+    /* o negro si prefieres */
+    border: none;
+    padding: 0.4rem 1.1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-export:hover {
+    background-color: #ffe066;
+    /* un amarillo más claro al pasar el mouse */
+    color: var(--grey);
 }

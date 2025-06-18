@@ -42,4 +42,14 @@ public interface DivisionRepository
 
   @Query("select e from Division e where e.orientacion like ?1")
   List<Division> search(String term);
+
+  @Query("""
+          SELECT d
+            FROM Division d
+           WHERE d.anio = :anio
+             AND d.numDivision = :numDivision
+      """)
+  Division findByAnioNumeroDivision(
+      @Param("anio") int anio,
+      @Param("numDivision") int numDivision);
 }

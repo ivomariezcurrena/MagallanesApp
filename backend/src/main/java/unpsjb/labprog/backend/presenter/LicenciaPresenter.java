@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import unpsjb.labprog.backend.Response;
 import unpsjb.labprog.backend.business.LicenciaService;
 import unpsjb.labprog.backend.business.utils.vlicencias.AgregarLog;
+import unpsjb.labprog.backend.business.utils.vlicencias.LicenciaMensajeService;
+import unpsjb.labprog.backend.business.utils.vlicencias.LicenciaReporteService;
+import unpsjb.labprog.backend.business.utils.vlicencias.SuplenteService;
 import unpsjb.labprog.backend.model.Estado;
 import unpsjb.labprog.backend.model.Licencia;
 
@@ -24,6 +27,15 @@ import unpsjb.labprog.backend.model.Licencia;
 public class LicenciaPresenter {
     @Autowired
     LicenciaService service;
+
+    @Autowired
+    LicenciaMensajeService mensajeService;
+
+    @Autowired
+    SuplenteService suplenteService;
+
+    @Autowired
+    LicenciaReporteService licenciaReporteService;
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<Object> findAll() {
@@ -49,7 +61,7 @@ public class LicenciaPresenter {
         Licencia l = service.findById(id);
         return (l != null)
                 ? Response.ok(l)
-                : Response.notFound(service.getMensajeNoEncontrada(id));
+                : Response.notFound(mensajeService.getMensajeNoEncontrada(id));
     }
 
     @PostMapping
@@ -88,12 +100,12 @@ public class LicenciaPresenter {
         if (l != null) {
             try {
                 service.delete(id);
-                return Response.ok(service.getMensajeEliminacion(id));
+                return Response.ok(mensajeService.getMensajeEliminacion(id));
             } catch (Exception e) {
                 return Response.dbError("Error al eliminar la designación");
             }
         } else {
-            return Response.notFound(service.getMensajeNoEncontrada(id));
+            return Response.notFound(mensajeService.getMensajeNoEncontrada(id));
         }
     }
 
@@ -122,7 +134,7 @@ public class LicenciaPresenter {
 
     @GetMapping("/{id}/suplente")
     public ResponseEntity<Object> getPrimerSuplenteDeLicencia(@PathVariable("id") int id) {
-        return Response.ok(service.findDesignacionSuplente(id));
+        return Response.ok(suplenteService.findDesignacionSuplente(id));
     }
 
     @GetMapping("/anio")
@@ -145,7 +157,7 @@ public class LicenciaPresenter {
             @RequestParam("size") int size) {
         try {
             LocalDateTime fecha = LocalDateTime.parse(fechaDesde);
-            return Response.ok(service.reporteDeConcepto(fecha, page, size));
+            return Response.ok(licenciaReporteService.reporteDeConcepto(fecha, page, size));
         } catch (Exception e) {
             return Response.internalServerError(null, "Error al generar el reporte de concepto: " + e.getMessage());
         }

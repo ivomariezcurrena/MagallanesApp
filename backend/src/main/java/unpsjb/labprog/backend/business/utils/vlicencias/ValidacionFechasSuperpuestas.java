@@ -11,12 +11,6 @@ import unpsjb.labprog.backend.model.Estado;
 import unpsjb.labprog.backend.model.Licencia;
 
 public class ValidacionFechasSuperpuestas implements Validable {
-    @Autowired
-    @Lazy
-    LicenciaRepository licenciaRepository;
-
-    @Autowired
-    MensajeFormateador mensajeFormateador;
 
     @Override
     public void validar(Licencia licencia) {

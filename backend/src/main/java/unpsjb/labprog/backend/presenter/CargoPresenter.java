@@ -1,5 +1,7 @@
 package unpsjb.labprog.backend.presenter;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -114,6 +116,16 @@ public class CargoPresenter {
             return Response.ok(cargo);
         } else {
             return Response.notFound("No se encontró un cargo con ese nombre, tipo y división");
+        }
+    }
+
+    @RequestMapping(value = "/buscar-division", method = RequestMethod.GET)
+    public ResponseEntity<Object> buscarPorDivision(@RequestParam int anio, @RequestParam int numero) {
+        List<Cargo> cargo = service.buscarPorAnioYNumero(anio, numero);
+        if (cargo != null) {
+            return Response.ok(cargo);
+        } else {
+            return Response.notFound("No se encontró una división con ese año y número");
         }
     }
 }

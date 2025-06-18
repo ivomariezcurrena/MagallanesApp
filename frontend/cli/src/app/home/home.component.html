@@ -19,7 +19,7 @@
                 </div>
             </div>
         </div>
-          
+
 
         <!-- Licencias activas -->
         <div class="col-md-6">
@@ -62,22 +62,100 @@
                 <div class="fw-bold">Licencias</div>
                 <small class="text-muted">Listado de todas las licencias válidas o inválidas</small>
             </a>
+            <a routerLink="partesdiarios" class="acceso-directo">
+                <i class="fa fa-calendar"></i>
+                <div class="fw-bold">Parte Diario</div>
+                <small class="text-muted">Busca todas las licencias de un dia en especifico</small>
+            </a>
         </div>
     </div>
 
-    <!-- Parte diario -->
+
+
+    <!-- Tabla de horarios -->
     <div class="mt-5">
-        <h5 class="fw-bold mb-3">Calendario</h5>
-        <div class="card shadow">
+        <h3 class="fw-bold  text-center">Horarios de la división <i class="fa fa-clock"></i></h3>
+        <p class="text-center text-muted">Selecciona una division para ver sus horarios</p>
+        <div class="card-shadow">
             <div class="card-body">
-                <table class="table table-bordered text-center align-middle">
-                    <thead>
-                        <tr>
-                            <th>Horas</th>
-                        </tr>
-                    </thead>
-                </table>
+                <!-- Selector de división -->
+                <div class="mb-3 selector-division d-flex justify-content-center text-center">
+                    <label for="divisionSelect" class="form-label fw-bold me-2">División:</label>
+                    <select id="divisionSelect" class="form-select w-auto d-inline-block"
+                        [(ngModel)]="divisionSeleccionada"
+                        (ngModelChange)="onDivisionChange()">
+                        <option *ngFor="let d of divisiones" [ngValue]="d">
+                            {{ d.anio }}° {{ d.numDivision }}{{ d.turno ? ' ' + d.turno : '' }}
+                        </option>
+                    </select>
+                </div>
+                <!-- Scroll horizontal para la tabla -->
+                <div style="overflow-x: auto; width: 100%;">
+                    <table class="table-responsive table-borderless horarios-table text-center align-middle penguin-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Horas</th>
+                                <th scope="col">Lunes</th>
+                                <th scope="col">Martes</th>
+                                <th scope="col">Miércoles</th>
+                                <th scope="col">Jueves</th>
+                                <th scope="col">Viernes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let hora of getHorasFiltradas()">
+                                <th scope="row">{{ hora }}</th>
+                                <td>
+                                    <span
+                                        *ngFor="let cargo of getCargoEnHorario('Lunes', hora)"
+                                        class="horario-card"
+                                        (click)="irADetalleCargo(cargo.id)">
+                                        {{ cargo.nombre }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span
+                                        *ngFor="let cargo of getCargoEnHorario('Martes', hora)"
+                                        class="horario-card"
+                                        (click)="irADetalleCargo(cargo.id)">
+                                        {{ cargo.nombre }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span
+                                        *ngFor="let cargo of getCargoEnHorario('Miércoles', hora)"
+                                        class="horario-card"
+                                        (click)="irADetalleCargo(cargo.id)">
+                                        {{ cargo.nombre }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span
+                                        *ngFor="let cargo of getCargoEnHorario('Jueves', hora)"
+                                        class="horario-card"
+                                        (click)="irADetalleCargo(cargo.id)">
+                                        {{ cargo.nombre }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span
+                                        *ngFor="let cargo of getCargoEnHorario('Viernes', hora)"
+                                        class="horario-card"
+                                        (click)="irADetalleCargo(cargo.id)">
+                                        {{ cargo.nombre }}
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
+    </div>
+
+    <div class="text-center">
+        <button class="btn-export" (click)="exportarPDF()" title="Exportar a PDF">
+            <i class="fa fa-file-pdf-o"></i> Exportar a PDF
+        </button>
     </div>
 </div>

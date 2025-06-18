@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import unpsjb.labprog.backend.business.utils.MensajeFormateador;
 import unpsjb.labprog.backend.business.utils.Validador;
 import unpsjb.labprog.backend.model.Cargo;
+import unpsjb.labprog.backend.model.Division;
 import unpsjb.labprog.backend.model.TipoDesignacion;
 import unpsjb.labprog.backend.model.Turno;
 import unpsjb.labprog.backend.utils.StringNormalizer;
@@ -21,6 +23,10 @@ import unpsjb.labprog.backend.utils.StringNormalizer;
 public class CargoService {
     @Autowired
     CargoRepository repository;
+
+    @Autowired
+    @Lazy
+    DivisionRepository divisionRepository;
 
     @Autowired
     DivisionService divisionService;
@@ -64,6 +70,12 @@ public class CargoService {
 
     public List<Cargo> search(String term) {
         return repository.search("%" + term + "%");
+    }
+
+    public List<Cargo> buscarPorAnioYNumero(int anio, int numero) {
+        Division division = divisionRepository.findByAnioNumeroDivision(anio, numero);
+        List<Cargo> result = repository.findByDivision(division);
+        return result;
     }
 
     public Cargo buscarPorNombreYTipo(String nombre, TipoDesignacion tipo) {

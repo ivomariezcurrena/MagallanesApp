@@ -37,4 +37,8 @@ export class CargoService {
   search(searchTerm: string): Observable<DataPackage> {
     return this.http.get<DataPackage>(`${this.cargosUrl}/search/${searchTerm}`);
   }
+
+  getByAnioYNumero(anio: number, numero: number): Observable<DataPackage> {
+    return this.http.get<DataPackage>(`${this.cargosUrl}/buscar-division?anio=${anio}&numero=${numero}`);
+  }
 }
