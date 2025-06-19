@@ -19,17 +19,9 @@ public class Validacion23A implements Validable {
                 licencia.getArticulo().getId(),
                 anio);
 
-        int diasUsados = 0;
-        for (Licencia l : licenciasAnio) {
-            if (licencia.getId() != 0 && licencia.getId() == l.getId())
-                continue;
-            diasUsados += (int) ChronoUnit.DAYS.between(l.getPedidoDesde().toLocalDate(),
-                    l.getPedidoHasta().toLocalDate()) + 1;
-        }
+        int diasUsados = LicenciaDiasHelper.contarDiasEnAnio(licenciasAnio, licencia);
 
-        int diasActual = (int) ChronoUnit.DAYS.between(
-                licencia.getPedidoDesde().toLocalDate(),
-                licencia.getPedidoHasta().toLocalDate()) + 1;
+        int diasActual = LicenciaDiasHelper.contarDias(licencia);
 
         int total = diasUsados + diasActual;
 

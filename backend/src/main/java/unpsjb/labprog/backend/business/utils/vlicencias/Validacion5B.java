@@ -6,10 +6,9 @@ import java.util.List;
 import unpsjb.labprog.backend.model.Estado;
 import unpsjb.labprog.backend.model.Licencia;
 
-@ArticuloValido("5A")
-public class Validacion5A implements Validable {
-
-    private final int topeDias = 30;
+@ArticuloValido("5B")
+public class Validacion5B implements Validable {
+    private final int topeDias = 60;
 
     @Override
     public void validar(Licencia licencia) {

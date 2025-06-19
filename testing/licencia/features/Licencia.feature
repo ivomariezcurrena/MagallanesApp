@@ -63,6 +63,7 @@
             | 17171717 | Gianluigi   | Buffon       | 5A       | ENFERMEDAD DE CORTA EVOLUCIÓN | 2025-06-01 | 2025-06-08 | 200    | Se otorga Licencia artículo 5A a Gianluigi Buffon                                                                          |
             | 18181818 | Mario       | Kempes       | 23A      | ATENCIÓN DE UN MIEMBRO DEL GF | 2025-09-01 | 2025-09-08 | 200    | Se otorga Licencia artículo 23A a Mario Kempes                                                                             |
             | 19191919 | Diego       | Maradona     | 36A      | ASUNTOS PARTICULARES          | 2025-10-01 | 2025-10-01 | 200    | Se otorga Licencia artículo 36A a Diego Maradona                                                                           |
+            | 19191919 | Diego       | Maradona     | 5B       | ENFERMEDAD DE LARGA DURACION  | 2025-10-01 | 2025-10-15 | 200    | Se otorga Licencia artículo 5B a Diego Maradona                                                                            |
 
             Escenario: 1 persona en instancias de designación de cargo que cubre una licencia de otra persona en la misma designación. Infomar que está correcto y que reemplaza al docente que solicitó licencia.
             Dado que existe la persona

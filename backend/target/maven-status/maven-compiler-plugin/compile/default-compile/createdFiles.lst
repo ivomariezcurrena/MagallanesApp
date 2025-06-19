@@ -2,6 +2,7 @@ unpsjb/labprog/backend/business/ArticuloLicenciaService.class
 unpsjb/labprog/backend/utils/StringNormalizer.class
 unpsjb/labprog/backend/model/Division.class
 unpsjb/labprog/backend/business/DivisionRepository.class
+unpsjb/labprog/backend/business/utils/vlicencias/Validacion5B.class
 unpsjb/labprog/backend/model/Designacion.class
 unpsjb/labprog/backend/business/LicenciaRepository.class
 unpsjb/labprog/backend/presenter/DivisionPresenter.class

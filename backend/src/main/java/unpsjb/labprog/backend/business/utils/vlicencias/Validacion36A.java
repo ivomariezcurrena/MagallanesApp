@@ -2,6 +2,8 @@ package unpsjb.labprog.backend.business.utils.vlicencias;
 
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+
+import unpsjb.labprog.backend.business.LicenciaRepository;
 import unpsjb.labprog.backend.model.Estado;
 import unpsjb.labprog.backend.model.Licencia;
 
@@ -10,6 +12,11 @@ public class Validacion36A implements Validable {
 
     private final int topeMes = 2;
     private final int topeAnio = 6;
+    private final LicenciaRepository licenciaRepository;
+
+public Validacion5A(LicenciaRepository licenciaRepository) {
+    this.licenciaRepository = licenciaRepository;
+}
 
     @Override
     public void validar(Licencia licencia) {
@@ -21,36 +28,11 @@ public class Validacion36A implements Validable {
                 licencia.getArticulo().getId(),
                 anio);
 
-        int diasUsadosAnio = 0;
-        int diasUsadosMes = 0;
-        for (Licencia l : licenciasAnio) {
-            // Si es update, no sumar la misma licencia
-            if (licencia.getId() != 0 && licencia.getId() == l.getId())
-                continue;
-            int desdeMes = l.getPedidoDesde().getMonthValue();
-            int hastaMes = l.getPedidoHasta().getMonthValue();
-            int desdeAnio = l.getPedidoDesde().getYear();
-            int hastaAnio = l.getPedidoHasta().getYear();
+        int[] dias = LicenciaDiasHelper.contarDiasEnAnioYMes(licenciasAnio, licencia, anio, mes);
+        int diasUsadosAnio = dias[0];
+        int diasUsadosMes = dias[1];
 
-            int dias = (int) ChronoUnit.DAYS.between(l.getPedidoDesde().toLocalDate(),
-                    l.getPedidoHasta().toLocalDate()) + 1;
-            diasUsadosAnio += dias;
-
-            // Sumar solo los días del mismo mes y año
-            if (desdeAnio == anio && hastaAnio == anio && desdeMes == mes && hastaMes == mes) {
-                diasUsadosMes += dias;
-            } else if (desdeAnio == anio && hastaAnio == anio && (desdeMes <= mes && hastaMes >= mes)) {
-                // Si la licencia abarca el mes actual, sumar solo los días que caen en el mes
-                int desdeDia = (l.getPedidoDesde().getMonthValue() == mes) ? l.getPedidoDesde().getDayOfMonth() : 1;
-                int hastaDia = (l.getPedidoHasta().getMonthValue() == mes) ? l.getPedidoHasta().getDayOfMonth()
-                        : licencia.getPedidoDesde().toLocalDate().withMonth(mes).lengthOfMonth();
-                diasUsadosMes += (hastaDia - desdeDia + 1);
-            }
-        }
-
-        int diasActual = (int) ChronoUnit.DAYS.between(
-                licencia.getPedidoDesde().toLocalDate(),
-                licencia.getPedidoHasta().toLocalDate()) + 1;
+        int diasActual = LicenciaDiasHelper.contarDias(licencia);
 
         // Control anual
         if (diasUsadosAnio + diasActual > topeAnio) {

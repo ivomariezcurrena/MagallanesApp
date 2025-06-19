@@ -1,131 +1,131 @@
 INSERT INTO
     articulo_licencia (id, articulo, descripcion)
-VALUES (1, '2', 'Vacaciones anuales'),
+VALUES (1, '2', 'VACACIONES ANUALES'),
     (
         2,
         '4',
-        'Interrupción de vacaciones'
+        'INTERRUPCIÓN DE VACACIONES'
     ),
     (
         3,
         '5A',
-        'Enfermedad de corta evolución'
+        'ENFERMEDAD DE CORTA EVOLUCIÓN'
     ),
     (
         4,
         '5B',
-        'Enfermedad de larga evolución'
+        'ENFERMEDAD DE LARGA EVOLUCIÓN'
     ),
     (
         5,
         '5C',
-        'Accidente de trabajo'
+        'ACCIDENTE DE TRABAJO'
     ),
     (
         6,
         '5D',
-        'Enfermedad profesional'
+        'ENFERMEDAD PROFESIONAL'
     ),
     (
         7,
         '5E',
-        'Violencia de género'
+        'VIOLENCIA DE GÉNERO'
     ),
-    (8, '12', 'Maternidad'),
+    (8, '12', 'MATERNIDAD'),
     (
         9,
         '13',
-        'Maternidad especial'
+        'MATERNIDAD ESPECIAL'
     ),
     (
         10,
         '14',
-        'Fallecimiento de hijo'
+        'FALLECIENDO DE HIJO'
     ),
     (
         11,
         '15',
-        'Cambio de tareas embarazo'
+        'CAMBIO DE TAREAS EMBARAZO'
     ),
     (
         12,
         '16',
-        'Embarazo y enfermedad infecto-contagiosa'
+        'EMBARAZO Y ENFERMEDAD INFECTO-CONTAGIOSA'
     ),
     (
         13,
         '17',
-        'Tenencia o guarda de menor'
+        'TENENCIA O GUARDA DE MENOR'
     ),
-    (14, '18', 'Lactancia'),
-    (15, '19', 'Matrimonio'),
+    (14, '18', 'LACTANCIA'),
+    (15, '19', 'MATRIMONIO'),
     (
         16,
         '20',
-        'Nacimiento de hijo'
+        'NACIMIENTO DE HIJO'
     ),
     (
         17,
         '21',
-        'Fallecimiento de familiar'
+        'FALLECIENDO DE FAMILIAR'
     ),
     (
         18,
         '22',
-        'Fallecimiento de cónyuge con hijos menores'
+        'FALLECIENDO DE CÓNYUGE CON HIJOS MENORES'
     ),
     (
         19,
-        '23',
-        'Atención de familiar enfermo'
+        '23A',
+        'ATENCIÓN DE UN MIEMBRO DEL GF'
     ),
-    (20, '25', 'Sin sueldo'),
-    (21, '26', 'Traslado'),
+    (20, '25', 'SIN SUELDO'),
+    (21, '26', 'TRASLADO'),
     (
         22,
         '27',
-        'Traslado a otra jurisdicción'
+        'TRASLADO A OTRA JURISDICCIÓN'
     ),
     (
         23,
         '28',
-        'Incorporación FFAA'
+        'INCORPORACIÓN FFAA'
     ),
     (
         24,
         '29',
-        'Cargo mayor jerarquía'
+        'CARGO MAYOR JERARQUÍA'
     ),
     (
         25,
         '30',
-        'Cargo político/gremial'
+        'CARGO POLÍTICO/GREMIAL'
     ),
-    (26, '31', 'Estudios'),
-    (27, '32', 'Exámenes'),
+    (26, '31', 'ESTUDIOS'),
+    (27, '32', 'EXÁMENES'),
     (
         28,
         '33',
-        'Práctica deportiva'
+        'PRÁCTICA DEPORTIVA'
     ),
     (
         29,
         '34',
-        'Actividad deportiva'
+        'ACTIVIDAD DEPORTIVA'
     ),
     (
         30,
         '36A',
-        'Asuntos particulares'
+        'ASUNTOS PARTICULARES'
     ),
-    (31, '36B', 'Viaje'),
+    (31, '36B', 'VIAJE'),
     (
         32,
         '36C',
-        'Donación de sangre'
+        'DONACIÓN DE SANGRE'
     ),
     (
         33,
         '36D',
-        'Citación judicial/administrativa'
+        'CITACIÓN JUDICIAL/ADMINISTRATIVA'
     );
