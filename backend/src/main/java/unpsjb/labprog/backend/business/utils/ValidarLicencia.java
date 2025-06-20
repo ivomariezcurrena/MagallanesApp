@@ -1,8 +1,11 @@
-package unpsjb.labprog.backend.business.utils.vlicencias;
+package unpsjb.labprog.backend.business.utils;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import unpsjb.labprog.backend.business.utils.vlicencias.PluginProvider;
+import unpsjb.labprog.backend.business.utils.vlicencias.Validable;
 import unpsjb.labprog.backend.model.Licencia;
 
 @Component

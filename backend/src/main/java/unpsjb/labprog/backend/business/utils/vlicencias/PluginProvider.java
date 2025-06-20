@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.ArrayList;
 
-@Component
+@Component("pluginProviderVlicencias")
 public class PluginProvider {
     private final Map<String, List<Validable>> porArticulo = new HashMap<>();
     private final List<Validable> globales = new ArrayList<>();

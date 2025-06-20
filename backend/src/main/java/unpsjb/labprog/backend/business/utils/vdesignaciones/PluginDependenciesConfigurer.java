@@ -1,24 +1,29 @@
-package unpsjb.labprog.backend.business.utils.vlicencias;
+package unpsjb.labprog.backend.business.utils.vdesignaciones;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import jakarta.annotation.PostConstruct;
+import unpsjb.labprog.backend.business.DesignacionRepository;
 import unpsjb.labprog.backend.business.LicenciaRepository;
 import unpsjb.labprog.backend.business.utils.MensajeFormateador;
 
-@Component("pluginDependenciesConfigurerVlicencias")
+@Component("pluginDependenciesConfigurerVdesignaciones")
 public class PluginDependenciesConfigurer {
 
     @Autowired
-    private LicenciaRepository licenciaRepository;
+    private DesignacionRepository designacionRepository;
 
     @Autowired
     private MensajeFormateador mensajeFormateador;
 
+    @Autowired
+    private LicenciaRepository licenciaRepository;
+
     @PostConstruct
     public void init() {
-        PluginDependencies.licenciaRepository = licenciaRepository;
+        PluginDependencies.designacionRepository = designacionRepository;
         PluginDependencies.mensajeFormateador = mensajeFormateador;
+        PluginDependencies.licenciaRepository = licenciaRepository;
     }
 }

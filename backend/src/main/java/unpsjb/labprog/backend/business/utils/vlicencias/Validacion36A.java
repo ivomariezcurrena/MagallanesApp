@@ -2,8 +2,6 @@ package unpsjb.labprog.backend.business.utils.vlicencias;
 
 import java.time.temporal.ChronoUnit;
 import java.util.List;
-
-import unpsjb.labprog.backend.business.LicenciaRepository;
 import unpsjb.labprog.backend.model.Estado;
 import unpsjb.labprog.backend.model.Licencia;
 
@@ -12,11 +10,6 @@ public class Validacion36A implements Validable {
 
     private final int topeMes = 2;
     private final int topeAnio = 6;
-    private final LicenciaRepository licenciaRepository;
-
-public Validacion5A(LicenciaRepository licenciaRepository) {
-    this.licenciaRepository = licenciaRepository;
-}
 
     @Override
     public void validar(Licencia licencia) {
