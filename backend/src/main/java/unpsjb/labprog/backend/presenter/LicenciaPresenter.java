@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import unpsjb.labprog.backend.Response;
 import unpsjb.labprog.backend.business.LicenciaService;
-import unpsjb.labprog.backend.business.utils.vlicencias.AgregarLog;
-import unpsjb.labprog.backend.business.utils.vlicencias.LicenciaMensajeService;
-import unpsjb.labprog.backend.business.utils.vlicencias.LicenciaReporteService;
-import unpsjb.labprog.backend.business.utils.vlicencias.SuplenteService;
+import unpsjb.labprog.backend.business.validaciones.vlicencias.AgregarLog;
+import unpsjb.labprog.backend.business.validaciones.vlicencias.LicenciaMensajeService;
+import unpsjb.labprog.backend.business.validaciones.vlicencias.LicenciaReporteService;
+import unpsjb.labprog.backend.business.validaciones.vlicencias.SuplenteService;
 import unpsjb.labprog.backend.model.Estado;
 import unpsjb.labprog.backend.model.Licencia;
 

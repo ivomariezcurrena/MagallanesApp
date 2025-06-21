@@ -10,8 +10,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import unpsjb.labprog.backend.business.utils.Validador;
-import unpsjb.labprog.backend.business.utils.vlicencias.LicenciaHelper;
+import unpsjb.labprog.backend.business.validaciones.Validador;
+import unpsjb.labprog.backend.business.validaciones.vlicencias.LicenciaHelper;
 import unpsjb.labprog.backend.model.Licencia;
 
 @Service

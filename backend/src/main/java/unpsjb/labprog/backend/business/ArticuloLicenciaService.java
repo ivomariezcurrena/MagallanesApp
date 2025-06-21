@@ -9,8 +9,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import unpsjb.labprog.backend.business.utils.MensajeFormateador;
-import unpsjb.labprog.backend.business.utils.Validador;
+import unpsjb.labprog.backend.business.validaciones.MensajeFormateador;
+import unpsjb.labprog.backend.business.validaciones.Validador;
 import unpsjb.labprog.backend.model.ArticuloLicencia;
 
 @Service

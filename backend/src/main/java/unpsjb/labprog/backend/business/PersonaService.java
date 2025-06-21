@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import jakarta.transaction.Transactional;
-import unpsjb.labprog.backend.business.utils.MensajeFormateador;
-import unpsjb.labprog.backend.business.utils.Validador;
+import unpsjb.labprog.backend.business.validaciones.MensajeFormateador;
+import unpsjb.labprog.backend.business.validaciones.Validador;
 import unpsjb.labprog.backend.model.Persona;
 import unpsjb.labprog.backend.utils.StringNormalizer;
 
