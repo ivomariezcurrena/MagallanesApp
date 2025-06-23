@@ -7,13 +7,12 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { PaginationComponent } from '../pagination/pagination.component';
 import { ReportePersona } from './ReportePersona';
-import { GraficoComponent } from "./grafico.component";
 import generatePDF from './pdf';
 import { ExcelService } from './exel';
 
 @Component({
   selector: 'app-reporte',
-  imports: [CommonModule, FormsModule, RouterModule, PaginationComponent, GraficoComponent],
+  imports: [CommonModule, FormsModule, RouterModule, PaginationComponent],
   templateUrl: './reporte.component.html',
   styleUrl: `reporte.component.css`,
 })

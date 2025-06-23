@@ -2,20 +2,18 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, RouterOutlet, Router } from '@angular/router';
 import { LicenciaService } from '../licencia/licencia.service';
-import { CalendarComponent } from "./calendar.component";
 import { FormsModule } from '@angular/forms';
 import { CargoService } from '../cargo/cargo.service';
 import { DivisionService } from '../division/division.service';
 import { Division } from '../division/division';
 import { Cargo } from '../cargo/cargo';
-import { generate } from 'rxjs';
 import generatePDF from './pdf';
 
 // Asegúrate de importar el servicio
 
 @Component({
     selector: 'app-home',
-    imports: [CommonModule, RouterModule, CalendarComponent, FormsModule],
+    imports: [CommonModule, RouterModule, FormsModule],
     templateUrl: `home.component.html`,
     styleUrl: `home.component.css`,
 })

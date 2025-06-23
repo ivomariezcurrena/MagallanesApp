@@ -7,12 +7,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import unpsjb.labprog.backend.business.validaciones.Validador;
 import unpsjb.labprog.backend.business.validaciones.vlicencias.LicenciaHelper;
+import unpsjb.labprog.backend.model.Designacion;
 import unpsjb.labprog.backend.model.Licencia;
+import unpsjb.labprog.backend.utils.StringNormalizer;
 
 @Service
 public class LicenciaService {
@@ -76,6 +79,12 @@ public class LicenciaService {
 
     public List<Licencia> getInvalidas(int anio) {
         return repository.getInvalidas(anio);
+    }
+
+    public Page<Licencia> search(String term, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        String likeTerm = "%" + StringNormalizer.normalize(term) + "%";
+        return repository.search(likeTerm, pageable);
     }
 
 }

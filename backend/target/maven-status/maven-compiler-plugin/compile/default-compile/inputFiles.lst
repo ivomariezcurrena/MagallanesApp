@@ -25,6 +25,7 @@
 /app/src/main/java/unpsjb/labprog/backend/business/validaciones/vdesignaciones/PluginDependenciesConfigurer.java
 /app/src/main/java/unpsjb/labprog/backend/model/ArticuloLicencia.java
 /app/src/main/java/unpsjb/labprog/backend/business/validaciones/vlicencias/LicenciaDiasHelper.java
+/app/src/main/java/unpsjb/labprog/backend/business/validaciones/vlicencias/Validacion5C.java
 /app/src/main/java/unpsjb/labprog/backend/business/reporteUtils/ReporteUtils.java
 /app/src/main/java/unpsjb/labprog/backend/presenter/PersonaPresenter.java
 /app/src/main/java/unpsjb/labprog/backend/business/validaciones/vlicencias/Validacion23A.java
@@ -51,6 +52,7 @@
 /app/src/main/java/unpsjb/labprog/backend/business/validaciones/vdesignaciones/ValidarDesignacionSinDivision.java
 /app/src/main/java/unpsjb/labprog/backend/business/validaciones/vlicencias/PluginProvider.java
 /app/src/main/java/unpsjb/labprog/backend/business/validaciones/Validador.java
+/app/src/main/java/unpsjb/labprog/backend/business/validaciones/ValidadorGenerico.java
 /app/src/main/java/unpsjb/labprog/backend/model/Cargo.java
 /app/src/main/java/unpsjb/labprog/backend/business/validaciones/vdesignaciones/TipoDesignacionValido.java
 /app/src/main/java/unpsjb/labprog/backend/business/validaciones/vlicencias/LicenciaReporteService.java

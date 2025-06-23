@@ -3,14 +3,14 @@ package unpsjb.labprog.backend.business.validaciones;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import unpsjb.labprog.backend.model.Cargo;
-import unpsjb.labprog.backend.model.Designacion;
-import unpsjb.labprog.backend.model.Division;
-import unpsjb.labprog.backend.model.Licencia;
-import unpsjb.labprog.backend.model.Persona;
+import jakarta.annotation.PostConstruct;
+import java.util.HashMap;
+import java.util.Map;
 
 @Component
 public class Validador {
+    private final Map<Class<?>, ValidadorGenerico<?>> validadores = new HashMap<>();
+
     @Autowired
     ValidarPersona validarPersona;
 
@@ -26,21 +26,21 @@ public class Validador {
     @Autowired
     ValidarLicencia validarLicencia;
 
-    public void validar(Object entidad) {
-        if (entidad instanceof Persona persona) {
-            validarPersona.validar(persona);
+    @PostConstruct
+    public void init() {
+        validadores.put(unpsjb.labprog.backend.model.Persona.class, validarPersona);
+        validadores.put(unpsjb.labprog.backend.model.Division.class, validarDivision);
+        validadores.put(unpsjb.labprog.backend.model.Cargo.class, validarCargo);
+        validadores.put(unpsjb.labprog.backend.model.Designacion.class, validarDesignacion);
+        validadores.put(unpsjb.labprog.backend.model.Licencia.class, validarLicencia);
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> void validar(T entidad) {
+        ValidadorGenerico<T> validador = (ValidadorGenerico<T>) validadores.get(entidad.getClass());
+        if (validador == null) {
+            throw new IllegalArgumentException("No hay validador para " + entidad.getClass());
         }
-        if (entidad instanceof Division division) {
-            validarDivision.validar(division);
-        }
-        if (entidad instanceof Cargo cargo) {
-            validarCargo.validar(cargo);
-        }
-        if (entidad instanceof Designacion designacion) {
-            validarDesignacion.validar(designacion);
-        }
-        if (entidad instanceof Licencia licencia) {
-            validarLicencia.validar(licencia);
-        }
+        validador.validar(entidad);
     }
 }

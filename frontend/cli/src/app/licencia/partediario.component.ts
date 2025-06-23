@@ -7,11 +7,10 @@ import { ModalService } from '../modal/modal.service';
 import { ResultsPage } from '../results-page';
 import { Licencia } from './licencia';
 import { LicenciaService } from './licencia.service';
-import { TabsLicenciasComponent } from "./tabs-licencias.component";
 
 @Component({
   selector: 'app-partediario',
-  imports: [CommonModule, FormsModule, RouterModule, PaginationComponent, TabsLicenciasComponent],
+  imports: [CommonModule, FormsModule, RouterModule, PaginationComponent],
   templateUrl: `partediario.component.html`,
   styleUrl: `licencia.component.css`
 })

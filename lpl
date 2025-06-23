@@ -44,7 +44,7 @@ case "$1" in
     cat ./staging/$2.sql | docker exec -i database psql -q -U APP -d labprog
     ;;
   init ) echo "Cargando datos iniciales"
-    for f in personas.sql  divisiones.sql cargos.sql designaciones.sql horarios.sql articulos.sql; do
+    for f in personas.sql  divisiones.sql cargos.sql designaciones.sql horarios.sql articulos.sql licencias.sql; do
       echo "Ejecutando $f"
       cat ./staging/$f | docker exec -i database psql -q -U APP -d labprog
     done

@@ -33,11 +33,6 @@ VALUES (1, '2', 'VACACIONES ANUALES'),
     ),
     (8, '12', 'MATERNIDAD'),
     (
-        9,
-        '13',
-        'MATERNIDAD ESPECIAL'
-    ),
-    (
         10,
         '14',
         'FALLECIENDO DE HIJO'
@@ -79,7 +74,6 @@ VALUES (1, '2', 'VACACIONES ANUALES'),
         '23A',
         'ATENCIÓN DE UN MIEMBRO DEL GF'
     ),
-    (20, '25', 'SIN SUELDO'),
     (21, '26', 'TRASLADO'),
     (
         22,

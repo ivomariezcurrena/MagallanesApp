@@ -9,6 +9,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import unpsjb.labprog.backend.model.ArticuloLicencia;
+import unpsjb.labprog.backend.model.Designacion;
 import unpsjb.labprog.backend.model.Licencia;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -74,4 +75,11 @@ public interface LicenciaRepository
         @Query("SELECT l FROM Licencia l WHERE l.estado = 'Invalido' AND YEAR(l.pedidoDesde) = :anio")
         List<Licencia> getInvalidas(@Param("anio") int anio);
 
+        @Query("""
+                            SELECT l
+                            FROM Licencia l
+                            WHERE
+                                FUNCTION('unaccent', UPPER(l.persona.nombre)) LIKE :term
+                        """)
+        Page<Licencia> search(@Param("term") String term, Pageable pageable);
 }

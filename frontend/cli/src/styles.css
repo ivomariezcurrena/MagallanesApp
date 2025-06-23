@@ -11,6 +11,12 @@
 
 body {
     background: #ffffff;
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+        letter-spacing: 0.01em;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+        width: 100%;
 }
 
 h1 {

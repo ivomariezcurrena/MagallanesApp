@@ -8,7 +8,7 @@ import unpsjb.labprog.backend.business.PersonaService;
 import unpsjb.labprog.backend.model.Persona;
 
 @Component
-public class ValidarPersona {
+public class ValidarPersona implements ValidadorGenerico<Persona> {
 
     @Autowired
     @Lazy

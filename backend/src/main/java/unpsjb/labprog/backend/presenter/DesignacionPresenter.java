@@ -80,4 +80,13 @@ public class DesignacionPresenter {
         }
     }
 
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public ResponseEntity<Object> search(
+            @RequestParam("term") String term,
+            @RequestParam(name = "page", defaultValue = "0") int page,
+            @RequestParam(name = "size", defaultValue = "10") int size) {
+
+        return Response.ok(service.search(term, page, size));
+    }
+
 }

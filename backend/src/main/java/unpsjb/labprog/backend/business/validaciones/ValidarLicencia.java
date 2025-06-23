@@ -9,7 +9,7 @@ import unpsjb.labprog.backend.business.validaciones.vlicencias.Validable;
 import unpsjb.labprog.backend.model.Licencia;
 
 @Component
-public class ValidarLicencia {
+public class ValidarLicencia implements ValidadorGenerico<Licencia> {
 
     private final PluginProvider pluginProvider;
 

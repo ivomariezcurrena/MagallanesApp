@@ -8,7 +8,7 @@ import unpsjb.labprog.backend.business.validaciones.vdesignaciones.PluginProvide
 import unpsjb.labprog.backend.model.Designacion;
 
 @Component
-public class ValidarDesignacion {
+public class ValidarDesignacion implements ValidadorGenerico<Designacion> {
     private final PluginProvider pluginProvider;
 
     @Autowired

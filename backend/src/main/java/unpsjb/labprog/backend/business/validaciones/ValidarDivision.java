@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import unpsjb.labprog.backend.model.Division;
 
 @Component
-public class ValidarDivision {
+public class ValidarDivision implements ValidadorGenerico<Division> {
     public void validar(Division division) {
         if (division.getAnio() <= 0) {
             throw new IllegalArgumentException("El año debe ser mayor a cero");

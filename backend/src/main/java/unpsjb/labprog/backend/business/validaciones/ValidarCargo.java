@@ -10,7 +10,7 @@ import unpsjb.labprog.backend.model.Division;
 import unpsjb.labprog.backend.model.TipoDesignacion;
 
 @Component
-public class ValidarCargo {
+public class ValidarCargo implements ValidadorGenerico<Cargo> {
 
     @Autowired
     @Lazy
