@@ -1,7 +1,8 @@
 const assert = require('assert');
 const { Given, When, Then } = require('@cucumber/cucumber');
 const request = require('sync-request');
-
+const { formatearFecha, hacerGET, construirURLBusquedaCargo,construirURLBusquedaDivision } = require('../support/helpers');
+// Estado compartido
 let persona = {};
 let designacion = {};
 let apiResponse = {};
@@ -11,12 +12,8 @@ Given('la persona con {int} {string} y {string}', function (dni, nombre, apellid
 });
 
 Given('que se asigna al cargo  con tipo de designación {string} y {string}', function (tipo, nombreDesignacion) {
-    const url = `http://backend:8080/cargos/buscar-por-nombre-y-tipo?nombre=${encodeURIComponent(nombreDesignacion)}&tipo=${encodeURIComponent(tipo)}`;
-    const res = request('GET', url);
-
-    if (res.statusCode !== 200) throw new Error("Cargo no encontrado");
-
-    const cargo = JSON.parse(res.getBody('utf8')).data;
+    const url = construirURLBusquedaCargo(nombreDesignacion, tipo);
+    const cargo = hacerGET(url);
     designacion.cargo = {
         id: cargo.id,
         nombre: cargo.nombre,
@@ -25,30 +22,27 @@ Given('que se asigna al cargo  con tipo de designación {string} y {string}', fu
     };
 });
 
-Given('que si el tipo es {string}, opcionalmente se asigna a la división {string} {string} {string}',
-    function (tipoOriginal, anio, numero, turno) {
-        if (designacion.cargo.tipoDesignacion === tipoOriginal) {
-            const url = `http://backend:8080/divisiones/buscar-por-anio-numero-turno?anio=${encodeURIComponent(anio)}&numero=${encodeURIComponent(numero)}&turno=${encodeURIComponent(turno)}`;
-            const res = request('GET', url);
-            if (res.statusCode !== 200) throw new Error("División no encontrada");
+Given('que si el tipo es {string}, opcionalmente se asigna a la división {string} {string} {string}', function (tipoOriginal, anio, numero, turno) {
+    if (designacion.cargo.tipoDesignacion === tipoOriginal) {
+        const url = construirURLBusquedaDivision(anio, numero, turno);
+        const division = hacerGET(url);
 
-            const division = JSON.parse(res.getBody('utf8')).data;
-            designacion.cargo.division = {
-                id: division.id,
-                anio: division.anio,
-                numDivision: division.numDivision,
-                turno: division.turno
-            };
-        }
-    });
+        designacion.cargo.division = {
+            id: division.id,
+            anio: division.anio,
+            numDivision: division.numDivision,
+            turno: division.turno
+        };
+    }
+});
 
 Given('se designa por el período {string} {string}', function (desde, hasta) {
-    designacion.fechaDesde = `${desde}T00:00:00`;
-    designacion.fechaHasta = hasta ? `${hasta}T00:00:00` : null;
+    designacion.fechaDesde = formatearFecha(desde);
+    designacion.fechaHasta = formatearFecha(hasta);
 });
 
 When('se presiona el botón guardar', function () {
-    const body = {
+    const payload = {
         persona,
         cargo: designacion.cargo,
         fechaInicio: designacion.fechaDesde,
@@ -57,10 +51,8 @@ When('se presiona el botón guardar', function () {
     };
 
     try {
-        const res = request('POST', 'http://backend:8080/designaciones', { json: body });
+        const res = request('POST', 'http://backend:8080/designaciones', { json: payload });
         apiResponse = JSON.parse(res.getBody('utf8'));
-
-
     } catch (error) {
         apiResponse = {
             status: error.statusCode || 500,
@@ -70,8 +62,6 @@ When('se presiona el botón guardar', function () {
 });
 
 Then('se espera el siguiente {int} y {string}', function (statusEsperado, mensajeEsperado) {
-    assert.strictEqual(apiResponse.status, statusEsperado,
-        `Esperado ${statusEsperado} pero se recibió ${apiResponse.status}`);
-    assert.strictEqual(apiResponse.message, mensajeEsperado,
-        `Esperado mensaje "${mensajeEsperado}" pero se recibió "${apiResponse.message}"`);
+    assert.strictEqual(apiResponse.status, statusEsperado, `Esperado ${statusEsperado} pero se recibió ${apiResponse.status}`);
+    assert.strictEqual(apiResponse.message, mensajeEsperado, `Esperado mensaje "${mensajeEsperado}" pero se recibió "${apiResponse.message}"`);
 });
