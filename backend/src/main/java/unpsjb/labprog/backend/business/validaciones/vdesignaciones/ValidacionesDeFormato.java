@@ -18,6 +18,9 @@ public class ValidacionesDeFormato implements DesignacionValidable {
                 && designacion.getCargo().getDivision() == null) {
             throw new IllegalArgumentException("El espacio curricular debe tener una división asignada");
         }
+        if (designacion.getFechaFin() != null && designacion.getFechaInicio().isAfter(designacion.getFechaFin())) {
+            throw new IllegalArgumentException("La fecha de inicio no puede ser posterior a la fecha de fin");
+        }
 
     }
 }

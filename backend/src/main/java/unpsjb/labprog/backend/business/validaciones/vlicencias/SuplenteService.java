@@ -9,6 +9,7 @@ import unpsjb.labprog.backend.business.LicenciaService;
 import unpsjb.labprog.backend.model.Designacion;
 import unpsjb.labprog.backend.model.Licencia;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -28,7 +29,7 @@ public class SuplenteService {
      * @return La primera {@link Designacion} suplente encontrada, o {@code null} si
      *         no existe.
      */
-    public Designacion findDesignacionSuplente(int licenciaId) {
+    public Designacion findDesignacionSuplente(int licenciaId, LocalDateTime fecha) {
         Licencia licencia = licenciaService.findById(licenciaId);
         if (!esLicenciaValida(licencia)) {
             return null;
@@ -39,7 +40,7 @@ public class SuplenteService {
             return null;
         }
 
-        List<Designacion> suplentes = buscarSuplentes(licencia, designacionOriginal);
+        List<Designacion> suplentes = buscarSuplentes(licencia, designacionOriginal, fecha);
         return suplentes.isEmpty() ? null : suplentes.get(0);
     }
 
@@ -51,11 +52,12 @@ public class SuplenteService {
         return licencia.getDesignaciones().stream().findFirst().orElse(null);
     }
 
-    private List<Designacion> buscarSuplentes(Licencia licencia, Designacion designacionOriginal) {
+    private List<Designacion> buscarSuplentes(Licencia licencia, Designacion designacionOriginal, LocalDateTime fecha) {
         return designacionRepository.findDesignacionesSuplentes(
                 designacionOriginal.getCargo().getId(),
                 licencia.getPedidoDesde(),
                 licencia.getPedidoHasta(),
-                designacionOriginal.getId());
+                designacionOriginal.getId(),
+                fecha);
     }
 }

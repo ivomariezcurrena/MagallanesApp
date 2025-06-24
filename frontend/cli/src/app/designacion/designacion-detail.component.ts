@@ -138,7 +138,6 @@ export class DesignacionDetailComponent {
 
 
   save() {
-    // Enviar la fecha como string yyyy-MM-ddT00:00:00 para que Java lo acepte como LocalDateTime
     this.designacion.fechaInicio = `${this.fechaInicioModel.year}-${String(this.fechaInicioModel.month).padStart(2, '0')}-${String(this.fechaInicioModel.day).padStart(2, '0')}T00:00:00`;
     if (this.fechaFinModel) {
       this.designacion.fechaFin = `${this.fechaFinModel.year}-${String(this.fechaFinModel.month).padStart(2, '0')}-${String(this.fechaFinModel.day).padStart(2, '0')}T00:00:00`;

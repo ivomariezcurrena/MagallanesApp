@@ -133,8 +133,9 @@ public class LicenciaPresenter {
     }
 
     @GetMapping("/{id}/suplente")
-    public ResponseEntity<Object> getPrimerSuplenteDeLicencia(@PathVariable("id") int id) {
-        return Response.ok(suplenteService.findDesignacionSuplente(id));
+    public ResponseEntity<Object> getPrimerSuplenteDeLicencia(@PathVariable("id") int id,
+            @RequestParam("fecha") String fecha) {
+        return Response.ok(suplenteService.findDesignacionSuplente(id, LocalDateTime.parse(fecha)));
     }
 
     @GetMapping("/anio")

@@ -2,11 +2,6 @@ package unpsjb.labprog.backend.business.validaciones.vlicencias;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
-
-import unpsjb.labprog.backend.business.LicenciaRepository;
-import unpsjb.labprog.backend.business.validaciones.MensajeFormateador;
 import unpsjb.labprog.backend.model.Estado;
 import unpsjb.labprog.backend.model.Licencia;
 

@@ -72,7 +72,7 @@ export class PartediarioComponent {
     }
   }
   abrirModalSuplente(licencia: Licencia) {
-    this.licenciaService.getPrimerSuplenteDeLicencia(licencia.id).subscribe(dataPackage => {
+    this.licenciaService.getPrimerSuplenteDeLicencia(licencia.id,this.fechaDesde).subscribe(dataPackage => {
       const suplente = dataPackage.data as any;
       if (!suplente) {
         this.modalService.confirm(

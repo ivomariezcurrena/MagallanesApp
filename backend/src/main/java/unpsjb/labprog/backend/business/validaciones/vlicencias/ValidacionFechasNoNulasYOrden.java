@@ -1,5 +1,6 @@
 package unpsjb.labprog.backend.business.validaciones.vlicencias;
 
+import unpsjb.labprog.backend.model.Estado;
 import unpsjb.labprog.backend.model.Licencia;
 
 public class ValidacionFechasNoNulasYOrden implements Validable {
@@ -7,13 +8,22 @@ public class ValidacionFechasNoNulasYOrden implements Validable {
     @Override
     public void validar(Licencia licencia) {
         if (licencia.getPedidoDesde() == null) {
-            throw new IllegalArgumentException("La fecha desde no puede ser nula");
+            String mensaje = PluginDependencies.mensajeFormateador.getFechaDesdeNull();
+            licencia.setEstado(Estado.Invalido);
+            AgregarLog.agregarLog(licencia, mensaje, 500);
+            return;
         }
         if (licencia.getPedidoHasta() == null) {
-            throw new IllegalArgumentException("La fecha hasta no puede ser nula");
+            String mensaje = PluginDependencies.mensajeFormateador.getFechaDesdeNull();
+            licencia.setEstado(Estado.Invalido);
+            AgregarLog.agregarLog(licencia, mensaje, 500);
+            return;
         }
         if (licencia.getPedidoDesde().isAfter(licencia.getPedidoHasta())) {
-            throw new IllegalArgumentException("La fecha desde no puede ser posterior a la fecha hasta");
+            String mensaje = PluginDependencies.mensajeFormateador.getFechasInversas();
+            licencia.setEstado(Estado.Invalido);
+            AgregarLog.agregarLog(licencia, mensaje, 500);
+            return;
         }
     }
 

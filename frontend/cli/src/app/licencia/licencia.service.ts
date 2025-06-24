@@ -66,8 +66,12 @@ export class LicenciaService {
     });
   }
 
-  getPrimerSuplenteDeLicencia(id: number): Observable<DataPackage> {
-    return this.http.get<DataPackage>(`${this.licenciasUrl}/${id}/suplente`);
+  getPrimerSuplenteDeLicencia(id: number, fecha: string): Observable<DataPackage> {
+    return this.http.get<DataPackage>(`${this.licenciasUrl}/${id}/suplente`, {
+      params: {
+        fecha: fecha + 'T00:00:00'
+      }
+    });
   }
 
   byAño(anio: string): Observable<DataPackage> {

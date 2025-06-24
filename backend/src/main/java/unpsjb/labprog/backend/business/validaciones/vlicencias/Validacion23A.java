@@ -1,6 +1,5 @@
 package unpsjb.labprog.backend.business.validaciones.vlicencias;
 
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import unpsjb.labprog.backend.model.Estado;

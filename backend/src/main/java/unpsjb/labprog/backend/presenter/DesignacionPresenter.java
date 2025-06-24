@@ -57,9 +57,9 @@ public class DesignacionPresenter {
     public ResponseEntity<Object> update(@RequestBody Designacion aDesignacion) {
         try {
             Designacion updated = service.save(aDesignacion);
-            return Response.ok(service.getMensajeActualizar(updated));
+            return Response.ok(updated, service.getMensajeActualizar(updated));
         } catch (IllegalArgumentException e) {
-            return Response.notImplemented(null, e.getMessage());
+            return Response.notImplemented(e.getMessage(), e);
         } catch (Exception e) {
             return Response.dbError("Error al actualizar la designación");
         }
@@ -71,7 +71,7 @@ public class DesignacionPresenter {
         if (d != null) {
             try {
                 service.delete(id);
-                return Response.ok(service.getMensajeEliminacion(id));
+                return Response.ok(d, service.getMensajeEliminacion(id));
             } catch (Exception e) {
                 return Response.dbError("Error al eliminar la designación");
             }

@@ -204,6 +204,18 @@ public class MensajeFormateador {
         return "La persona no puede ser nula";
     }
 
+    public String getFechasInversas() {
+        return "La fecha desde no puede ser posterior a la fecha hasta";
+    }
+
+    public String getFechaDesdeNull() {
+        return "La fecha de inicio no puede ser nula";
+    }
+
+    public String getFechaHastaNull() {
+        return "La fecha de fin no puede ser nula";
+    }
+
     public String getErrorDivisionFaltanteEnLicencia() {
         return "El espacio curricular debe tener una división asignada";
     }

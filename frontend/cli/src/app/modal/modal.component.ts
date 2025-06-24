@@ -1,106 +1,117 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+
 @Component({
   selector: 'app-modal',
+  standalone: true,
   imports: [CommonModule],
   template: `
-    <div class="modal-header custom-modal-header">
-      <h5 class="modal-title" id="modal-title">{{ title }}</h5>
-      <button type="button" class="btn-close" aria-label="Cerrar" (click)="modal.dismiss()">
-</button>
+    <div class="modal-header modal-header-clean">
+      <div class="header-left">
+        <i class="bi bi-exclamation-circle-fill icon-alert"></i>
+        <h5 class="modal-title">{{ title }}</h5>
+      </div>
+      <button type="button" class="btn-close btn-close-white" aria-label="Cerrar" (click)="modal.dismiss()"></button>
     </div>
 
-    <div class="modal-body custom-modal-body">
-      <p class="mb-2 fw-semibold text-danger">{{ message }}</p>
-      <p *ngIf="description" class="text-muted fst-italic">{{ description }}</p>
+    <div class="modal-body">
+      <p class="main-message">{{ message }}</p>
+      <p *ngIf="description" class="description">{{ description }}</p>
     </div>
 
-    <div class="modal-footer custom-modal-footer">
-      <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss()">Cancelar</button>
-      <button type="button" class="btn btn-success" (click)="modal.close()">Aceptar</button>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss()">Cancelar</button>
+      <button type="button" class="btn btn-danger" (click)="modal.close()">Aceptar</button>
     </div>
   `,
   styles: [`
     :host ::ng-deep .modal-content {
-      border-radius: 1rem;
-      box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.2);
+      border-radius: 14px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
       border: none;
-      background: var(--blanco, #fff);
-      color: var(--grey, #2B2B2B);
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
     }
 
-    .custom-modal-header {
-      background-color: var(--violeta, #BFAFF2);
-      border-bottom: 1px solid var(--amarillo, #F8D57E);
-      border-top-left-radius: 1rem;
-      border-top-right-radius: 1rem;
-      color: var(--grey, #2B2B2B);
-    }
-
-    .close-button {
-      background: transparent;
-      border: none;
-      font-size: 1.8rem;
-      font-weight: bold;
-      line-height: 1;
-      color: var(--grey, #2B2B2B);
-      cursor: pointer;
-    }
-
-    .btn-close:hover {
-      opacity: 1;
-      color: var(--violeta, #BFAFF2);
-    }
-
-    .custom-modal-body {
+    .modal-header-clean {
+      background: var(--violeta);
       padding: 1rem 1.5rem;
-      font-size: 1rem;
-      background: var(--blanco, #fff);
-      color: var(--grey, #2B2B2B);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
     }
 
-    .custom-modal-footer {
-      padding: 0.75rem 1.5rem;
-      border-top: 1px solid var(--amarillo, #F8D57E);
-      border-bottom-left-radius: 1rem;
-      border-bottom-right-radius: 1rem;
-      background: var(--blanco, #fff);
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .icon-alert {
+      font-size: 1.3rem;
     }
 
     .modal-title {
       font-weight: 600;
       font-size: 1.25rem;
-      color: var(--grey, #2B2B2B);
+      margin: 0;
     }
 
-    .btn-success {
-      background-color: var(--violeta, #BFAFF2);
-      border-color: var(--violeta, #BFAFF2);
-      color: var(--grey, #2B2B2B);
+    .modal-body {
+      padding: 1.5rem;
+      background-color: #fff;
     }
-    .btn-success:hover {
-      background-color: var(--amarillo, #F8D57E);
-      border-color: var(--amarillo, #F8D57E);
-      color: var(--grey, #2B2B2B);
+
+    .main-message {
+      color: #d32f2f;
+      font-weight: 600;
+      font-size: 1.05rem;
+      margin-bottom: 0.5rem;
     }
-    .btn-outline-secondary {
-      color: var(--grey, #2B2B2B);
-      border-color: var(--violeta, #BFAFF2);
-      background: transparent;
+
+    .description {
+      color: #666;
+      font-style: italic;
+      font-size: 0.95rem;
     }
-    .btn-outline-secondary:hover {
-      background: var(--violeta, #BFAFF2);
-      color: var(--grey, #2B2B2B);
+
+    .modal-footer {
+      padding: 1rem 1.5rem;
+      background-color: #f5f5f5;
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.5rem;
     }
-    .fw-semibold.text-danger {
-      color: var(--amarillo, #F8D57E) !important;
+
+    .btn-outline-dark {
+      border: 1px solid #888;
+      color: #333;
+      background: white;
+      font-weight: 500;
+    }
+
+    .btn-outline-dark:hover {
+      background: #eee;
+    }
+
+    .btn-danger {
+      background-color:var(--violeta);
+      border-color:var(--violeta);
+      color: white;
+      font-weight: 500;
+    }
+
+    .btn-danger:hover {
+      background-color:rgb(169, 149, 235);
+      border-color: rgb(169, 149, 235);
     }
   `]
 })
 export class ModalComponent {
-  constructor(public modal: NgbActiveModal) { }
-  title = "";
-  message = "";
-  description = "";
+  constructor(public modal: NgbActiveModal) {}
+  title = '';
+  message = '';
+  description = '';
 }
