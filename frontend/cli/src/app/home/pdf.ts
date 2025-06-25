@@ -1,41 +1,47 @@
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
-import { Cargo } from "../cargo/cargo";
 import { Division } from "../division/division";
+import { Horario } from "./horario";
 
 (pdfMake as any).vfs = pdfFonts.vfs;
 
 const dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"];
 
 const generatePDF = (
-  cargos: Cargo[],
+  horarios: Horario[],
   horas: string[],
   division: Division
 ) => {
-  // Construir la tabla de horarios
   const tableBody = [
     [
       { text: "Horas", style: "tableHeader" },
       ...dias.map(d => ({ text: d, style: "tableHeader" })),
     ],
-    ...horas.map(hora => [
-      { text: hora, style: "tableHour" },
-      ...dias.map(dia => {
-        const cargosEnCelda = cargos.filter(cargo =>
-          cargo.horarios.some(h => h.dia === dia && h.hora === parseInt(hora.split(':')[0], 10))
-        );
-        return {
-          text: cargosEnCelda.map(c => c.nombre).join(", ") || "",
-          style: "tableCell"
-        };
-      })
-    ])
+    ...horas.map(hora => {
+      const horaNum = parseInt(hora.split(':')[0], 10);
+
+      return [
+        { text: hora, style: "tableHour" },
+        ...dias.map(dia => {
+          const coincidencias = horarios.filter(h => h.dia === dia && h.hora === horaNum);
+
+          const contenido = coincidencias.map(h =>
+            `${h.nombre}`
+          ).join("\n");
+
+          return {
+            text: contenido || '',
+            style: "tableCell"
+          };
+        })
+      ];
+    })
   ];
 
   const content: any[] = [];
 
   content.push({
-    text: `Horarios de ${division.anio}° ${division.numDivision}  - Turno: ${division.turno}`,
+    text: `Horarios de ${division.anio}° ${division.numDivision} - Turno: ${division.turno}`,
     style: "header",
     margin: [0, 0, 0, 18],
   });
@@ -46,31 +52,38 @@ const generatePDF = (
       widths: [60, "*", "*", "*", "*", "*"],
       body: tableBody,
     },
+    layout: {
+      hLineWidth: () => 0.5,
+      vLineWidth: () => 0.5,
+      hLineColor: () => "#aaa",
+      vLineColor: () => "#aaa",
+    },
     margin: [0, 10, 0, 10],
   });
 
   const styles = {
     header: {
-      fontSize: 22,
+      fontSize: 20,
       bold: true,
       alignment: 'center'
     },
     tableHeader: {
       bold: true,
-      fontSize: 15,
+      fontSize: 14,
       alignment: "center",
-      margin: [0, 8, 0, 8]
+      fillColor: "#f2f2f2",
+      margin: [0, 6, 0, 6]
     },
     tableHour: {
-      fontSize: 14,
+      fontSize: 13,
       bold: true,
       alignment: "center",
       margin: [0, 6, 0, 6]
     },
     tableCell: {
-      fontSize: 14,
+      fontSize: 12,
       alignment: "center",
-      margin: [0, 6, 0, 6]
+      margin: [0, 4, 0, 4]
     }
   };
 
@@ -79,7 +92,7 @@ const generatePDF = (
     styles,
     pageOrientation: 'landscape',
     defaultStyle: {
-      fontSize: 13,
+      fontSize: 11,
     }
   };
 

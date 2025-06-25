@@ -28,7 +28,6 @@ export class HomeComponent {
   diasSemana = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
   divisiones: Division[] = [];
   divisionSeleccionada?: Division;
-  cargosDivision: Cargo[] = [];
   
   constructor(
     private licenciaService: LicenciaService,
@@ -98,7 +97,7 @@ export class HomeComponent {
   }
   exportarPDF() {
     if (this.divisionSeleccionada) {
-      generatePDF(this.cargosDivision, this.getHorasFiltradas(), this.divisionSeleccionada);
+      generatePDF(this.horariosDivision, this.getHorasFiltradas(), this.divisionSeleccionada);
     }
   }
 
