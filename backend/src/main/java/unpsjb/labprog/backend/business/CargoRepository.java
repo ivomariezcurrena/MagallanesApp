@@ -50,4 +50,10 @@ public interface CargoRepository extends CrudRepository<Cargo, Integer>, PagingA
                         """)
         List<Cargo> findByDivision(@Param("division") unpsjb.labprog.backend.model.Division division);
 
+        @Query("""
+                            SELECT c FROM Cargo c
+                            WHERE c.division.anio = :anio AND c.division.numDivision = :numero
+                        """)
+        List<Cargo> findByAnioAndNumero(@Param("anio") int anio, @Param("numero") int numero);
+
 }

@@ -121,8 +121,8 @@ export class DesignacionDetailComponent {
       tap(() => (this.searching = false))
     );
 
-  resultFormatCargos = (cargos: Cargo) => `${cargos.nombre} ${cargos.tipoDesignacion}`;
-  inputFormatCargos = (cargos: Cargo) => cargos.id ? `${cargos.nombre} ` : '';
+  resultFormatCargos = (cargos: Cargo) => `${cargos.nombre} ${cargos.division? `(${cargos.division.anio}° ${cargos.division.numDivision})` : ''}`;
+  inputFormatCargos = (cargos: Cargo) => cargos.id ? `(${cargos.nombre}  )` : '';
 
 
   resultFormatPersonas = (personas: Persona) => `${personas.nombre} ${personas.apellido}, DNI: ${personas.dni}`;

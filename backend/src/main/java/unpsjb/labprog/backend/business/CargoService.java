@@ -87,6 +87,11 @@ public class CargoService {
         return repository.findByNombreTipoDivision(nombre, tipo, anio, numero, turno);
     }
 
+    public List<Cargo> findByDivision(int anio, int numero) {
+        Division division = divisionRepository.findByAnioNumeroDivision(anio, numero);
+        return repository.findByDivision(division);
+    }
+
     // MENSAJES
     public String getMensajeAgregar(Cargo c) {
         return mensaje.getMensajeAgregarCargo(c);

@@ -105,47 +105,16 @@
                         <tbody>
                             <tr *ngFor="let hora of getHorasFiltradas()">
                                 <th scope="row">{{ hora }}</th>
-                                <td>
-                                    <span
-                                        *ngFor="let cargo of getCargoEnHorario('Lunes', hora)"
-                                        class="horario-card"
-                                        (click)="irADetalleCargo(cargo.id)">
-                                        {{ cargo.nombre }}
-                                    </span>
-                                </td>
-                                <td>
-                                    <span
-                                        *ngFor="let cargo of getCargoEnHorario('Martes', hora)"
-                                        class="horario-card"
-                                        (click)="irADetalleCargo(cargo.id)">
-                                        {{ cargo.nombre }}
-                                    </span>
-                                </td>
-                                <td>
-                                    <span
-                                        *ngFor="let cargo of getCargoEnHorario('Miércoles', hora)"
-                                        class="horario-card"
-                                        (click)="irADetalleCargo(cargo.id)">
-                                        {{ cargo.nombre }}
-                                    </span>
-                                </td>
-                                <td>
-                                    <span
-                                        *ngFor="let cargo of getCargoEnHorario('Jueves', hora)"
-                                        class="horario-card"
-                                        (click)="irADetalleCargo(cargo.id)">
-                                        {{ cargo.nombre }}
-                                    </span>
-                                </td>
-                                <td>
-                                    <span
-                                        *ngFor="let cargo of getCargoEnHorario('Viernes', hora)"
-                                        class="horario-card"
-                                        (click)="irADetalleCargo(cargo.id)">
-                                        {{ cargo.nombre }}
-                                    </span>
-                                </td>
+                                <ng-container *ngFor="let dia of diasSemana">
+                                    <td>
+                                        <div *ngFor="let h of getHorarioPorDiaYHora(dia, hora)" class="horario-card" (click)="verDetalle(h.designacionId)">
+                                            <strong>{{ h.nombre }}</strong><br>
+                                            <small class="text-muted">{{ h.docente }}</small>
+                                        </div>
+                                    </td>
+                                </ng-container>
                             </tr>
+                              
                         </tbody>
                     </table>
                 </div>

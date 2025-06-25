@@ -41,4 +41,8 @@ export class DivisionService {
   search(searchTerm: string): Observable<DataPackage> {
     return this.http.get<DataPackage>(`${this.divisionUrl}/search/${searchTerm}`);
   }
+  getHorario(divisionId: number): Observable<DataPackage> {
+    return this.http.get<DataPackage>(`${this.divisionUrl}/${divisionId}/horario`);
+  }
+  
 }

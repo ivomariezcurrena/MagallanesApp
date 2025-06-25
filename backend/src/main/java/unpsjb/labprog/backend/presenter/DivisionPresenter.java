@@ -1,5 +1,8 @@
 package unpsjb.labprog.backend.presenter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,15 +14,25 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import unpsjb.labprog.backend.Response;
+import unpsjb.labprog.backend.business.CargoService;
+import unpsjb.labprog.backend.business.DesignacionService;
 import unpsjb.labprog.backend.business.DivisionService;
+import unpsjb.labprog.backend.business.horarioUtils.HorarioFactory;
+import unpsjb.labprog.backend.model.Cargo;
+import unpsjb.labprog.backend.model.Designacion;
 import unpsjb.labprog.backend.model.Division;
+import unpsjb.labprog.backend.model.Horario;
 import unpsjb.labprog.backend.model.Turno;
+import unpsjb.labprog.backend.utils.Horarios;
 
 @RestController
 @RequestMapping("divisiones")
 public class DivisionPresenter {
     @Autowired
     DivisionService service;
+
+    @Autowired
+    HorarioFactory horarioFactory;
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<Object> findAll() {
@@ -105,5 +118,10 @@ public class DivisionPresenter {
     @RequestMapping(value = "/search/{term}", method = RequestMethod.GET)
     public ResponseEntity<Object> search(@PathVariable("term") String term) {
         return Response.ok(service.search(term));
+    }
+
+    @RequestMapping(value = "/{id}/horario", method = RequestMethod.GET)
+    public ResponseEntity<Object> obtenerHorario(@PathVariable("id") int id) {
+        return Response.ok(horarioFactory.crearHorarios(id));
     }
 }

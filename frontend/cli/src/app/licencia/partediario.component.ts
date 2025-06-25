@@ -81,10 +81,15 @@ export class PartediarioComponent {
           ''
         );
       } else {
+        const inicio = new Date(suplente.fechaInicio);
+        const fin = new Date(suplente.fechaFin);
+        const formatoArgentino = new Intl.DateTimeFormat('es-AR');
+        const inicioFormateado = formatoArgentino.format(inicio);
+        const finFormateado = formatoArgentino.format(fin);
         this.modalService.confirm(
           'Suplente asignado',
           `Suplente: ${suplente.persona?.nombre} ${suplente.persona?.apellido}`,
-          `Está suplantando a: ${licencia.persona?.nombre} ${licencia.persona?.apellido}`
+          `Está suplantando a: ${licencia.persona?.nombre} ${licencia.persona?.apellido}, para el periodo: ${inicioFormateado} hasta ${finFormateado}`
         );
       }
     });

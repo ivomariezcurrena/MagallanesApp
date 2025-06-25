@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import unpsjb.labprog.backend.business.validaciones.MensajeFormateador;
 import unpsjb.labprog.backend.business.validaciones.Validador;
-import unpsjb.labprog.backend.model.Cargo;
 import unpsjb.labprog.backend.model.Designacion;
 import unpsjb.labprog.backend.utils.StringNormalizer;
 

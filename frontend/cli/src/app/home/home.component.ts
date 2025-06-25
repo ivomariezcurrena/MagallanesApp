@@ -8,6 +8,9 @@ import { DivisionService } from '../division/division.service';
 import { Division } from '../division/division';
 import { Cargo } from '../cargo/cargo';
 import generatePDF from './pdf';
+import { Designacion } from '../designacion/designacion';
+import { DesignacionService } from '../designacion/designacion.service';
+import { Horario } from './horario';
 
 // Asegúrate de importar el servicio
 
@@ -21,7 +24,8 @@ export class HomeComponent {
 
   fechaHoy: string;
   licenciasHoy: number = 0; // Nueva propiedad
-  horas = ['07:00','08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'];
+  horas = ['07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'];
+  diasSemana = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
   divisiones: Division[] = [];
   divisionSeleccionada?: Division;
   cargosDivision: Cargo[] = [];
@@ -30,6 +34,7 @@ export class HomeComponent {
     private licenciaService: LicenciaService,
     private cargoService: CargoService,
     private divisionService: DivisionService,
+    private designacionService: DesignacionService,
     private router: Router // <--- agrega esto
   ) {
     const hoy = new Date();
@@ -59,22 +64,20 @@ export class HomeComponent {
       }
     });
   }
+  horariosDivision: Horario[] = [];
+
   onDivisionChange() {
     if (this.divisionSeleccionada) {
-      this.cargoService.getByAnioYNumero(
-        this.divisionSeleccionada.anio,
-        this.divisionSeleccionada.numDivision
-      ).subscribe(dataPackage => {
-        this.cargosDivision = dataPackage.data as Cargo[];
+      this.divisionService.getHorario(this.divisionSeleccionada.id!).subscribe(dataPackage => {
+        this.horariosDivision = dataPackage.data as Horario[];
       });
     }
   }
-  getCargoEnHorario(dia: string, hora: string): Cargo[] {
+  getHorarioPorDiaYHora(dia: string, hora: string): Horario[] {
     const horaNum = parseInt(hora.split(':')[0], 10);
-    return this.cargosDivision.filter(cargo =>
-      cargo.horarios.some(h => h.dia === dia && h.hora === horaNum)
-    );
+    return this.horariosDivision.filter(h => h.dia === dia && h.hora === horaNum);
   }
+  
   getHorasFiltradas(): string[] {
     if (!this.divisionSeleccionada) return this.horas;
     const turno = this.divisionSeleccionada.turno?.toLowerCase() || '';
@@ -90,12 +93,13 @@ export class HomeComponent {
     // Si no hay turno, mostrar todas
     return this.horas;
   }
-  irADetalleCargo(id: number) {
-    this.router.navigate(['/cargos', id]);
+  verDetalle(id: number) {
+    this.router.navigate(['/designaciones', id]);
   }
   exportarPDF() {
     if (this.divisionSeleccionada) {
       generatePDF(this.cargosDivision, this.getHorasFiltradas(), this.divisionSeleccionada);
     }
   }
+
 }

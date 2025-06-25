@@ -8,9 +8,11 @@
 /app/src/main/java/unpsjb/labprog/backend/business/validaciones/vdesignaciones/PluginManager.java
 /app/src/main/java/unpsjb/labprog/backend/model/TipoDesignacion.java
 /app/src/main/java/unpsjb/labprog/backend/model/Division.java
+/app/src/main/java/unpsjb/labprog/backend/utils/Horarios.java
 /app/src/main/java/unpsjb/labprog/backend/business/validaciones/MensajeFormateador.java
 /app/src/main/java/unpsjb/labprog/backend/model/Persona.java
 /app/src/main/java/unpsjb/labprog/backend/business/ArticuloLicenciaRepository.java
+/app/src/main/java/unpsjb/labprog/backend/business/horarioUtils/HorarioFactory.java
 /app/src/main/java/unpsjb/labprog/backend/business/validaciones/vlicencias/SuplenteService.java
 /app/src/main/java/unpsjb/labprog/backend/model/Designacion.java
 /app/src/main/java/unpsjb/labprog/backend/business/validaciones/vlicencias/AgregarLog.java
@@ -37,6 +39,7 @@
 /app/src/main/java/unpsjb/labprog/backend/presenter/DesignacionPresenter.java
 /app/src/main/java/unpsjb/labprog/backend/GlobalExceptionHandler.java
 /app/src/main/java/unpsjb/labprog/backend/business/DesignacionService.java
+/app/src/main/java/unpsjb/labprog/backend/business/validaciones/vlicencias/Validacion5D.java
 /app/src/main/java/unpsjb/labprog/backend/business/validaciones/ValidarDivision.java
 /app/src/main/java/unpsjb/labprog/backend/model/Horario.java
 /app/src/main/java/unpsjb/labprog/backend/presenter/CargoPresenter.java
